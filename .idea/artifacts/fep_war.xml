@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="fep:war">
+    <output-path>$PROJECT_DIR$/fep/target</output-path>
+    <root id="archive" name="fep.war">
+      <element id="artifact" artifact-name="fep:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="uiList.xsd">
+  <ImportColumn url="tDict.xml"/>
+  <List url="dict/list.html" checkbox="true" sortName="ctype" sortOrder="desc" />
+   <ImportJS url="appJs/dictBasic.js"/>
+</Root>

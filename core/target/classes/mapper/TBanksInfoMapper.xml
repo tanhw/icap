@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.core.controller.mapper.TBanksInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.core.models.TBanksInfo" >
+    <id column="BANKID" property="bankid" jdbcType="DECIMAL" />
+    <result column="BANKCODE" property="bankcode" jdbcType="VARCHAR" />
+    <result column="UNITID" property="unitid" jdbcType="DECIMAL" />
+    <result column="BANKNAME" property="bankname" jdbcType="VARCHAR" />
+    <result column="BANKADDR" property="bankaddr" jdbcType="VARCHAR" />
+    <result column="BANKCONTACT" property="bankcontact" jdbcType="VARCHAR" />
+    <result column="BANKTELE" property="banktele" jdbcType="VARCHAR" />
+    <result column="BANKMAIL" property="bankmail" jdbcType="VARCHAR" />
+    <result column="BANKFAX" property="bankfax" jdbcType="VARCHAR" />
+    <result column="CREATETIME" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    BANKID, BANKCODE, UNITID, BANKNAME, BANKADDR, BANKCONTACT, BANKTELE, BANKMAIL, BANKFAX, 
+    CREATETIME
+  </sql>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+     <if test="params.bankid != null" >
+         and BANKID = #{params.bankid,jdbcType=VARCHAR}
+      </if>
+      <if test="params.bankcode != null" >
+         and BANKCODE = #{params.bankcode,jdbcType=VARCHAR}
+      </if>
+      <if test="params.unitid != null" >
+         and UNITID = #{params.unitid,jdbcType=DECIMAL}
+      </if>
+      <if test="params.bankname != null" >
+         and BANKNAME like CONCAT(CONCAT('%',#{params.bankname,jdbcType=VARCHAR}),'%')
+      </if>
+      <if test="params.bankaddr != null" >
+         and BANKADDR = #{params.bankaddr,jdbcType=VARCHAR}
+      </if>
+      <if test="params.bankcontact != null" >
+         and BANKCONTACT = #{params.bankcontact,jdbcType=VARCHAR}
+      </if>
+      <if test="params.banktele != null" >
+         and BANKTELE = #{params.banktele,jdbcType=VARCHAR}
+      </if>
+      <if test="params.bankmail != null" >
+         and BANKMAIL = #{params.bankmail,jdbcType=VARCHAR}
+      </if>
+      <if test="params.bankfax != null" >
+         and BANKFAX = #{params.bankfax,jdbcType=VARCHAR}
+      </if>
+      <if test="params.createtime != null" >
+         and CREATETIME = #{params.createtime,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+  </sql>
+  <select id="getIdValue" resultType="java.lang.Long">
+  	select S_BANKS_INFO.nextval from dual
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from T_BANKS_INFO
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectCountByParams" resultType="int" >
+    select count(*) from T_BANKS_INFO
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectListByParams" resultType="list" resultMap="BaseResultMap" >
+    <include refid="common.Pagination_Head" />
+    select
+    <include refid="Base_Column_List" />
+    from T_BANKS_INFO
+    <include refid="Example_Where_Clause" />
+    <if test="orderParam != null" >
+      order by ${orderParam}
+    </if>
+    <include refid="common.Pagination_Foot" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_BANKS_INFO
+    where BANKID = #{bankid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from T_BANKS_INFO
+    where BANKID = #{bankid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.core.models.TBanksInfo" >
+    insert into T_BANKS_INFO (BANKID, BANKCODE, UNITID, 
+      BANKNAME, BANKADDR, BANKCONTACT, 
+      BANKTELE, BANKMAIL, BANKFAX, 
+      CREATETIME)
+    values (#{bankid,jdbcType=DECIMAL}, #{bankcode,jdbcType=VARCHAR}, #{unitid,jdbcType=DECIMAL}, 
+      #{bankname,jdbcType=VARCHAR}, #{bankaddr,jdbcType=VARCHAR}, #{bankcontact,jdbcType=VARCHAR}, 
+      #{banktele,jdbcType=VARCHAR}, #{bankmail,jdbcType=VARCHAR}, #{bankfax,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.core.models.TBanksInfo" >
+    insert into T_BANKS_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bankid != null" >
+        BANKID,
+      </if>
+      <if test="bankcode != null" >
+        BANKCODE,
+      </if>
+      <if test="unitid != null" >
+        UNITID,
+      </if>
+      <if test="bankname != null" >
+        BANKNAME,
+      </if>
+      <if test="bankaddr != null" >
+        BANKADDR,
+      </if>
+      <if test="bankcontact != null" >
+        BANKCONTACT,
+      </if>
+      <if test="banktele != null" >
+        BANKTELE,
+      </if>
+      <if test="bankmail != null" >
+        BANKMAIL,
+      </if>
+      <if test="bankfax != null" >
+        BANKFAX,
+      </if>
+      <if test="createtime != null" >
+        CREATETIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bankid != null" >
+        #{bankid,jdbcType=DECIMAL},
+      </if>
+      <if test="bankcode != null" >
+        #{bankcode,jdbcType=VARCHAR},
+      </if>
+      <if test="unitid != null" >
+        #{unitid,jdbcType=DECIMAL},
+      </if>
+      <if test="bankname != null" >
+        #{bankname,jdbcType=VARCHAR},
+      </if>
+      <if test="bankaddr != null" >
+        #{bankaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="bankcontact != null" >
+        #{bankcontact,jdbcType=VARCHAR},
+      </if>
+      <if test="banktele != null" >
+        #{banktele,jdbcType=VARCHAR},
+      </if>
+      <if test="bankmail != null" >
+        #{bankmail,jdbcType=VARCHAR},
+      </if>
+      <if test="bankfax != null" >
+        #{bankfax,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.core.models.TBanksInfo" >
+    update T_BANKS_INFO
+    <set >
+      <if test="bankcode != null" >
+        BANKCODE = #{bankcode,jdbcType=VARCHAR},
+      </if>
+      <if test="unitid != null" >
+        UNITID = #{unitid,jdbcType=DECIMAL},
+      </if>
+      <if test="bankname != null" >
+        BANKNAME = #{bankname,jdbcType=VARCHAR},
+      </if>
+      <if test="bankaddr != null" >
+        BANKADDR = #{bankaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="bankcontact != null" >
+        BANKCONTACT = #{bankcontact,jdbcType=VARCHAR},
+      </if>
+      <if test="banktele != null" >
+        BANKTELE = #{banktele,jdbcType=VARCHAR},
+      </if>
+      <if test="bankmail != null" >
+        BANKMAIL = #{bankmail,jdbcType=VARCHAR},
+      </if>
+      <if test="bankfax != null" >
+        BANKFAX = #{bankfax,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where BANKID = #{bankid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.core.models.TBanksInfo" >
+    update T_BANKS_INFO
+    set BANKCODE = #{bankcode,jdbcType=VARCHAR},
+      UNITID = #{unitid,jdbcType=DECIMAL},
+      BANKNAME = #{bankname,jdbcType=VARCHAR},
+      BANKADDR = #{bankaddr,jdbcType=VARCHAR},
+      BANKCONTACT = #{bankcontact,jdbcType=VARCHAR},
+      BANKTELE = #{banktele,jdbcType=VARCHAR},
+      BANKMAIL = #{bankmail,jdbcType=VARCHAR},
+      BANKFAX = #{bankfax,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP}
+    where BANKID = #{bankid,jdbcType=DECIMAL}
+  </update>
+</mapper>

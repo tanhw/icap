@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.core.controller.mapper.TPosFacMapper" >
+  <resultMap id="BaseResultMap" type="com.core.models.TPosFac" >
+    <id column="FACTORYID" property="factoryid" jdbcType="DECIMAL" />
+    <result column="FACCODE" property="faccode" jdbcType="VARCHAR" />
+    <result column="FACNAME" property="facname" jdbcType="VARCHAR" />
+    <result column="FACADDR" property="facaddr" jdbcType="VARCHAR" />
+    <result column="FACCONTACT" property="faccontact" jdbcType="VARCHAR" />
+    <result column="FACTELE" property="factele" jdbcType="VARCHAR" />
+    <result column="FACMAIL" property="facmail" jdbcType="VARCHAR" />
+    <result column="FACFAX" property="facfax" jdbcType="VARCHAR" />
+    <result column="FACDESC" property="facdesc" jdbcType="VARCHAR" />
+    <result column="FACPRODESC" property="facprodesc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    FACTORYID, FACCODE, FACNAME, FACADDR, FACCONTACT, FACTELE, FACMAIL, FACFAX, FACDESC, 
+    FACPRODESC
+  </sql>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="params.faccode != null" >
+         and FACCODE = #{params.faccode,jdbcType=VARCHAR}
+      </if>
+      <if test="params.facname != null" >
+         and FACNAME like CONCAT(CONCAT('%',#{params.facname,jdbcType=VARCHAR}),'%')
+      </if>
+      <if test="params.facaddr != null" >
+         and FACADDR = #{params.facaddr,jdbcType=VARCHAR}
+      </if>
+      <if test="params.faccontact != null" >
+         and FACCONTACT like CONCAT(CONCAT('%',#{params.faccontact,jdbcType=VARCHAR}),'%')
+      </if>
+      <if test="params.factele != null" >
+         and FACTELE = #{params.factele,jdbcType=VARCHAR}
+      </if>
+      <if test="params.facmail != null" >
+         and FACMAIL = #{params.facmail,jdbcType=VARCHAR}
+      </if>
+      <if test="params.facfax != null" >
+         and FACFAX = #{params.facfax,jdbcType=VARCHAR}
+      </if>
+      <if test="params.facdesc != null" >
+         and FACDESC = #{params.facdesc,jdbcType=VARCHAR}
+      </if>
+      <if test="params.facprodesc != null" >
+         and FACPRODESC = #{params.facprodesc,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </sql>
+  <select id="getIdValue" resultType="java.lang.Long">
+  	select COMMON.nextval from dual
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from T_POS_FAC
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectCountByParams" resultType="int" >
+    select count(*) from T_POS_FAC
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectListByParams" resultType="list" resultMap="BaseResultMap" >
+    <include refid="common.Pagination_Head" />
+    select
+    <include refid="Base_Column_List" />
+    from T_POS_FAC
+    <include refid="Example_Where_Clause" />
+    <if test="orderParam != null" >
+      order by ${orderParam}
+    </if>
+    <include refid="common.Pagination_Foot" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_POS_FAC
+    where FACTORYID = #{factoryid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from T_POS_FAC
+    where FACTORYID = #{factoryid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.core.models.TPosFac" >
+    insert into T_POS_FAC (FACTORYID, FACCODE, FACNAME, 
+      FACADDR, FACCONTACT, FACTELE, 
+      FACMAIL, FACFAX, FACDESC, 
+      FACPRODESC)
+    values (#{factoryid,jdbcType=DECIMAL}, #{faccode,jdbcType=VARCHAR}, #{facname,jdbcType=VARCHAR}, 
+      #{facaddr,jdbcType=VARCHAR}, #{faccontact,jdbcType=VARCHAR}, #{factele,jdbcType=VARCHAR}, 
+      #{facmail,jdbcType=VARCHAR}, #{facfax,jdbcType=VARCHAR}, #{facdesc,jdbcType=VARCHAR}, 
+      #{facprodesc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.core.models.TPosFac" >
+    insert into T_POS_FAC
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="factoryid != null" >
+        FACTORYID,
+      </if>
+      <if test="faccode != null" >
+        FACCODE,
+      </if>
+      <if test="facname != null" >
+        FACNAME,
+      </if>
+      <if test="facaddr != null" >
+        FACADDR,
+      </if>
+      <if test="faccontact != null" >
+        FACCONTACT,
+      </if>
+      <if test="factele != null" >
+        FACTELE,
+      </if>
+      <if test="facmail != null" >
+        FACMAIL,
+      </if>
+      <if test="facfax != null" >
+        FACFAX,
+      </if>
+      <if test="facdesc != null" >
+        FACDESC,
+      </if>
+      <if test="facprodesc != null" >
+        FACPRODESC,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="factoryid != null" >
+        #{factoryid,jdbcType=DECIMAL},
+      </if>
+      <if test="faccode != null" >
+        #{faccode,jdbcType=VARCHAR},
+      </if>
+      <if test="facname != null" >
+        #{facname,jdbcType=VARCHAR},
+      </if>
+      <if test="facaddr != null" >
+        #{facaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="faccontact != null" >
+        #{faccontact,jdbcType=VARCHAR},
+      </if>
+      <if test="factele != null" >
+        #{factele,jdbcType=VARCHAR},
+      </if>
+      <if test="facmail != null" >
+        #{facmail,jdbcType=VARCHAR},
+      </if>
+      <if test="facfax != null" >
+        #{facfax,jdbcType=VARCHAR},
+      </if>
+      <if test="facdesc != null" >
+        #{facdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="facprodesc != null" >
+        #{facprodesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.core.models.TPosFac" >
+    update T_POS_FAC
+    <set >
+      <if test="faccode != null" >
+        FACCODE = #{faccode,jdbcType=VARCHAR},
+      </if>
+      <if test="facname != null" >
+        FACNAME = #{facname,jdbcType=VARCHAR},
+      </if>
+      <if test="facaddr != null" >
+        FACADDR = #{facaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="faccontact != null" >
+        FACCONTACT = #{faccontact,jdbcType=VARCHAR},
+      </if>
+      <if test="factele != null" >
+        FACTELE = #{factele,jdbcType=VARCHAR},
+      </if>
+      <if test="facmail != null" >
+        FACMAIL = #{facmail,jdbcType=VARCHAR},
+      </if>
+      <if test="facfax != null" >
+        FACFAX = #{facfax,jdbcType=VARCHAR},
+      </if>
+      <if test="facdesc != null" >
+        FACDESC = #{facdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="facprodesc != null" >
+        FACPRODESC = #{facprodesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where FACTORYID = #{factoryid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.core.models.TPosFac" >
+    update T_POS_FAC
+    set FACCODE = #{faccode,jdbcType=VARCHAR},
+      FACNAME = #{facname,jdbcType=VARCHAR},
+      FACADDR = #{facaddr,jdbcType=VARCHAR},
+      FACCONTACT = #{faccontact,jdbcType=VARCHAR},
+      FACTELE = #{factele,jdbcType=VARCHAR},
+      FACMAIL = #{facmail,jdbcType=VARCHAR},
+      FACFAX = #{facfax,jdbcType=VARCHAR},
+      FACDESC = #{facdesc,jdbcType=VARCHAR},
+      FACPRODESC = #{facprodesc,jdbcType=VARCHAR}
+    where FACTORYID = #{factoryid,jdbcType=DECIMAL}
+  </update>
+</mapper>

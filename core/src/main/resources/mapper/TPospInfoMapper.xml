@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.core.controller.mapper.TPospInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.core.models.TPospInfo" >
+    <id column="POSID" property="posid" jdbcType="VARCHAR" />
+    <result column="BANKPOSID" property="bankposid" jdbcType="VARCHAR" />
+    <result column="POSTYPE" property="postype" jdbcType="VARCHAR" />
+    <result column="UNITID" property="unitid" jdbcType="DECIMAL" />
+    <result column="BRANCHID" property="branchid" jdbcType="VARCHAR" />
+    <result column="BANKBRANCHID" property="bankbranchid" jdbcType="VARCHAR" />
+    <result column="MERSEQ" property="merseq" jdbcType="DECIMAL" />
+    <result column="SAMID" property="samid" jdbcType="VARCHAR" />
+    <result column="TERMSEQ" property="termseq" jdbcType="VARCHAR" />
+    <result column="BATCHNO" property="batchno" jdbcType="VARCHAR" />
+    <result column="POSTRACENO" property="postraceno" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="PHYSICSNO" property="physicsno" jdbcType="VARCHAR" />
+    <result column="CREATETIME" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="KEYADOWNFLAG" property="keyadownflag" jdbcType="VARCHAR" />
+    <result column="TMKDOWNFLAG" property="tmkdownflag" jdbcType="VARCHAR" />
+    <result column="MAINKEY" property="mainkey" jdbcType="VARCHAR" />
+    <result column="BANKPOSKEY" property="bankposkey" jdbcType="VARCHAR" />
+    <result column="WORKKEY" property="workkey" jdbcType="VARCHAR" />
+    <result column="LASTTIMESTAMP" property="lasttimestamp" jdbcType="TIMESTAMP" />
+    <result column="POSBRAND" property="posbrand" jdbcType="VARCHAR" />
+    <result column="TERMID" property="termid" jdbcType="VARCHAR" />
+    <result column="RSVD" property="rsvd" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    POSID, BANKPOSID, POSTYPE, UNITID, BRANCHID, BANKBRANCHID, MERSEQ, SAMID, TERMSEQ, 
+    BATCHNO, POSTRACENO, STATUS, PHYSICSNO, CREATETIME, KEYADOWNFLAG, TMKDOWNFLAG, MAINKEY, 
+    BANKPOSKEY, WORKKEY, LASTTIMESTAMP, POSBRAND, TERMID, RSVD
+  </sql>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="params.bankposid != null" >
+         and BANKPOSID = #{params.bankposid,jdbcType=VARCHAR}
+      </if>
+      <if test="params.postype != null" >
+         and POSTYPE = #{params.postype,jdbcType=VARCHAR}
+      </if>
+      <if test="params.unitid != null" >
+         and UNITID = #{params.unitid,jdbcType=DECIMAL}
+      </if>
+      <if test="params.branchid != null" >
+         and BRANCHID = #{params.branchid,jdbcType=VARCHAR}
+      </if>
+      <if test="params.bankbranchid != null" >
+         and BANKBRANCHID = #{params.bankbranchid,jdbcType=VARCHAR}
+      </if>
+      <if test="params.merseq != null" >
+         and MERSEQ = #{params.merseq,jdbcType=DECIMAL}
+      </if>
+      <if test="params.samid != null" >
+         and SAMID = #{params.samid,jdbcType=VARCHAR}
+      </if>
+      <if test="params.termseq != null" >
+         and TERMSEQ = #{params.termseq,jdbcType=VARCHAR}
+      </if>
+      <if test="params.batchno != null" >
+         and BATCHNO = #{params.batchno,jdbcType=VARCHAR}
+      </if>
+      <if test="params.postraceno != null" >
+         and POSTRACENO = #{params.postraceno,jdbcType=VARCHAR}
+      </if>
+      <if test="params.status != null" >
+         and STATUS = #{params.status,jdbcType=VARCHAR}
+      </if>
+      <if test="params.physicsno != null" >
+         and PHYSICSNO = #{params.physicsno,jdbcType=VARCHAR}
+      </if>
+      <if test="params.createtime != null" >
+         and CREATETIME = #{params.createtime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="params.keyadownflag != null" >
+         and KEYADOWNFLAG = #{params.keyadownflag,jdbcType=VARCHAR}
+      </if>
+      <if test="params.tmkdownflag != null" >
+         and TMKDOWNFLAG = #{params.tmkdownflag,jdbcType=VARCHAR}
+      </if>
+      <if test="params.mainkey != null" >
+         and MAINKEY = #{params.mainkey,jdbcType=VARCHAR}
+      </if>
+      <if test="params.bankposkey != null" >
+         and BANKPOSKEY = #{params.bankposkey,jdbcType=VARCHAR}
+      </if>
+      <if test="params.workkey != null" >
+         and WORKKEY = #{params.workkey,jdbcType=VARCHAR}
+      </if>
+      <if test="params.lasttimestamp != null" >
+         and LASTTIMESTAMP = #{params.lasttimestamp,jdbcType=TIMESTAMP}
+      </if>
+      <if test="params.posbrand != null" >
+         and POSBRAND = #{params.posbrand,jdbcType=VARCHAR}
+      </if>
+      <if test="params.termid != null" >
+         and TERMID = #{params.termid,jdbcType=VARCHAR}
+      </if>
+      <if test="params.rsvd != null" >
+         and RSVD = #{params.rsvd,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from T_POSP_INFO
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectCountByParams" resultType="int" >
+    select count(*) from T_POSP_INFO
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectListByParams" resultType="list" resultMap="BaseResultMap" >
+    <include refid="common.Pagination_Head" />
+    select
+    <include refid="Base_Column_List" />
+    from T_POSP_INFO
+    <include refid="Example_Where_Clause" />
+    <if test="orderParam != null" >
+      order by ${orderParam}
+    </if>
+    <include refid="common.Pagination_Foot" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_POSP_INFO
+    where POSID = #{posid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_POSP_INFO
+    where POSID = #{posid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.core.models.TPospInfo" >
+    insert into T_POSP_INFO (POSID, BANKPOSID, POSTYPE, 
+      UNITID, BRANCHID, BANKBRANCHID, 
+      MERSEQ, SAMID, TERMSEQ, 
+      BATCHNO, POSTRACENO, STATUS, 
+      PHYSICSNO, CREATETIME, KEYADOWNFLAG, 
+      TMKDOWNFLAG, MAINKEY, BANKPOSKEY, 
+      WORKKEY, LASTTIMESTAMP, POSBRAND, 
+      TERMID, RSVD)
+    values (#{posid,jdbcType=VARCHAR}, #{bankposid,jdbcType=VARCHAR}, #{postype,jdbcType=VARCHAR}, 
+      #{unitid,jdbcType=DECIMAL}, #{branchid,jdbcType=VARCHAR}, #{bankbranchid,jdbcType=VARCHAR}, 
+      #{merseq,jdbcType=DECIMAL}, #{samid,jdbcType=VARCHAR}, #{termseq,jdbcType=VARCHAR}, 
+      #{batchno,jdbcType=VARCHAR}, #{postraceno,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{physicsno,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{keyadownflag,jdbcType=VARCHAR}, 
+      #{tmkdownflag,jdbcType=VARCHAR}, #{mainkey,jdbcType=VARCHAR}, #{bankposkey,jdbcType=VARCHAR}, 
+      #{workkey,jdbcType=VARCHAR}, #{lasttimestamp,jdbcType=TIMESTAMP}, #{posbrand,jdbcType=VARCHAR}, 
+      #{termid,jdbcType=VARCHAR}, #{rsvd,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.core.models.TPospInfo" >
+    insert into T_POSP_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="posid != null" >
+        POSID,
+      </if>
+      <if test="bankposid != null" >
+        BANKPOSID,
+      </if>
+      <if test="postype != null" >
+        POSTYPE,
+      </if>
+      <if test="unitid != null" >
+        UNITID,
+      </if>
+      <if test="branchid != null" >
+        BRANCHID,
+      </if>
+      <if test="bankbranchid != null" >
+        BANKBRANCHID,
+      </if>
+      <if test="merseq != null" >
+        MERSEQ,
+      </if>
+      <if test="samid != null" >
+        SAMID,
+      </if>
+      <if test="termseq != null" >
+        TERMSEQ,
+      </if>
+      <if test="batchno != null" >
+        BATCHNO,
+      </if>
+      <if test="postraceno != null" >
+        POSTRACENO,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="physicsno != null" >
+        PHYSICSNO,
+      </if>
+      <if test="createtime != null" >
+        CREATETIME,
+      </if>
+      <if test="keyadownflag != null" >
+        KEYADOWNFLAG,
+      </if>
+      <if test="tmkdownflag != null" >
+        TMKDOWNFLAG,
+      </if>
+      <if test="mainkey != null" >
+        MAINKEY,
+      </if>
+      <if test="bankposkey != null" >
+        BANKPOSKEY,
+      </if>
+      <if test="workkey != null" >
+        WORKKEY,
+      </if>
+      <if test="lasttimestamp != null" >
+        LASTTIMESTAMP,
+      </if>
+      <if test="posbrand != null" >
+        POSBRAND,
+      </if>
+      <if test="termid != null" >
+        TERMID,
+      </if>
+      <if test="rsvd != null" >
+        RSVD,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="posid != null" >
+        #{posid,jdbcType=VARCHAR},
+      </if>
+      <if test="bankposid != null" >
+        #{bankposid,jdbcType=VARCHAR},
+      </if>
+      <if test="postype != null" >
+        #{postype,jdbcType=VARCHAR},
+      </if>
+      <if test="unitid != null" >
+        #{unitid,jdbcType=DECIMAL},
+      </if>
+      <if test="branchid != null" >
+        #{branchid,jdbcType=VARCHAR},
+      </if>
+      <if test="bankbranchid != null" >
+        #{bankbranchid,jdbcType=VARCHAR},
+      </if>
+      <if test="merseq != null" >
+        #{merseq,jdbcType=DECIMAL},
+      </if>
+      <if test="samid != null" >
+        #{samid,jdbcType=VARCHAR},
+      </if>
+      <if test="termseq != null" >
+        #{termseq,jdbcType=VARCHAR},
+      </if>
+      <if test="batchno != null" >
+        #{batchno,jdbcType=VARCHAR},
+      </if>
+      <if test="postraceno != null" >
+        #{postraceno,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="physicsno != null" >
+        #{physicsno,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="keyadownflag != null" >
+        #{keyadownflag,jdbcType=VARCHAR},
+      </if>
+      <if test="tmkdownflag != null" >
+        #{tmkdownflag,jdbcType=VARCHAR},
+      </if>
+      <if test="mainkey != null" >
+        #{mainkey,jdbcType=VARCHAR},
+      </if>
+      <if test="bankposkey != null" >
+        #{bankposkey,jdbcType=VARCHAR},
+      </if>
+      <if test="workkey != null" >
+        #{workkey,jdbcType=VARCHAR},
+      </if>
+      <if test="lasttimestamp != null" >
+        #{lasttimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="posbrand != null" >
+        #{posbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="termid != null" >
+        #{termid,jdbcType=VARCHAR},
+      </if>
+      <if test="rsvd != null" >
+        #{rsvd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.core.models.TPospInfo" >
+    update T_POSP_INFO
+    <set >
+      <if test="bankposid != null" >
+        BANKPOSID = #{bankposid,jdbcType=VARCHAR},
+      </if>
+      <if test="postype != null" >
+        POSTYPE = #{postype,jdbcType=VARCHAR},
+      </if>
+      <if test="unitid != null" >
+        UNITID = #{unitid,jdbcType=DECIMAL},
+      </if>
+      <if test="branchid != null" >
+        BRANCHID = #{branchid,jdbcType=VARCHAR},
+      </if>
+      <if test="bankbranchid != null" >
+        BANKBRANCHID = #{bankbranchid,jdbcType=VARCHAR},
+      </if>
+      <if test="merseq != null" >
+        MERSEQ = #{merseq,jdbcType=DECIMAL},
+      </if>
+      <if test="samid != null" >
+        SAMID = #{samid,jdbcType=VARCHAR},
+      </if>
+      <if test="termseq != null" >
+        TERMSEQ = #{termseq,jdbcType=VARCHAR},
+      </if>
+      <if test="batchno != null" >
+        BATCHNO = #{batchno,jdbcType=VARCHAR},
+      </if>
+      <if test="postraceno != null" >
+        POSTRACENO = #{postraceno,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="physicsno != null" >
+        PHYSICSNO = #{physicsno,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="keyadownflag != null" >
+        KEYADOWNFLAG = #{keyadownflag,jdbcType=VARCHAR},
+      </if>
+      <if test="tmkdownflag != null" >
+        TMKDOWNFLAG = #{tmkdownflag,jdbcType=VARCHAR},
+      </if>
+      <if test="mainkey != null" >
+        MAINKEY = #{mainkey,jdbcType=VARCHAR},
+      </if>
+      <if test="bankposkey != null" >
+        BANKPOSKEY = #{bankposkey,jdbcType=VARCHAR},
+      </if>
+      <if test="workkey != null" >
+        WORKKEY = #{workkey,jdbcType=VARCHAR},
+      </if>
+      <if test="lasttimestamp != null" >
+        LASTTIMESTAMP = #{lasttimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="posbrand != null" >
+        POSBRAND = #{posbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="termid != null" >
+        TERMID = #{termid,jdbcType=VARCHAR},
+      </if>
+      <if test="rsvd != null" >
+        RSVD = #{rsvd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where POSID = #{posid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.core.models.TPospInfo" >
+    update T_POSP_INFO
+    set BANKPOSID = #{bankposid,jdbcType=VARCHAR},
+      POSTYPE = #{postype,jdbcType=VARCHAR},
+      UNITID = #{unitid,jdbcType=DECIMAL},
+      BRANCHID = #{branchid,jdbcType=VARCHAR},
+      BANKBRANCHID = #{bankbranchid,jdbcType=VARCHAR},
+      MERSEQ = #{merseq,jdbcType=DECIMAL},
+      SAMID = #{samid,jdbcType=VARCHAR},
+      TERMSEQ = #{termseq,jdbcType=VARCHAR},
+      BATCHNO = #{batchno,jdbcType=VARCHAR},
+      POSTRACENO = #{postraceno,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      PHYSICSNO = #{physicsno,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      KEYADOWNFLAG = #{keyadownflag,jdbcType=VARCHAR},
+      TMKDOWNFLAG = #{tmkdownflag,jdbcType=VARCHAR},
+      MAINKEY = #{mainkey,jdbcType=VARCHAR},
+      BANKPOSKEY = #{bankposkey,jdbcType=VARCHAR},
+      WORKKEY = #{workkey,jdbcType=VARCHAR},
+      LASTTIMESTAMP = #{lasttimestamp,jdbcType=TIMESTAMP},
+      POSBRAND = #{posbrand,jdbcType=VARCHAR},
+      TERMID = #{termid,jdbcType=VARCHAR},
+      RSVD = #{rsvd,jdbcType=VARCHAR}
+    where POSID = #{posid,jdbcType=VARCHAR}
+  </update>
+</mapper>

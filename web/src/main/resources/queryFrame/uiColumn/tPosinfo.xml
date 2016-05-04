@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="uiColumn.xsd">
+	<Column columnName="POS机ID" field="posid" align="center" width="100"  isSort="true"/>
+	<Column columnName="POS类别" field="postype" align="center" width="100" isSort="true" formatter="postypeDesc"/>
+	<Column columnName="机构ID" field="unitid" align="center" width="100"  isSort="true" />
+	<Column columnName="机构名称" field="unitname" align="center" width="100"  isSort="true" />
+	<Column columnName="商户序号" field="merseq" align="center" width="100"  isSort="true" />
+	<Column columnName="商户名称" field="branchchn" align="center" width="100"  isSort="true" />
+	<Column columnName="区域商户" field="companyname" align="center" width="100"  isSort="true" />
+	<Column columnName="商户编号" field="branchid" align="center" width="100"  isSort="true" />
+	<Column columnName="车辆编号" field="busid" align="center" width="100" isSort="true" />
+	<Column columnName="车牌号" field="tlic" align="center" width="100" isSort="true" />
+	<Column columnName="SAM卡号" field="samid" align="center" width="120" isSort="true" />
+	<Column columnName="POS状态" field="status" align="center" width="150" isSort="true" formatter="statusDesc"/>
+	<Column columnName="POS品牌" field="posbrand" align="center" width="120" isSort="true" formatter="posbrandDesc"/>
+	<Column columnName="录入时间" field="createtime" align="center" width="150" isSort="true" formatter="createtimeDesc"/>
+	<Column columnName="主密钥下载标志" field="tmkdownflag" align="center" width="100" isSort="true" formatter="tmkdownflagDesc"/>
+	<Column columnName="keya密钥下载标志" field="keyadownflag" align="center" width="100" isSort="true" formatter="keyadownflagDesc"/>
+	<Column columnName="POS当前批次号" field="batchno" align="center" width="120" isSort="true"/>
+	<Column columnName="POS累积流水号" field="postraceno" align="center" width="150" isSort="true"/>
+	<Column columnName="POS终端序列号" field="termseq" align="center" width="120" isSort="true"/>
+	<Column columnName="交易超时时间" field="timeout" align="center" width="150" isSort="true"/>
+	<Column columnName="单笔交易最大金额" field="maxmoney" align="center" width="120" isSort="true" formatter="maxmoneyDesc"/>
+	<Column columnName="累积交易最大金额" field="totalmoney" align="center" width="120" isSort="true" formatter="totalmoneyDesc"/>
+	<Column columnName="设备物理编号" field="physicsno" align="center" width="100" isSort="true"/>
+	<Column columnName="最后密钥下载时间" field="lasttimestamp" align="center" width="120" isSort="true" formatter="lasttimestampDesc"/>
+</Root>

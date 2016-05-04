@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.core.controller.mapper.TUnitTabConfMapper" >
+  <resultMap id="BaseResultMap" type="com.core.models.TUnitTabConf" >
+    <id column="CONFUNITID" property="confunitid" jdbcType="DECIMAL" />
+    <result column="UNITID" property="unitid" jdbcType="DECIMAL" />
+    <result column="CONFID" property="confid" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CONFUNITID, UNITID, CONFID
+  </sql>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="params.confunitid != null" >
+         and CONFUNITID = #{params.confunitid,jdbcType=DECIMAL}
+      </if>
+      <if test="params.unitid != null" >
+         and UNITID = #{params.unitid,jdbcType=DECIMAL}
+      </if>
+      <if test="params.confid != null" >
+         and CONFID = #{params.confid,jdbcType=DECIMAL}
+      </if>
+    </trim>
+  </sql>
+  <select id="getIdValue" resultType="java.lang.Long">
+  	select S_UNIT_TAB_CONF.nextval from dual
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from T_UNIT_TAB_CONF
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectCountByParams" resultType="int" >
+    select count(*) from T_UNIT_TAB_CONF
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectListByParams" resultType="list" resultMap="BaseResultMap" >
+    <include refid="common.Pagination_Head" />
+    select
+    <include refid="Base_Column_List" />
+    from T_UNIT_TAB_CONF
+    <include refid="Example_Where_Clause" />
+    <if test="orderParam != null" >
+      order by ${orderParam}
+    </if>
+    <include refid="common.Pagination_Foot" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_UNIT_TAB_CONF
+    where CONFUNITID = #{confunitid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from T_UNIT_TAB_CONF
+    where CONFUNITID = #{confunitid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.core.models.TUnitTabConf" >
+    insert into T_UNIT_TAB_CONF (CONFUNITID, UNITID, CONFID
+      )
+    values (#{confunitid,jdbcType=DECIMAL}, #{unitid,jdbcType=DECIMAL}, #{confid,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.core.models.TUnitTabConf" >
+    insert into T_UNIT_TAB_CONF
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="confunitid != null" >
+        CONFUNITID,
+      </if>
+      <if test="unitid != null" >
+        UNITID,
+      </if>
+      <if test="confid != null" >
+        CONFID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="confunitid != null" >
+        #{confunitid,jdbcType=DECIMAL},
+      </if>
+      <if test="unitid != null" >
+        #{unitid,jdbcType=DECIMAL},
+      </if>
+      <if test="confid != null" >
+        #{confid,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.core.models.TUnitTabConf" >
+    update T_UNIT_TAB_CONF
+    <set >
+      <if test="unitid != null" >
+        UNITID = #{unitid,jdbcType=DECIMAL},
+      </if>
+      <if test="confid != null" >
+        CONFID = #{confid,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where CONFUNITID = #{confunitid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.core.models.TUnitTabConf" >
+    update T_UNIT_TAB_CONF
+    set UNITID = #{unitid,jdbcType=DECIMAL},
+      CONFID = #{confid,jdbcType=DECIMAL}
+    where CONFUNITID = #{confunitid,jdbcType=DECIMAL}
+  </update>
+</mapper>

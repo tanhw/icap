@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.core.controller.mapper.TPosTmsDataMapper" >
+  <resultMap id="BaseResultMap" type="com.core.models.TPosTmsData" >
+    <id column="FILENAME" property="filename" jdbcType="VARCHAR" />
+    <result column="UNITID" property="unitid" jdbcType="DECIMAL" />
+    <result column="BRANCHID" property="branchid" jdbcType="VARCHAR" />
+    <result column="MERSEQ" property="merseq" jdbcType="DECIMAL" />
+    <result column="FILEPATH" property="filepath" jdbcType="VARCHAR" />
+    <result column="VERSION" property="version" jdbcType="VARCHAR" />
+    <result column="FILESIZE" property="filesize" jdbcType="VARCHAR" />
+    <result column="FILEFUNC" property="filefunc" jdbcType="VARCHAR" />
+    <result column="POSBRAND" property="posbrand" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    FILENAME, UNITID, BRANCHID, MERSEQ, FILEPATH, VERSION, FILESIZE, FILEFUNC,POSBRAND
+  </sql>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="params.unitid != null" >
+         and UNITID = #{params.unitid,jdbcType=DECIMAL}
+      </if>
+      <if test="params.branchid != null" >
+         and BRANCHID = #{params.branchid,jdbcType=VARCHAR}
+      </if>
+      <if test="params.merseq != null" >
+         and MERSEQ = #{params.merseq,jdbcType=DECIMAL}
+      </if>
+      <if test="params.filepath != null" >
+         and FILEPATH = #{params.filepath,jdbcType=VARCHAR}
+      </if>
+      <if test="params.version != null" >
+         and VERSION = #{params.version,jdbcType=VARCHAR}
+      </if>
+      <if test="params.filesize != null" >
+         and FILESIZE = #{params.filesize,jdbcType=VARCHAR}
+      </if>
+      <if test="params.filefunc != null" >
+         and FILEFUNC = #{params.filefunc,jdbcType=VARCHAR}
+      </if>
+      <if test="params.posbrand != null" >
+         and POSBRAND = #{params.posbrand,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from T_POS_TMS_DATA
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectCountByParams" resultType="int" >
+    select count(*) from T_POS_TMS_DATA
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectListByParams" resultType="list" resultMap="BaseResultMap" >
+    <include refid="common.Pagination_Head" />
+    select
+    <include refid="Base_Column_List" />
+    from T_POS_TMS_DATA
+    <include refid="Example_Where_Clause" />
+    <if test="orderParam != null" >
+      order by ${orderParam}
+    </if>
+    <include refid="common.Pagination_Foot" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_POS_TMS_DATA
+    where FILENAME = #{filename,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByPosId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+	select a.*
+      from T_POS_TMS_DATA a ,T_POS_TMS_BIND b 
+       where  a.FILENAME = b.FILENAME and b.POSID = #{posid,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_POS_TMS_DATA
+    where FILENAME = #{filename,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.core.models.TPosTmsData" >
+    insert into T_POS_TMS_DATA (FILENAME, UNITID, BRANCHID, 
+      MERSEQ, FILEPATH, VERSION, 
+      FILESIZE, FILEFUNC,POSBRAND)
+    values (#{filename,jdbcType=VARCHAR}, #{unitid,jdbcType=DECIMAL}, #{branchid,jdbcType=VARCHAR}, 
+      #{merseq,jdbcType=DECIMAL}, #{filepath,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR}, 
+      #{filesize,jdbcType=VARCHAR}, #{filefunc,jdbcType=VARCHAR},#{posbrand,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.core.models.TPosTmsData" >
+    insert into T_POS_TMS_DATA
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="filename != null" >
+        FILENAME,
+      </if>
+      <if test="unitid != null" >
+        UNITID,
+      </if>
+      <if test="branchid != null" >
+        BRANCHID,
+      </if>
+      <if test="merseq != null" >
+        MERSEQ,
+      </if>
+      <if test="filepath != null" >
+        FILEPATH,
+      </if>
+      <if test="version != null" >
+        VERSION,
+      </if>
+      <if test="filesize != null" >
+        FILESIZE,
+      </if>
+      <if test="filefunc != null" >
+        FILEFUNC,
+      </if>
+      <if test="posbrand != null" >
+        POSBRAND,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="filename != null" >
+        #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="unitid != null" >
+        #{unitid,jdbcType=DECIMAL},
+      </if>
+      <if test="branchid != null" >
+        #{branchid,jdbcType=VARCHAR},
+      </if>
+      <if test="merseq != null" >
+        #{merseq,jdbcType=DECIMAL},
+      </if>
+      <if test="filepath != null" >
+        #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="filesize != null" >
+        #{filesize,jdbcType=VARCHAR},
+      </if>
+      <if test="filefunc != null" >
+        #{filefunc,jdbcType=VARCHAR},
+      </if>
+      <if test="posbrand != null" >
+        #{posbrand,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.core.models.TPosTmsData" >
+    update T_POS_TMS_DATA
+    <set >
+      <if test="unitid != null" >
+        UNITID = #{unitid,jdbcType=DECIMAL},
+      </if>
+      <if test="branchid != null" >
+        BRANCHID = #{branchid,jdbcType=VARCHAR},
+      </if>
+      <if test="merseq != null" >
+        MERSEQ = #{merseq,jdbcType=DECIMAL},
+      </if>
+      <if test="filepath != null" >
+        FILEPATH = #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        VERSION = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="filesize != null" >
+        FILESIZE = #{filesize,jdbcType=VARCHAR},
+      </if>
+      <if test="filefunc != null" >
+        FILEFUNC = #{filefunc,jdbcType=VARCHAR},
+      </if>
+      <if test="posbrand != null" >
+        POSBRAND = #{posbrand,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where FILENAME = #{filename,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.core.models.TPosTmsData" >
+    update T_POS_TMS_DATA
+    set UNITID = #{unitid,jdbcType=DECIMAL},
+      BRANCHID = #{branchid,jdbcType=VARCHAR},
+      MERSEQ = #{merseq,jdbcType=DECIMAL},
+      FILEPATH = #{filepath,jdbcType=VARCHAR},
+      VERSION = #{version,jdbcType=VARCHAR},
+      FILESIZE = #{filesize,jdbcType=VARCHAR},
+      FILEFUNC = #{filefunc,jdbcType=VARCHAR},
+      POSBRAND = #{posbrand,jdbcType=VARCHAR}
+    where FILENAME = #{filename,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="uiColumn.xsd">
+	<Column columnName="操作员ID" field="oplogname" align="center" width="80" isSort="true"/>
+	<Column columnName="操作员姓名" field="oprealname" align="center" width="100"  isSort="true"/>
+	<Column columnName="日志描述" field="opdesc" align="center" width="280" isSort="true"/>
+	<Column columnName="机构ID" field="unitid" align="center" width="100"  isSort="true" />
+	<Column columnName="操作是否成功" field="opflag" align="center" width="80" isSort="true" formatter="opflagDesc"/>
+	<Column columnName="操作时间" field="optime" align="center" width="150" isSort="true" formatter="optimeDesc"/>
+	<Column columnName="来源IP" field="opip" align="center" width="150" isSort="true"/>
+</Root>

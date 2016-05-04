@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.core.controller.mapper.TPosTmsBindMapper">
+	<resultMap id="BaseResultMap" type="com.core.models.TPosTmsBind">
+		<id column="POSID" property="posid" jdbcType="VARCHAR" />
+		<result column="FILENAME" property="filename" jdbcType="VARCHAR" />
+		<result column="UNITID" property="unitid" jdbcType="DECIMAL" />
+		<result column="BRANCHID" property="branchid" jdbcType="VARCHAR" />
+		<result column="MERSEQ" property="merseq" jdbcType="DECIMAL" />
+		<result column="POSTYPE" property="postype" jdbcType="DECIMAL" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		POSID, FILENAME, UNITID, BRANCHID, MERSEQ
+	</sql>
+	<sql id="Example_Where_Clause">
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="params.posid != null">
+				and RTRIM(POSID) = #{params.posid,jdbcType=VARCHAR}
+			</if>
+			<if test="params.filename != null">
+				and RTRIM(FILENAME) = #{params.filename,jdbcType=VARCHAR}
+			</if>
+			<if test="params.unitid != null">
+				and UNITID = #{params.unitid,jdbcType=DECIMAL}
+			</if>
+			<if test="params.branchid != null">
+				and RTRIM(BRANCHID) = #{params.branchid,jdbcType=VARCHAR}
+			</if>
+			<if test="params.merseq != null">
+				and MERSEQ = #{params.merseq,jdbcType=DECIMAL}
+			</if>
+		</trim>
+	</sql>
+	<select id="selectByParams" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from T_POS_TMS_BIND
+		<include refid="Example_Where_Clause" />
+	</select>
+	<select id="selectCountByParams" resultType="int">
+		select count(*) from T_POS_TMS_BIND
+		<include refid="Example_Where_Clause" />
+	</select>
+	<select id="selectListByParams" resultType="list" resultMap="BaseResultMap">
+		<include refid="common.Pagination_Head" />
+		select 
+		A.POSID, A.FILENAME, A.UNITID, A.BRANCHID, A.MERSEQ, B.POSTYPE
+		from T_POS_TMS_BIND A LEFT JOIN T_POS_INFO B ON A.POSID = B.POSID
+		where 1=1
+		<if test="params.posid != null">
+			and A.POSID = #{params.posid,jdbcType=VARCHAR}
+		</if>
+		<if test="params.filename != null">
+			and A.FILENAME = #{params.filename,jdbcType=VARCHAR}
+		</if>
+		<if test="params.unitid != null">
+			and A.UNITID = #{params.unitid,jdbcType=DECIMAL}
+		</if>
+		<if test="params.branchid != null">
+			and A.BRANCHID = #{params.branchid,jdbcType=VARCHAR}
+		</if>
+		<if test="params.merseq != null">
+			and A.MERSEQ = #{params.merseq,jdbcType=DECIMAL}
+		</if>
+		<if test="orderParam != null">
+			order by ${orderParam}
+		</if>
+		<include refid="common.Pagination_Foot" />
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from T_POS_TMS_BIND
+		where POSID = #{posid,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from T_POS_TMS_BIND
+		where POSID = #{posid,jdbcType=VARCHAR}
+	</delete>
+	<delete id="deleteByFilename" parameterType="java.lang.String">
+		delete from T_POS_TMS_BIND
+		where FILENAME = #{filename,jdbcType=VARCHAR}
+	</delete>
+	<delete id="deleteBatchObj" parameterType="java.util.List">
+		DELETE T_POS_TMS_BIND WHERE 
+		<foreach collection="posList" item="pos" separator="or">
+		POSID = #{pos.posid,jdbcType=VARCHAR} 
+		</foreach>
+	</delete>
+	<insert id="insert" parameterType="com.core.models.TPosTmsBind">
+		insert into T_POS_TMS_BIND (POSID, FILENAME, UNITID,
+		BRANCHID, MERSEQ)
+		values (#{posid,jdbcType=VARCHAR}, #{filename,jdbcType=VARCHAR},
+		#{unitid,jdbcType=DECIMAL},
+		#{branchid,jdbcType=VARCHAR}, #{merseq,jdbcType=DECIMAL})
+	</insert>
+	<insert id="insertSelective" parameterType="com.core.models.TPosTmsBind">
+		insert into T_POS_TMS_BIND
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="posid != null">
+				POSID,
+			</if>
+			<if test="filename != null">
+				FILENAME,
+			</if>
+			<if test="unitid != null">
+				UNITID,
+			</if>
+			<if test="branchid != null">
+				BRANCHID,
+			</if>
+			<if test="merseq != null">
+				MERSEQ,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="posid != null">
+				#{posid,jdbcType=VARCHAR},
+			</if>
+			<if test="filename != null">
+				#{filename,jdbcType=VARCHAR},
+			</if>
+			<if test="unitid != null">
+				#{unitid,jdbcType=DECIMAL},
+			</if>
+			<if test="branchid != null">
+				#{branchid,jdbcType=VARCHAR},
+			</if>
+			<if test="merseq != null">
+				#{merseq,jdbcType=DECIMAL},
+			</if>
+		</trim>
+	</insert>
+
+	<insert id="insertBatchObj" parameterType="java.util.List" useGeneratedKeys="false">
+		insert into T_POS_TMS_BIND (POSID,  UNITID, 
+		<if test="branchid != null">
+		BRANCHID,
+		</if>
+		<if test="merseq != null">
+	 	MERSEQ ,
+	 	</if>
+		FILENAME)
+		<foreach collection="posList" open="(" close=")" item="pos"
+			separator="union all" index="index">
+			select
+			#{pos.posid,jdbcType=VARCHAR},
+			#{unitid,jdbcType=DECIMAL},
+			<if test="branchid != null">
+			#{branchid,jdbcType=VARCHAR},
+			</if>
+			<if test="merseq != null">
+			#{merseq,jdbcType=DECIMAL},
+			</if>
+			#{filename,jdbcType=VARCHAR}
+			from dual
+		</foreach>
+	</insert>
+
+	<update id="updateByPrimaryKeySelective" parameterType="com.core.models.TPosTmsBind">
+		update T_POS_TMS_BIND
+		<set>
+			<if test="filename != null">
+				FILENAME = #{filename,jdbcType=VARCHAR},
+			</if>
+			<if test="unitid != null">
+				UNITID = #{unitid,jdbcType=DECIMAL},
+			</if>
+			<if test="branchid != null">
+				BRANCHID = #{branchid,jdbcType=VARCHAR},
+			</if>
+			<if test="merseq != null">
+				MERSEQ = #{merseq,jdbcType=DECIMAL},
+			</if>
+		</set>
+		where POSID = #{posid,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.core.models.TPosTmsBind">
+		update T_POS_TMS_BIND
+		set FILENAME = #{filename,jdbcType=VARCHAR},
+		UNITID = #{unitid,jdbcType=DECIMAL},
+		BRANCHID = #{branchid,jdbcType=VARCHAR},
+		MERSEQ = #{merseq,jdbcType=DECIMAL}
+		where POSID = #{posid,jdbcType=VARCHAR}
+	</update>
+</mapper>

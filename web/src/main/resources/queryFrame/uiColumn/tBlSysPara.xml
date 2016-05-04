@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="uiColumn.xsd">
+	<Column columnName="配置名称" field="uname" align="center" width="120" isSort="true"/>
+	<Column columnName="参数名称" field="paraName" align="center" width="120" isSort="true"/>
+	<Column columnName="参数编号" field="paraNo" align="center" width="100" isSort="true"/>
+	<Column columnName="参数值" field="paraValue" align="center" width="100"  isSort="true" />
+	<Column columnName="参数描述" field="paraDesc" align="center" width="120"  isSort="true" />
+	<Column columnName="记录状态" field="recordStat" align="center" width="100" isSort="true" formatter="recordStatDesc"/>
+</Root>

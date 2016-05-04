@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="uiColumn.xsd">
+	<Column columnName="厂商ID" field="factoryid" align="center" width="100" isSort="true"/>
+	<Column columnName="厂商代码" field="faccode" align="center" width="100" isSort="true"/>
+	<Column columnName="厂商名称" field="facname" align="center" width="150"  isSort="true" />
+	<Column columnName="厂商地址" field="facaddr" align="center" width="180"  isSort="true" />
+	<Column columnName="厂商联系人" field="faccontact" align="center" width="100"  isSort="true" />
+	<Column columnName="厂商电话" field="factele" align="center" width="120" isSort="true" />
+	<Column columnName="厂商邮箱" field="facmail" align="center" width="150" isSort="true" />
+	<Column columnName="厂商传真" field="facfax" align="center" width="120" isSort="true" />
+	<Column columnName="厂商描述" field="facdesc" align="center" width="180" isSort="true"/>
+	<Column columnName="供应设备描述" field="facprodesc" align="center" width="150" isSort="true"/>
+</Root>

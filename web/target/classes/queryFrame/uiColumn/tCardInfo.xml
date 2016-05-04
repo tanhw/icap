@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="uiColumn.xsd">
+	<Column columnName="序号" field="cardid" align="center" width="100" isSort="true"/>
+	<Column columnName="卡号" field="cardno" align="center" width="100" isSort="true"/>
+	<Column columnName="状态" field="status" align="center" width="100" isSort="true" formatter="statusDesc"/>
+	<Column columnName="创建时间" field="createTime" align="center" width="200" isSort="true" formatter="createtimeDesc"/>
+	<Column columnName="机构" field="unitid" align="center" width="100" isSort="true"/>
+	<Column columnName="园区" field="campid" align="center" width="100" isSort="true"/>
+</Root>

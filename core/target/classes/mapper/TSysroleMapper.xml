@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.core.controller.mapper.TSysroleMapper" >
+  <resultMap id="BaseResultMap" type="com.core.models.TSysrole" >
+    <id column="ROLESEQ" property="roleseq" jdbcType="DECIMAL" />
+    <result column="ROLENAME" property="rolename" jdbcType="VARCHAR" />
+    <result column="ROLEDESC" property="roledesc" jdbcType="VARCHAR" />
+    <result column="UNITID" property="unitid" jdbcType="DECIMAL" />
+    <result column="ROLETYPE" property="roletype" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ROLESEQ, ROLENAME, ROLEDESC, UNITID,ROLETYPE
+  </sql>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="params.roleseq != null" >
+         and ROLESEQ = #{params.roleseq,jdbcType=DECIMAL}
+      </if>
+      <if test="params.rolename != null" >
+         and ROLENAME = #{params.rolename,jdbcType=VARCHAR}
+      </if>
+      <if test="params.roledesc != null" >
+         and ROLEDESC = #{params.roledesc,jdbcType=VARCHAR}
+      </if>
+      <if test="params.unitid != null" >
+         and UNITID = #{params.unitid,jdbcType=DECIMAL}
+      </if>
+       <if test="params.roleseq != null" >
+         and ROLESEQ = #{params.roleseq,jdbcType=DECIMAL}
+      </if>
+      <if test="params.roletype != null" >
+         and ROLETYPE = #{params.roletype,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </sql>
+  <select id="getIdValue" resultType="java.lang.Long">
+  	select COMMON.nextval from dual
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from T_SYSROLE
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectCountByParams" resultType="int" >
+    select count(*) from T_SYSROLE
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectListByParams" resultType="list" resultMap="BaseResultMap" >
+    <include refid="common.Pagination_Head" />
+    select
+    <include refid="Base_Column_List" />
+    from T_SYSROLE
+    <include refid="Example_Where_Clause" />
+    <if test="orderParam != null" >
+      order by ${orderParam}
+    </if>
+    <include refid="common.Pagination_Foot" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_SYSROLE
+    where ROLESEQ = #{roleseq,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from T_SYSROLE
+    where ROLESEQ = #{roleseq,jdbcType=DECIMAL}
+  </delete>
+   <delete id="deleteByPrimaryUnitid" parameterType="java.lang.Long" >
+    delete from T_SYSROLE
+    where UNITID = #{params.unitid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.core.models.TSysrole" >
+    insert into T_SYSROLE (ROLESEQ, ROLENAME, ROLEDESC, 
+      UNITID,ROLETYPE)
+    values (#{roleseq,jdbcType=DECIMAL}, #{rolename,jdbcType=VARCHAR}, #{roledesc,jdbcType=VARCHAR}, 
+      #{unitid,jdbcType=DECIMAL},#{roletype,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.core.models.TSysrole" >
+    insert into T_SYSROLE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleseq != null" >
+        ROLESEQ,
+      </if>
+      <if test="rolename != null" >
+        ROLENAME,
+      </if>
+      <if test="roledesc != null" >
+        ROLEDESC,
+      </if>
+      <if test="unitid != null" >
+        UNITID,
+      </if>
+      <if test="roletype != null" >
+        ROLETYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleseq != null" >
+        #{roleseq,jdbcType=DECIMAL},
+      </if>
+      <if test="rolename != null" >
+        #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="roledesc != null" >
+        #{roledesc,jdbcType=VARCHAR},
+      </if>
+      <if test="unitid != null" >
+        #{unitid,jdbcType=DECIMAL},
+      </if>
+      <if test="roletype != null" >
+        #{roletype,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.core.models.TSysrole" >
+    update T_SYSROLE
+    <set >
+      <if test="rolename != null" >
+        ROLENAME = #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="roledesc != null" >
+        ROLEDESC = #{roledesc,jdbcType=VARCHAR},
+      </if>
+      <if test="unitid != null" >
+        UNITID = #{unitid,jdbcType=DECIMAL},
+      </if>
+      <if test="roletype != null" >
+        ROLETYPE = #{roletype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ROLESEQ = #{roleseq,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.core.models.TSysrole" >
+    update T_SYSROLE
+    set ROLENAME = #{rolename,jdbcType=VARCHAR},
+      ROLEDESC = #{roledesc,jdbcType=VARCHAR},
+      UNITID = #{unitid,jdbcType=DECIMAL},
+      ROLETYPE = #{roletype,jdbcType=VARCHAR}
+    where ROLESEQ = #{roleseq,jdbcType=DECIMAL}
+  </update>
+</mapper>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.core.controller.mapper.TBatTaskMapper">
+  <resultMap id="BaseResultMap" type="com.core.models.TBatTask">
+    <id column="TASKSEQ" jdbcType="CHAR" property="taskseq" />
+    <result column="TASKDATE" jdbcType="VARCHAR" property="taskdate" />
+    <result column="TASKTYPE" jdbcType="VARCHAR" property="tasktype" />
+    <result column="RESERVED" jdbcType="VARCHAR" property="reserved" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    TASKSEQ, TASKDATE, TASKTYPE, RESERVED
+  </sql>
+
+  <sql id="Example_Where_Clause">
+    <trim prefix="where" prefixOverrides="and|or">
+      <if test="params.taskdate != null">
+         and TASKDATE = #{params.taskdate,jdbcType=VARCHAR}
+      </if>
+      <if test="params.tasktype != null">
+         and TASKTYPE = #{params.tasktype,jdbcType=VARCHAR}
+      </if>
+      <if test="params.reserved != null">
+         and RESERVED = #{params.reserved,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from T_BAT_TASK
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectCountByParams" resultType="int">
+    select count(*) from T_BAT_TASK
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectListByParams" resultMap="BaseResultMap" resultType="list">
+    <include refid="common.Pagination_Head" />
+    select
+    <include refid="Base_Column_List" />
+    from T_BAT_TASK
+    <include refid="Example_Where_Clause" />
+    <if test="orderParam != null">
+      order by ${orderParam}
+    </if>
+    <include refid="common.Pagination_Foot" />
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_BAT_TASK
+    where TASKSEQ = #{taskseq,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from T_BAT_TASK
+    where TASKSEQ = #{taskseq,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.core.models.TBatTask">
+    insert into T_BAT_TASK (TASKSEQ, TASKDATE, TASKTYPE, 
+      RESERVED)
+    values (#{taskseq,jdbcType=CHAR}, #{taskdate,jdbcType=VARCHAR}, #{tasktype,jdbcType=VARCHAR}, 
+      #{reserved,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.core.models.TBatTask">
+    insert into T_BAT_TASK
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="taskseq != null">
+        TASKSEQ,
+      </if>
+      <if test="taskdate != null">
+        TASKDATE,
+      </if>
+      <if test="tasktype != null">
+        TASKTYPE,
+      </if>
+      <if test="reserved != null">
+        RESERVED,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="taskseq != null">
+        #{taskseq,jdbcType=CHAR},
+      </if>
+      <if test="taskdate != null">
+        #{taskdate,jdbcType=VARCHAR},
+      </if>
+      <if test="tasktype != null">
+        #{tasktype,jdbcType=VARCHAR},
+      </if>
+      <if test="reserved != null">
+        #{reserved,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.core.models.TBatTask">
+    update T_BAT_TASK
+    <set>
+      <if test="taskdate != null">
+        TASKDATE = #{taskdate,jdbcType=VARCHAR},
+      </if>
+      <if test="tasktype != null">
+        TASKTYPE = #{tasktype,jdbcType=VARCHAR},
+      </if>
+      <if test="reserved != null">
+        RESERVED = #{reserved,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TASKSEQ = #{taskseq,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.core.models.TBatTask">
+    update T_BAT_TASK
+    set TASKDATE = #{taskdate,jdbcType=VARCHAR},
+      TASKTYPE = #{tasktype,jdbcType=VARCHAR},
+      RESERVED = #{reserved,jdbcType=VARCHAR}
+    where TASKSEQ = #{taskseq,jdbcType=CHAR}
+  </update>
+</mapper>

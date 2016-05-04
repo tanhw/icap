@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+		<property name="customEditors">
+			<map>
+				<entry key="java.net.SocketAddress"
+					value="org.apache.mina.integration.beans.InetSocketAddressEditor">
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<!-- 工作线程配置 ，有了工作线程，就可以将工作线程和socket的线程分开，同时无需考虑同步异步问题，mina本身就是支持异步报文的，同步只是异步的特例，是否同异步由client和报文定义自己控制 -->
+	<bean id="executorFilter" class="org.apache.mina.filter.executor.ExecutorFilter">
+		<constructor-arg>
+			 <bean class="org.apache.mina.filter.executor.OrderedThreadPoolExecutor">
+			<!--<bean  id="executor" class="java.util.concurrent.Executors" factory-method="newCachedThreadPool" > -->
+				<property name="maximumPoolSize" value="500" />
+				<property name="corePoolSize" value="200" />
+			</bean>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="ServerCodecFilter" class="org.apache.mina.filter.codec.ProtocolCodecFilter">
+		<constructor-arg>
+			<bean class="com.pospserver.common.minafilter.ServerCodecFactory" scope="prototype">
+				<constructor-arg index="0">
+					<value>2</value>
+				</constructor-arg>
+			</bean>
+		</constructor-arg>
+	</bean>
+
+	<bean id="filterChainBuilder"
+		class="org.apache.mina.core.filterchain.DefaultIoFilterChainBuilder">
+		<property name="filters">
+			<map>
+				<entry key="codecFilter" value-ref="ServerCodecFilter" />
+				<entry key="executor" value-ref="executorFilter" />
+			</map>
+		</property>
+	</bean>
+
+	<!-- The 配置 ioAcceptor which binds to port 1234,你可以配置多个端口,只要handler不一样,就处理其他的业务 -->
+	<bean id="ioAcceptor" class="org.apache.mina.transport.socket.nio.NioSocketAcceptor"
+		init-method="bind" destroy-method="unbind">
+		<property name="defaultLocalAddress" value=":20015" />
+		<property name="handler" ref="pospHandler" />
+		<property name="reuseAddress" value="true" />
+		<property name="filterChainBuilder" ref="filterChainBuilder" />
+	</bean>
+</beans>

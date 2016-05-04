@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.core.controller.mapper.TSysmenuMapper" >
+  <resultMap id="BaseResultMap" type="com.core.models.TSysmenu" >
+    <id column="MENUCODE" property="menucode" jdbcType="VARCHAR" />
+    <result column="MENUNAME" property="menuname" jdbcType="VARCHAR" />
+    <result column="MENUDESC" property="menudesc" jdbcType="VARCHAR" />
+    <result column="URL" property="url" jdbcType="VARCHAR" />
+    <result column="UPMENU" property="upmenu" jdbcType="VARCHAR" />
+    <result column="ICON" property="icon" jdbcType="VARCHAR" />
+    <result column="SORT" property="sort" jdbcType="DECIMAL" />
+    <result column="POSITION" property="position" jdbcType="VARCHAR" />
+    <result column="MENULEVEL" property="menulevel" jdbcType="VARCHAR" />
+    <result column="ISACTIVE" property="isactive" jdbcType="VARCHAR" />
+    <result column="MENUTYPE" property="menutype" jdbcType="VARCHAR" />
+    <result column="MENUKIND" property="menukind" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    MENUCODE, MENUNAME, MENUDESC, URL, UPMENU, ICON, SORT, POSITION, MENULEVEL, ISACTIVE, MENUTYPE, MENUKIND
+  </sql>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      
+      <if test="params.menucode != null" >
+         and MENUCODE = #{params.menucode,jdbcType=VARCHAR}
+      </if>
+      <if test="params.menuname != null" >
+         and MENUNAME = #{params.menuname,jdbcType=VARCHAR}
+      </if>
+      <if test="params.menudesc != null" >
+         and MENUDESC = #{params.menudesc,jdbcType=VARCHAR}
+      </if>
+      <if test="params.url != null" >
+         and URL = #{params.url,jdbcType=VARCHAR}
+      </if>
+      <if test="params.upmenu != null" >
+         and UPMENU = #{params.upmenu,jdbcType=VARCHAR}
+      </if>
+      <if test="params.icon != null" >
+         and ICON = #{params.icon,jdbcType=VARCHAR}
+      </if>
+      <if test="params.sort != null" >
+         and SORT = #{params.sort,jdbcType=DECIMAL}
+      </if>
+      <if test="params.position != null" >
+         and POSITION = #{params.position,jdbcType=VARCHAR}
+      </if>
+      <if test="params.menulevel != null" >
+         and MENULEVEL = #{params.menulevel,jdbcType=VARCHAR}
+      </if>
+      <if test="params.isactive != null" >
+         and ISACTIVE = #{params.isactive,jdbcType=VARCHAR}
+      </if>
+      <if test="params.menytype != null" >
+         and MENUTYPE = #{params.menutype,jdbcType=VARCHAR}
+      </if>
+      <if test="params.menukind != null" >
+         and MENUKIND = #{params.menukind,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from T_SYSMENU
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectCountByParams" resultType="int" >
+    select count(*) 
+      from T_SYSMENU where 1=1
+     <if test="params.menucode != null" >
+         and MENUCODE like   CONCAT(CONCAT('%',#{params.menucode,jdbcType=VARCHAR}),'%') 
+      </if>
+      <if test="params.menuname != null" >
+         and MENUNAME like CONCAT(CONCAT('%',#{params.menuname,jdbcType=VARCHAR}),'%')
+      </if>
+      <if test="params.menudesc != null" >
+         and MENUDESC = #{params.menudesc,jdbcType=VARCHAR}
+      </if>
+      <if test="params.url != null" >
+         and URL = #{params.url,jdbcType=VARCHAR}
+      </if>
+      <if test="params.upmenu != null" >
+         and UPMENU = #{params.upmenu,jdbcType=VARCHAR}
+      </if>
+      <if test="params.icon != null" >
+         and ICON = #{params.icon,jdbcType=VARCHAR}
+      </if>
+      <if test="params.sort != null" >
+         and SORT = #{params.sort,jdbcType=DECIMAL}
+      </if>
+      <if test="params.position != null" >
+         and POSITION = #{params.position,jdbcType=VARCHAR}
+      </if>
+      <if test="params.menulevel != null" >
+         and MENULEVEL = #{params.menulevel,jdbcType=VARCHAR}
+      </if>
+      <if test="params.isactive != null" >
+         and ISACTIVE = #{params.isactive,jdbcType=VARCHAR}
+      </if>
+       <if test="params.menutype != null" >
+         and MENUTYPE = #{params.menutype,jdbcType=VARCHAR}
+      </if>
+   	  <if test="params.menukind != null" >
+         and MENUKIND = #{params.menukind,jdbcType=VARCHAR}
+      </if>
+  </select>
+  <select id="selectListByParams" resultType="list" resultMap="BaseResultMap" >
+    <include refid="common.Pagination_Head" />
+    select
+    <include refid="Base_Column_List" />
+    from T_SYSMENU where 1=1
+     <if test="params.menucode != null" >
+         and MENUCODE like   CONCAT(CONCAT('%',#{params.menucode,jdbcType=VARCHAR}),'%') 
+      </if>
+      <if test="params.menuname != null" >
+         and MENUNAME like CONCAT(CONCAT('%',#{params.menuname,jdbcType=VARCHAR}),'%')
+      </if>
+      <if test="params.menudesc != null" >
+         and MENUDESC = #{params.menudesc,jdbcType=VARCHAR}
+      </if>
+      <if test="params.url != null" >
+         and URL = #{params.url,jdbcType=VARCHAR}
+      </if>
+      <if test="params.upmenu != null" >
+         and UPMENU = #{params.upmenu,jdbcType=VARCHAR}
+      </if>
+      <if test="params.icon != null" >
+         and ICON = #{params.icon,jdbcType=VARCHAR}
+      </if>
+      <if test="params.sort != null" >
+         and SORT = #{params.sort,jdbcType=DECIMAL}
+      </if>
+      <if test="params.position != null" >
+         and POSITION = #{params.position,jdbcType=VARCHAR}
+      </if>
+      <if test="params.menulevel != null" >
+         and MENULEVEL = #{params.menulevel,jdbcType=VARCHAR}
+      </if>
+      <if test="params.isactive != null" >
+         and ISACTIVE = #{params.isactive,jdbcType=VARCHAR}
+      </if>
+      <if test="params.menutype != null" >
+         and  #{params.menutype,jdbcType=VARCHAR} >= MENUTYPE 
+      </if>
+      <if test="params.menukind != null" >
+         and MENUKIND = #{params.menukind,jdbcType=VARCHAR}
+      </if>
+    
+    <if test="orderParam != null" >
+      order by ${orderParam}
+    </if>
+    <include refid="common.Pagination_Foot" />
+  </select>
+  <select id="selectListByRole" resultType="list" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select m.MENUCODE, m.MENUNAME, m.MENUDESC, m.URL, m.UPMENU,
+    m.ICON, m.SORT, m.POSITION, m.MENULEVEL, m.ISACTIVE, m.MENUTYPE
+    from t_sysrole r RIGHT join T_ROLE_MENU_INFO rm on rm.ROLESEQ = r.ROLESEQ RIGHT join T_SYSMENU m on rm.MENUCODE = m.MENUCODE
+    where r.ROLESEQ = #{roleseq,jdbcType=VARCHAR}
+
+    <if test="menutype != null" >
+        and #{menutype,jdbcType=VARCHAR} >= m.MENUTYPE
+    </if>
+    <if test="menukind == null" >
+        and (menukind = '0')
+    </if>
+    <if test="menukind == 0" >
+        and (menukind = '0')
+    </if>
+    <if test="menukind == 1" >
+        and (menukind = '0' or menukind = '1' or menukind = '3')
+    </if>
+    <if test="menukind == 2" >
+        and (menukind = '0' or menukind = '2' or menukind = '3')
+    </if>
+    and isactive = 0
+
+    order by sort asc
+</select>
+
+    <select id="selectListByRoleid" resultType="list" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select m.MENUCODE, m.MENUNAME, m.MENUDESC, m.URL, m.UPMENU,
+        m.ICON, m.SORT, m.POSITION, m.MENULEVEL, m.ISACTIVE, m.MENUTYPE
+        from t_sysrole r RIGHT join T_ROLE_MENU_INFO rm on rm.ROLESEQ = r.ROLESEQ RIGHT join T_SYSMENU m on rm.MENUCODE = m.MENUCODE
+        where r.ROLESEQ = #{roleseq,jdbcType=VARCHAR}
+
+        <if test="menutype != null" >
+            and #{menutype,jdbcType=VARCHAR} >= m.MENUTYPE
+        </if>
+
+        <if test="menukind == 1" >
+            and (menukind = '0' or menukind = '1' or menukind = '3')
+        </if>
+        <if test="menukind == 2" >
+            and (menukind = '0' or menukind = '2' or menukind = '3')
+        </if>
+        and isactive = 0
+
+        order by sort asc
+    </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_SYSMENU
+    where MENUCODE = #{menucode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_SYSMENU
+    where MENUCODE = #{menucode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.core.models.TSysmenu" >
+    insert into T_SYSMENU (MENUCODE, MENUNAME, MENUDESC, 
+      URL, UPMENU, ICON, 
+      SORT, POSITION, MENULEVEL, 
+      ISACTIVE,MENUTYPE,MENUKIND)
+    values (#{menucode,jdbcType=VARCHAR}, #{menuname,jdbcType=VARCHAR}, #{menudesc,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{upmenu,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
+      #{sort,jdbcType=DECIMAL}, #{position,jdbcType=VARCHAR}, #{menulevel,jdbcType=VARCHAR}, 
+      #{isactive,jdbcType=VARCHAR},#{menutype,jdbcType=VARCHAR},#{menukind,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.core.models.TSysmenu" >
+    insert into T_SYSMENU
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="menucode != null" >
+        MENUCODE,
+      </if>
+      <if test="menuname != null" >
+        MENUNAME,
+      </if>
+      <if test="menudesc != null" >
+        MENUDESC,
+      </if>
+      <if test="url != null" >
+        URL,
+      </if>
+      <if test="upmenu != null" >
+        UPMENU,
+      </if>
+      <if test="icon != null" >
+        ICON,
+      </if>
+      <if test="sort != null" >
+        SORT,
+      </if>
+      <if test="position != null" >
+        POSITION,
+      </if>
+      <if test="menulevel != null" >
+        MENULEVEL,
+      </if>
+      <if test="isactive != null" >
+        ISACTIVE,
+      </if>
+       <if test="menutype != null" >
+        MENUTYPE,
+      </if>
+      <if test="menukind != null" >
+        MENUKIND,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="menucode != null" >
+        #{menucode,jdbcType=VARCHAR},
+      </if>
+      <if test="menuname != null" >
+        #{menuname,jdbcType=VARCHAR},
+      </if>
+      <if test="menudesc != null" >
+        #{menudesc,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="upmenu != null" >
+        #{upmenu,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=DECIMAL},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="menulevel != null" >
+        #{menulevel,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null" >
+        #{isactive,jdbcType=VARCHAR},
+      </if>
+       <if test="menutype != null" >
+        #{menutype,jdbcType=VARCHAR},
+      </if>
+      <if test="menukind != null" >
+        #{menukind,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.core.models.TSysmenu" >
+    update T_SYSMENU
+    <set >
+      <if test="menuname != null" >
+        MENUNAME = #{menuname,jdbcType=VARCHAR},
+      </if>
+      <if test="menudesc != null" >
+        MENUDESC = #{menudesc,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="upmenu != null" >
+        UPMENU = #{upmenu,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        ICON = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        SORT = #{sort,jdbcType=DECIMAL},
+      </if>
+      <if test="position != null" >
+        POSITION = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="menulevel != null" >
+        MENULEVEL = #{menulevel,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null" >
+        ISACTIVE = #{isactive,jdbcType=VARCHAR},
+      </if>
+       <if test="menutype != null" >
+        MENUTYPE = #{menutype,jdbcType=VARCHAR},
+      </if>
+      <if test="menukind != null" >
+        MENUKIND = #{menukind,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MENUCODE = #{menucode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.core.models.TSysmenu" >
+    update T_SYSMENU
+    set MENUNAME = #{menuname,jdbcType=VARCHAR},
+      MENUDESC = #{menudesc,jdbcType=VARCHAR},
+      URL = #{url,jdbcType=VARCHAR},
+      UPMENU = #{upmenu,jdbcType=VARCHAR},
+      ICON = #{icon,jdbcType=VARCHAR},
+      SORT = #{sort,jdbcType=DECIMAL},
+      POSITION = #{position,jdbcType=VARCHAR},
+      MENULEVEL = #{menulevel,jdbcType=VARCHAR},
+      ISACTIVE = #{isactive,jdbcType=VARCHAR},
+       MENUCODE = #{menucode,jdbcType=VARCHAR}
+    where MENUCODE = #{menucode,jdbcType=VARCHAR}
+  </update>
+</mapper>

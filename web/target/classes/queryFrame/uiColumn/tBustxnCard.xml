@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="uiColumn.xsd">
+	<Column columnName="机构号" field="unitid" align="center" width="100"  isSort="true"/>
+	<Column columnName="卡号" field="cardno" align="center" width="150"  isSort="true"/>
+	<Column columnName="卡物理类型" field="cardmodel" align="center" width="100"  isSort="true" formatter="cardmodelDesc"/>
+	<Column columnName="交易笔数" field="counts" align="center" width="100"  isSort="true"/>
+	<Column columnName="交易金额" field="txnamtString" align="center" width="100"  isSort="true"/>
+</Root>

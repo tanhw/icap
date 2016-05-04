@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.core.controller.mapper.TCardInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.core.models.TCardInfo" >
+    <id column="CARDID" property="cardid" jdbcType="DECIMAL" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CARDNO" property="cardno" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UNITID" property="unitid" jdbcType="DECIMAL" />
+    <result column="CAMPID" property="campid" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CARDID, STATUS, CARDNO, CREATE_TIME, UNITID, CAMPID
+  </sql>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="params.status != null" >
+         and STATUS = #{params.status,jdbcType=VARCHAR}
+      </if>
+      <if test="params.cardno != null" >
+         and CARDNO = #{params.cardno,jdbcType=VARCHAR}
+      </if>
+      <if test="params.createTime != null" >
+         and CREATE_TIME = #{params.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="params.unitid != null" >
+         and UNITID = #{params.unitid,jdbcType=DECIMAL}
+      </if>
+      <if test="params.campid != null" >
+         and CAMPID = #{params.campid,jdbcType=DECIMAL}
+      </if>
+    </trim>
+  </sql>
+  <select id="getIdValue" resultType="java.lang.Long">
+    select S_CARDLIST.nextval from dual
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from T_CARD_INFO
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectCountByParams" resultType="int" >
+    select count(*) from T_CARD_INFO
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectListByParams" resultType="list" resultMap="BaseResultMap" >
+    <include refid="common.Pagination_Head" />
+    select
+    <include refid="Base_Column_List" />
+    from T_CARD_INFO
+    <include refid="Example_Where_Clause" />
+    <if test="orderParam != null" >
+      order by ${orderParam}
+    </if>
+    <include refid="common.Pagination_Foot" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_CARD_INFO
+    where CARDID = #{cardid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from T_CARD_INFO
+    where CARDID = #{cardid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.core.models.TCardInfo" >
+    insert into T_CARD_INFO (CARDID, STATUS, CARDNO, 
+      CREATE_TIME, UNITID, CAMPID
+      )
+    values (#{cardid,jdbcType=DECIMAL}, #{status,jdbcType=VARCHAR}, #{cardno,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{unitid,jdbcType=DECIMAL}, #{campid,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.core.models.TCardInfo" >
+    insert into T_CARD_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cardid != null" >
+        CARDID,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="cardno != null" >
+        CARDNO,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="unitid != null" >
+        UNITID,
+      </if>
+      <if test="campid != null" >
+        CAMPID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cardid != null" >
+        #{cardid,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="cardno != null" >
+        #{cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unitid != null" >
+        #{unitid,jdbcType=DECIMAL},
+      </if>
+      <if test="campid != null" >
+        #{campid,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.core.models.TCardInfo" >
+    update T_CARD_INFO
+    <set >
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="cardno != null" >
+        CARDNO = #{cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unitid != null" >
+        UNITID = #{unitid,jdbcType=DECIMAL},
+      </if>
+      <if test="campid != null" >
+        CAMPID = #{campid,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where CARDID = #{cardid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.core.models.TCardInfo" >
+    update T_CARD_INFO
+    set STATUS = #{status,jdbcType=VARCHAR},
+      CARDNO = #{cardno,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UNITID = #{unitid,jdbcType=DECIMAL},
+      CAMPID = #{campid,jdbcType=DECIMAL}
+    where CARDID = #{cardid,jdbcType=DECIMAL}
+  </update>
+</mapper>

@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.core.controller.mapper.TPosInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.core.models.TPosInfo" >
+    <id column="POSID" property="posid" jdbcType="VARCHAR" />
+    <result column="POSTYPE" property="postype" jdbcType="VARCHAR" />
+    <result column="UNITID" property="unitid" jdbcType="DECIMAL" />
+    <result column="BRANCHID" property="branchid" jdbcType="VARCHAR" />
+    <result column="MERSEQ" property="merseq" jdbcType="DECIMAL" />
+    <result column="BUSID" property="busid" jdbcType="DECIMAL" />
+    <result column="SAMID" property="samid" jdbcType="VARCHAR" />
+    <result column="TERMSEQ" property="termseq" jdbcType="VARCHAR" />
+    <result column="BATCHNO" property="batchno" jdbcType="VARCHAR" />
+    <result column="POSTRACENO" property="postraceno" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="TIMEOUT" property="timeout" jdbcType="DECIMAL" />
+    <result column="MAXMONEY" property="maxmoney" jdbcType="DECIMAL" />
+    <result column="TOTALMONEY" property="totalmoney" jdbcType="DECIMAL" />
+    <result column="CREATETIME" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="POSKEY" property="poskey" jdbcType="VARCHAR" />
+    <result column="POSMAC" property="posmac" jdbcType="VARCHAR" />
+    <result column="TMK" property="tmk" jdbcType="VARCHAR" />
+    <result column="MAK" property="mak" jdbcType="VARCHAR" />
+    <result column="LMK" property="lmk" jdbcType="VARCHAR" />
+    <result column="PIK" property="pik" jdbcType="VARCHAR" />
+    <result column="TRK" property="trk" jdbcType="VARCHAR" />
+    <result column="BUSIID" property="busiid" jdbcType="VARCHAR" />
+    <result column="TMKDOWNFLAG" property="tmkdownflag" jdbcType="VARCHAR" />
+    <result column="KEYADOWNFLAG" property="keyadownflag" jdbcType="VARCHAR" />
+    <result column="PHYSICSNO" property="physicsno" jdbcType="VARCHAR" />
+    <result column="LASTTIMESTAMP" property="lasttimestamp" jdbcType="TIMESTAMP" />
+    <result column="POSBRAND" property="posbrand" jdbcType="VARCHAR" />
+    <result column="TLIC" property="tlic" jdbcType="VARCHAR" />
+    <result column="UNITNAME" property="unitname" jdbcType="VARCHAR" />
+    <result column="BRANCHCHN" property="branchchn" jdbcType="VARCHAR" />
+    <result column="COMPANYNAME" property="companyname" jdbcType="VARCHAR" />
+    <result column="POSCOLLECTTYPE" property="poscollecttype" jdbcType="DECIMAL" />
+    <result column="TERMID" property="termid" jdbcType="VARCHAR" />
+    <result column="RSVD" property="rsvd" jdbcType="VARCHAR" />
+    <result column="CAMPID" property="campid" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    POSID, POSTYPE, UNITID, BRANCHID , MERSEQ, BUSID,SAMID, TERMSEQ,
+    BATCHNO, POSTRACENO, STATUS, TIMEOUT, MAXMONEY, TOTALMONEY, CREATETIME, POSKEY, POSMAC, 
+    TMK, MAK, LMK, PIK, TRK,BUSIID,TMKDOWNFLAG,KEYADOWNFLAG,PHYSICSNO,LASTTIMESTAMP,POSBRAND
+  </sql>
+  <sql id="Full_Column_List" >
+    POS.POSID, POS.POSTYPE, POS.UNITID, POS.BRANCHID, POS.MERSEQ, POS.BUSID,POS.SAMID, POS.TERMSEQ,
+    POS.BATCHNO, POS.POSTRACENO, POS.STATUS, POS.TIMEOUT, POS.MAXMONEY, POS.TOTALMONEY, POS.CREATETIME, POS.POSKEY, POS.POSMAC,
+    POS.TMK, POS.MAK, POS.LMK, POS.PIK, POS.TRK,POS.BUSIID,POS.TMKDOWNFLAG,POS.KEYADOWNFLAG,POS.PHYSICSNO,POS.LASTTIMESTAMP,POS.POSBRAND,BUS.TLIC, UNIT.UNITNAME, MER.BRANCHCHN, ACOMP.COMPANYNAME
+  </sql>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="params.posid != null" >
+         and POSID = #{params.posid,jdbcType=VARCHAR}
+      </if>
+      <if test="params.postype != null" >
+         and POSTYPE = #{params.postype,jdbcType=VARCHAR}
+      </if>
+      <if test="params.unitid != null" >
+         and UNITID = #{params.unitid,jdbcType=DECIMAL}
+      </if>
+      <if test="params.branchid != null" >
+         and BRANCHID = #{params.branchid,jdbcType=VARCHAR}
+      </if>
+      <if test="params.merseq != null" >
+         and MERSEQ = #{params.merseq,jdbcType=DECIMAL}
+      </if>
+      <if test="params.busid != null" >
+         and BUSID = #{params.busid,jdbcType=DECIMAL}
+      </if>
+      <if test="params.samid != null" >
+         and SAMID = #{params.samid,jdbcType=VARCHAR}
+      </if>
+      <if test="params.termseq != null" >
+         and TERMSEQ = #{params.termseq,jdbcType=VARCHAR}
+      </if>
+      <if test="params.batchno != null" >
+         and BATCHNO = #{params.batchno,jdbcType=VARCHAR}
+      </if>
+      <if test="params.postraceno != null" >
+         and POSTRACENO = #{params.postraceno,jdbcType=VARCHAR}
+      </if>
+      <if test="params.status != null" >
+         and STATUS = #{params.status,jdbcType=VARCHAR}
+      </if>
+      <if test="params.timeout != null" >
+         and TIMEOUT = #{params.timeout,jdbcType=DECIMAL}
+      </if>
+      <if test="params.maxmoney != null" >
+         and MAXMONEY = #{params.maxmoney,jdbcType=DECIMAL}
+      </if>
+      <if test="params.totalmoney != null" >
+         and TOTALMONEY = #{params.totalmoney,jdbcType=DECIMAL}
+      </if>
+      <if test="params.createtime != null" >
+         and CREATETIME = #{params.createtime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="params.poskey != null" >
+         and POSKEY = #{params.poskey,jdbcType=VARCHAR}
+      </if>
+      <if test="params.posmac != null" >
+         and POSMAC = #{params.posmac,jdbcType=VARCHAR}
+      </if>
+      <if test="params.tmk != null" >
+         and TMK = #{params.tmk,jdbcType=VARCHAR}
+      </if>
+      <if test="params.mak != null" >
+         and MAK = #{params.mak,jdbcType=VARCHAR}
+      </if>
+      <if test="params.lmk != null" >
+         and LMK = #{params.lmk,jdbcType=VARCHAR}
+      </if>
+      <if test="params.pik != null" >
+         and PIK = #{params.pik,jdbcType=VARCHAR}
+      </if>
+      <if test="params.trk != null" >
+         and TRK = #{params.trk,jdbcType=VARCHAR}
+      </if>
+      <if test="params.busiid != null" >
+         and BUSIID = #{params.busiid,jdbcType=VARCHAR}
+      </if>
+      <if test="params.tmkdownflag != null" >
+         and TMKDOWNFLAG = #{params.tmkdownflag,jdbcType=VARCHAR}
+      </if>
+      <if test="params.keyadownflag != null" >
+         and KEYADOWNFLAG = #{params.keyadownflag,jdbcType=VARCHAR}
+      </if>
+      <if test="params.physicsno != null" >
+         and PHYSICSNO = #{params.physicsno,jdbcType=VARCHAR}
+      </if>
+      <if test="params.lasttimestamp != null" >
+         and LASTTIMESTAMP = #{params.lasttimestamp,jdbcType=TIMESTAMP}
+      </if>
+      <if test="params.posbrand != null" >
+         and POSBRAND = #{params.posbrand,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Full_Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="params.posid != null" >
+         and POS.POSID = #{params.posid,jdbcType=VARCHAR}
+      </if>
+      <if test="params.postype != null" >
+         and POS.POSTYPE = #{params.postype,jdbcType=VARCHAR}
+      </if>
+      <if test="params.unitid != null" >
+         and POS.UNITID = #{params.unitid,jdbcType=DECIMAL}
+      </if>
+      <if test="params.branchid != null" >
+         and POS.BRANCHID = #{params.branchid,jdbcType=VARCHAR}
+      </if>
+      <if test="params.merseq != null" >
+         and POS.MERSEQ = #{params.merseq,jdbcType=DECIMAL}
+      </if>
+      <if test="params.busid != null" >
+         and POS.BUSID = #{params.busid,jdbcType=DECIMAL}
+      </if>
+      <if test="params.samid != null" >
+         and POS.SAMID = #{params.samid,jdbcType=VARCHAR}
+      </if>
+      <if test="params.termseq != null" >
+         and POS.TERMSEQ = #{params.termseq,jdbcType=VARCHAR}
+      </if>
+      <if test="params.batchno != null" >
+         and POS.BATCHNO = #{params.batchno,jdbcType=VARCHAR}
+      </if>
+      <if test="params.postraceno != null" >
+         and POS.POSTRACENO = #{params.postraceno,jdbcType=VARCHAR}
+      </if>
+      <if test="params.status != null" >
+         and POS.STATUS = #{params.status,jdbcType=VARCHAR}
+      </if>
+      <if test="params.timeout != null" >
+         and POS.TIMEOUT = #{params.timeout,jdbcType=DECIMAL}
+      </if>
+      <if test="params.maxmoney != null" >
+         and POS.MAXMONEY = #{params.maxmoney,jdbcType=DECIMAL}
+      </if>
+      <if test="params.totalmoney != null" >
+         and POS.TOTALMONEY = #{params.totalmoney,jdbcType=DECIMAL}
+      </if>
+      <if test="params.createtime != null" >
+         and POS.CREATETIME = #{params.createtime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="params.poskey != null" >
+         and POS.POSKEY = #{params.poskey,jdbcType=VARCHAR}
+      </if>
+      <if test="params.posmac != null" >
+         and POS.POSMAC = #{params.posmac,jdbcType=VARCHAR}
+      </if>
+      <if test="params.tmk != null" >
+         and POS.TMK = #{params.tmk,jdbcType=VARCHAR}
+      </if>
+      <if test="params.mak != null" >
+         and POS.MAK = #{params.mak,jdbcType=VARCHAR}
+      </if>
+      <if test="params.lmk != null" >
+         and POS.LMK = #{params.lmk,jdbcType=VARCHAR}
+      </if>
+      <if test="params.pik != null" >
+         and POS.PIK = #{params.pik,jdbcType=VARCHAR}
+      </if>
+      <if test="params.trk != null" >
+         and POS.TRK = #{params.trk,jdbcType=VARCHAR}
+      </if>
+      <if test="params.busiid != null" >
+         and POS.BUSIID = #{params.busiid,jdbcType=VARCHAR}
+      </if>
+      <if test="params.tmkdownflag != null" >
+         and POS.TMKDOWNFLAG = #{params.tmkdownflag,jdbcType=VARCHAR}
+      </if>
+      <if test="params.keyadownflag != null" >
+         and POS.KEYADOWNFLAG = #{params.keyadownflag,jdbcType=VARCHAR}
+      </if>
+      <if test="params.physicsno != null" >
+         and POS.PHYSICSNO = #{params.physicsno,jdbcType=VARCHAR}
+      </if>
+      <if test="params.lasttimestamp != null" >
+         and POS.LASTTIMESTAMP = #{params.lasttimestamp,jdbcType=TIMESTAMP}
+      </if>
+      <if test="params.posbrand != null" >
+         and POS.POSBRAND = #{params.posbrand,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from T_POS_INFO
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectCountByParams" resultType="int" >
+    select count(*) from T_POS_INFO
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectListByParams" resultType="list" resultMap="BaseResultMap" >
+    <include refid="common.Pagination_Head" />
+    select
+    <include refid="Full_Column_List" />
+    from T_POS_INFO POS LEFT JOIN T_BUS_INFO BUS ON POS.BUSID=BUS.BUSID 
+    LEFT JOIN T_UNIT_INFO UNIT ON POS.UNITID = UNIT.UNITID 
+    LEFT JOIN T_MERCHANT_INFO MER ON POS.MERSEQ = MER.MERSEQ
+    LEFT JOIN T_AREA_COMP_INFO ACOMP ON MER.ACOMPANYID = ACOMP.ACOMPANYID
+    <include refid="Full_Example_Where_Clause" />
+    <if test="orderParam != null" >
+      order by POS.${orderParam}
+    </if>
+    <include refid="common.Pagination_Foot" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_POS_INFO
+    where POSID = #{posid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_POS_INFO
+    where POSID = #{posid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.core.models.TPosInfo" >
+    insert into T_POS_INFO (POSID, POSTYPE, 
+      UNITID, BRANCHID, MERSEQ, 
+      BUSID,SAMID, 
+      TERMSEQ, BATCHNO, POSTRACENO, 
+      STATUS, TIMEOUT, MAXMONEY, 
+      TOTALMONEY, CREATETIME, POSKEY, 
+      POSMAC, TMK, MAK, LMK, 
+      PIK, TRK,BUSIID,TMKDOWNFLAG,KEYADOWNFLAG,
+      PHYSICSNO,LASTTIMESTAMP,POSBRAND)
+    values (#{posid,jdbcType=VARCHAR}, #{postype,jdbcType=VARCHAR}, 
+      #{unitid,jdbcType=DECIMAL}, #{branchid,jdbcType=VARCHAR}, #{merseq,jdbcType=DECIMAL}, 
+      #{busid,jdbcType=DECIMAL}, #{samid,jdbcType=VARCHAR}, 
+      #{termseq,jdbcType=VARCHAR}, #{batchno,jdbcType=VARCHAR}, #{postraceno,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{timeout,jdbcType=DECIMAL}, #{maxmoney,jdbcType=DECIMAL}, 
+      #{totalmoney,jdbcType=DECIMAL}, #{createtime,jdbcType=TIMESTAMP}, #{poskey,jdbcType=VARCHAR}, 
+      #{posmac,jdbcType=VARCHAR}, #{tmk,jdbcType=VARCHAR}, #{mak,jdbcType=VARCHAR}, #{lmk,jdbcType=VARCHAR}, 
+      #{pik,jdbcType=VARCHAR}, #{trk,jdbcType=VARCHAR},
+      #{busiid,jdbcType=VARCHAR},#{tmkdownflag,jdbcType=VARCHAR},#{keyadownflag,jdbcType=VARCHAR},
+      #{physicsno,jdbcType=VARCHAR},#{lasttimestamp,jdbcType=TIMESTAMP},#{posbrand,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.core.models.TPosInfo" >
+    insert into T_POS_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="posid != null" >
+        POSID,
+      </if>
+      <if test="postype != null" >
+        POSTYPE,
+      </if>
+      <if test="unitid != null" >
+        UNITID,
+      </if>
+      <if test="branchid != null" >
+        BRANCHID,
+      </if>
+      <if test="merseq != null" >
+        MERSEQ,
+      </if>
+      <if test="busid != null" >
+        BUSID,
+      </if>
+      <if test="samid != null" >
+        SAMID,
+      </if>
+      <if test="termseq != null" >
+        TERMSEQ,
+      </if>
+      <if test="batchno != null" >
+        BATCHNO,
+      </if>
+      <if test="postraceno != null" >
+        POSTRACENO,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="timeout != null" >
+        TIMEOUT,
+      </if>
+      <if test="maxmoney != null" >
+        MAXMONEY,
+      </if>
+      <if test="totalmoney != null" >
+        TOTALMONEY,
+      </if>
+      <if test="createtime != null" >
+        CREATETIME,
+      </if>
+      <if test="poskey != null" >
+        POSKEY,
+      </if>
+      <if test="posmac != null" >
+        POSMAC,
+      </if>
+      <if test="tmk != null" >
+        TMK,
+      </if>
+      <if test="mak != null" >
+        MAK,
+      </if>
+      <if test="lmk != null" >
+        LMK,
+      </if>
+      <if test="pik != null" >
+        PIK,
+      </if>
+      <if test="trk != null" >
+        TRK,
+      </if>
+      <if test="busiid != null" >
+        BUSIID,
+      </if>
+      <if test="tmkdownflag != null" >
+        TMKDOWNFLAG,
+      </if>
+      <if test="keyadownflag != null" >
+        KEYADOWNFLAG,
+      </if>
+      <if test="physicsno != null" >
+        PHYSICSNO,
+      </if>
+      <if test="lasttimestamp != null" >
+        LASTTIMESTAMP,
+      </if>
+      <if test="posbrand != null" >
+        POSBRAND,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="posid != null" >
+        #{posid,jdbcType=VARCHAR},
+      </if>
+      <if test="postype != null" >
+        #{postype,jdbcType=VARCHAR},
+      </if>
+      <if test="unitid != null" >
+        #{unitid,jdbcType=DECIMAL},
+      </if>
+      <if test="branchid != null" >
+        #{branchid,jdbcType=VARCHAR},
+      </if>
+      <if test="merseq != null" >
+        #{merseq,jdbcType=DECIMAL},
+      </if>
+      <if test="busid != null" >
+        #{busid,jdbcType=DECIMAL},
+      </if>
+      <if test="samid != null" >
+        #{samid,jdbcType=VARCHAR},
+      </if>
+      <if test="termseq != null" >
+        #{termseq,jdbcType=VARCHAR},
+      </if>
+      <if test="batchno != null" >
+        #{batchno,jdbcType=VARCHAR},
+      </if>
+      <if test="postraceno != null" >
+        #{postraceno,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="timeout != null" >
+        #{timeout,jdbcType=DECIMAL},
+      </if>
+      <if test="maxmoney != null" >
+        #{maxmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="totalmoney != null" >
+        #{totalmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="poskey != null" >
+        #{poskey,jdbcType=VARCHAR},
+      </if>
+      <if test="posmac != null" >
+        #{posmac,jdbcType=VARCHAR},
+      </if>
+      <if test="tmk != null" >
+        #{tmk,jdbcType=VARCHAR},
+      </if>
+      <if test="mak != null" >
+        #{mak,jdbcType=VARCHAR},
+      </if>
+      <if test="lmk != null" >
+        #{lmk,jdbcType=VARCHAR},
+      </if>
+      <if test="pik != null" >
+        #{pik,jdbcType=VARCHAR},
+      </if>
+      <if test="trk != null" >
+        #{trk,jdbcType=VARCHAR},
+      </if>
+      <if test="busiid != null" >
+        #{busiid,jdbcType=VARCHAR},
+      </if>
+      <if test="tmkdownflag != null" >
+        #{tmkdownflag,jdbcType=VARCHAR},
+      </if>
+      <if test="keyadownflag != null" >
+        #{keyadownflag,jdbcType=VARCHAR},
+      </if>
+      <if test="physicsno != null" >
+        #{physicsno,jdbcType=VARCHAR},
+      </if>
+      <if test="lasttimestamp != null" >
+        #{lasttimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="posbrand != null" >
+        #{posbrand,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.core.models.TPosInfo" >
+    update T_POS_INFO
+    <set >
+      <if test="postype != null" >
+        POSTYPE = #{postype,jdbcType=VARCHAR},
+      </if>
+      <if test="unitid != null" >
+        UNITID = #{unitid,jdbcType=DECIMAL},
+      </if>
+      <if test="branchid != null" >
+        BRANCHID = #{branchid,jdbcType=VARCHAR},
+      </if>
+      <if test="merseq != null" >
+        MERSEQ = #{merseq,jdbcType=DECIMAL},
+      </if>
+      <if test="busid != null" >
+        BUSID = #{busid,jdbcType=DECIMAL},
+      </if>
+      <if test="samid != null" >
+        SAMID = #{samid,jdbcType=VARCHAR},
+      </if>
+      <if test="termseq != null" >
+        TERMSEQ = #{termseq,jdbcType=VARCHAR},
+      </if>
+      <if test="batchno != null" >
+        BATCHNO = #{batchno,jdbcType=VARCHAR},
+      </if>
+      <if test="postraceno != null" >
+        POSTRACENO = #{postraceno,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="timeout != null" >
+        TIMEOUT = #{timeout,jdbcType=DECIMAL},
+      </if>
+      <if test="maxmoney != null" >
+        MAXMONEY = #{maxmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="totalmoney != null" >
+        TOTALMONEY = #{totalmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="createtime != null" >
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="poskey != null" >
+        POSKEY = #{poskey,jdbcType=VARCHAR},
+      </if>
+      <if test="posmac != null" >
+        POSMAC = #{posmac,jdbcType=VARCHAR},
+      </if>
+      <if test="tmk != null" >
+        TMK = #{tmk,jdbcType=VARCHAR},
+      </if>
+      <if test="mak != null" >
+        MAK = #{mak,jdbcType=VARCHAR},
+      </if>
+      <if test="lmk != null" >
+        LMK = #{lmk,jdbcType=VARCHAR},
+      </if>
+      <if test="pik != null" >
+        PIK = #{pik,jdbcType=VARCHAR},
+      </if>
+      <if test="trk != null" >
+        TRK = #{trk,jdbcType=VARCHAR},
+      </if>
+      <if test="busiid != null" >
+        BUSIID = #{busiid,jdbcType=VARCHAR},
+      </if>
+      <if test="tmkdownflag != null" >
+        TMKDOWNFLAG = #{tmkdownflag,jdbcType=VARCHAR},
+      </if>
+      <if test="keyadownflag != null" >
+        KEYADOWNFLAG = #{keyadownflag,jdbcType=VARCHAR},
+      </if>
+      <if test="physicsno != null" >
+        PHYSICSNO = #{physicsno,jdbcType=VARCHAR},
+      </if>
+      <if test="lasttimestamp != null" >
+        LASTTIMESTAMP = #{lasttimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="posbrand != null" >
+        POSBRAND = #{posbrand,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where POSID = #{posid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.core.models.TPosInfo" >
+    update T_POS_INFO
+    set POSTYPE = #{postype,jdbcType=VARCHAR},
+      UNITID = #{unitid,jdbcType=DECIMAL},
+      BRANCHID = #{branchid,jdbcType=VARCHAR},
+      MERSEQ = #{merseq,jdbcType=DECIMAL},
+      BUSID = #{busid,jdbcType=DECIMAL},
+      SAMID = #{samid,jdbcType=VARCHAR},
+      TERMSEQ = #{termseq,jdbcType=VARCHAR},
+      BATCHNO = #{batchno,jdbcType=VARCHAR},
+      POSTRACENO = #{postraceno,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      TIMEOUT = #{timeout,jdbcType=DECIMAL},
+      MAXMONEY = #{maxmoney,jdbcType=DECIMAL},
+      TOTALMONEY = #{totalmoney,jdbcType=DECIMAL},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      POSKEY = #{poskey,jdbcType=VARCHAR},
+      POSMAC = #{posmac,jdbcType=VARCHAR},
+      TMK = #{tmk,jdbcType=VARCHAR},
+      MAK = #{mak,jdbcType=VARCHAR},
+      LMK = #{lmk,jdbcType=VARCHAR},
+      PIK = #{pik,jdbcType=VARCHAR},
+      TRK = #{trk,jdbcType=VARCHAR},
+      BUSIID = #{busiid,jdbcType=VARCHAR},
+      TMKDOWNFLAG = #{tmkdownflag,jdbcType=VARCHAR},
+      KEYADOWNFLAG = #{keyadownflag,jdbcType=VARCHAR},
+      PHYSICSNO = #{physicsno,jdbcType=VARCHAR},
+      LASTTIMESTAMP = #{lasttimestamp,jdbcType=TIMESTAMP},
+      POSBRAND = #{posbrand,jdbcType=VARCHAR}
+    where POSID = #{posid,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="uiColumn.xsd">
+	<Column columnName="字典编号" field="ccode" align="center" width="100"  isSort="false"/>
+	<Column columnName="内容值	" field="cvalue" align="center" width="100" isSort="false"/>
+	<Column columnName="内容描述	" field="cdesc" align="center" width="100" isSort="false"/>
+	<Column columnName="字典类型" field="ctype" align="center" width="150"  isSort="true"/>
+	<Column columnName="是否有效" field="isactive" align="center" width="180" formatter="activeDesc" isSort="true"/>
+	<Column columnName="机构ID" field="unitid" align="center" width="180" isSort="true"/>
+	<Column columnName="父级编号" field="cupcode" align="center" width="180" isSort="true"/>
+</Root>

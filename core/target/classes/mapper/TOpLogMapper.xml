@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.core.controller.mapper.TOpLogMapper">
+  <resultMap id="BaseResultMap" type="com.core.models.TOpLog">
+    <id column="LOGSEQ" jdbcType="DECIMAL" property="logseq" />
+    <result column="OPLOGNAME" jdbcType="VARCHAR" property="oplogname" />
+    <result column="OPREALNAME" jdbcType="VARCHAR" property="oprealname" />
+    <result column="LOGTYPE" jdbcType="VARCHAR" property="logtype" />
+    <result column="OPTIME" jdbcType="TIMESTAMP" property="optime" />
+    <result column="OPIP" jdbcType="VARCHAR" property="opip" />
+    <result column="OPFLAG" jdbcType="VARCHAR" property="opflag" />
+    <result column="OPDESC" jdbcType="VARCHAR" property="opdesc" />
+    <result column="UNITID" jdbcType="DECIMAL" property="unitid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    LOGSEQ, OPLOGNAME, OPREALNAME, LOGTYPE, OPTIME, OPIP, OPFLAG,OPDESC,UNITID
+  </sql>
+  <sql id="Example_Where_Clause">
+    <trim prefix="where" prefixOverrides="and|or">
+      <if test="params.oplogname != null">
+         and OPLOGNAME = #{params.oplogname,jdbcType=VARCHAR}
+      </if>
+      <if test="params.oprealname != null">
+         and OPREALNAME like CONCAT(CONCAT('%',#{params.oprealname,jdbcType=VARCHAR}),'%')
+      </if>
+      <if test="params.logtype != null">
+         and LOGTYPE = #{params.logtype,jdbcType=VARCHAR}
+      </if>
+      <if test="params.optime != null">
+         and OPTIME = #{params.optime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="params.opip != null">
+         and OPIP = #{params.opip,jdbcType=VARCHAR}
+      </if>
+      <if test="params.opflag != null">
+         and OPFLAG = #{params.opflag,jdbcType=VARCHAR}
+      </if>
+      <if test="params.opdesc != null">
+         and OPDESC = #{params.opdesc,jdbcType=VARCHAR}
+      </if>
+      <if test="params.unitid != null">
+         and UNITID = #{params.unitid,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </sql>
+  <select id="getIdValue" resultType="java.lang.Long">
+  	select S_OP_LOG.nextval from dual
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from T_OP_LOG
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectCountByParams" resultType="int">
+    select count(*) from T_OP_LOG
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectListByParams" resultMap="BaseResultMap" resultType="list">
+    <include refid="common.Pagination_Head" />
+    select
+    <include refid="Base_Column_List" />
+    from T_OP_LOG
+    <include refid="Example_Where_Clause" />
+    <if test="orderParam != null">
+      order by ${orderParam}
+    </if>
+    <include refid="common.Pagination_Foot" />
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_OP_LOG
+    where LOGSEQ = #{logseq,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from T_OP_LOG
+    where LOGSEQ = #{logseq,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.core.models.TOpLog">
+    insert into T_OP_LOG (LOGSEQ, OPLOGNAME, OPREALNAME, 
+      LOGTYPE, OPTIME, OPIP, 
+      OPFLAG,OPDESC,UNITID)
+    values (#{logseq,jdbcType=DECIMAL}, #{oplogname,jdbcType=VARCHAR}, #{oprealname,jdbcType=VARCHAR}, 
+      #{logtype,jdbcType=VARCHAR}, #{optime,jdbcType=TIMESTAMP}, #{opip,jdbcType=VARCHAR}, 
+      #{opflag,jdbcType=VARCHAR},#{opdesc,jdbcType=VARCHAR},#{unitid,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.core.models.TOpLog">
+    insert into T_OP_LOG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="logseq != null">
+        LOGSEQ,
+      </if>
+      <if test="oplogname != null">
+        OPLOGNAME,
+      </if>
+      <if test="oprealname != null">
+        OPREALNAME,
+      </if>
+      <if test="logtype != null">
+        LOGTYPE,
+      </if>
+      <if test="optime != null">
+        OPTIME,
+      </if>
+      <if test="opip != null">
+        OPIP,
+      </if>
+      <if test="opflag != null">
+        OPFLAG,
+      </if>
+      <if test="opflag != null">
+        OPDESC,
+      </if>
+      <if test="unitid != null">
+        UNITID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="logseq != null">
+        #{logseq,jdbcType=DECIMAL},
+      </if>
+      <if test="oplogname != null">
+        #{oplogname,jdbcType=VARCHAR},
+      </if>
+      <if test="oprealname != null">
+        #{oprealname,jdbcType=VARCHAR},
+      </if>
+      <if test="logtype != null">
+        #{logtype,jdbcType=VARCHAR},
+      </if>
+      <if test="optime != null">
+        #{optime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="opip != null">
+        #{opip,jdbcType=VARCHAR},
+      </if>
+      <if test="opflag != null">
+        #{opflag,jdbcType=VARCHAR},
+      </if>
+      <if test="opdesc != null">
+        #{opdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="unitid != null">
+        #{unitid,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.core.models.TOpLog">
+    update T_OP_LOG
+    <set>
+      <if test="oplogname != null">
+        OPLOGNAME = #{oplogname,jdbcType=VARCHAR},
+      </if>
+      <if test="oprealname != null">
+        OPREALNAME = #{oprealname,jdbcType=VARCHAR},
+      </if>
+      <if test="logtype != null">
+        LOGTYPE = #{logtype,jdbcType=VARCHAR},
+      </if>
+      <if test="optime != null">
+        OPTIME = #{optime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="opip != null">
+        OPIP = #{opip,jdbcType=VARCHAR},
+      </if>
+      <if test="opflag != null">
+        OPFLAG = #{opflag,jdbcType=VARCHAR},
+      </if>
+      <if test="opdesc != null">
+        OPDESC = #{opdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="unitid != null">
+        UNITID = #{unitid,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where LOGSEQ = #{logseq,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.core.models.TOpLog">
+    update T_OP_LOG
+    set OPLOGNAME = #{oplogname,jdbcType=VARCHAR},
+      OPREALNAME = #{oprealname,jdbcType=VARCHAR},
+      LOGTYPE = #{logtype,jdbcType=VARCHAR},
+      OPTIME = #{optime,jdbcType=TIMESTAMP},
+      OPIP = #{opip,jdbcType=VARCHAR},
+      OPFLAG = #{opflag,jdbcType=VARCHAR},
+      OPDESC = #{opdesc,jdbcType=VARCHAR},
+      UNITID = #{unitid,jdbcType=DECIMAL}
+    where LOGSEQ = #{logseq,jdbcType=DECIMAL}
+  </update>
+</mapper>

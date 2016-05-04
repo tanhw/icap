@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.core.controller.mapper.TTabCofBasicMapper" >
+  <resultMap id="BaseResultMap" type="com.core.models.TTabCofBasic" >
+    <id column="CONFID" property="confid" jdbcType="DECIMAL" />
+    <result column="CONFNAME" property="confname" jdbcType="VARCHAR" />
+    <result column="TITLE" property="title" jdbcType="CLOB" />
+    <result column="EXPTITLE" property="exptitle" jdbcType="CLOB" />
+    <result column="SQL" property="sql" jdbcType="CLOB" />
+    <result column="ISACTIVE" property="isactive" jdbcType="VARCHAR" />
+    <result column="BUSI" property="busi" jdbcType="VARCHAR" />
+    <result column="FILED" property="filed" jdbcType="CLOB" />
+    <result column="FILEDDESC" property="fileddesc" jdbcType="CLOB" />
+    <result column="COLLECTFILED" property="collectfiled" jdbcType="CLOB" />
+
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="params.confid != null" >
+         and CONFID = #{params.confid,jdbcType=DECIMAL}
+      </if>
+      <if test="params.confname != null" >
+         and CONFNAME = #{params.confname,jdbcType=VARCHAR}
+      </if>
+      <if test="params.title != null" >
+         and TITLE = #{params.title,jdbcType=CLOB}
+      </if>
+      <if test="params.exptitle != null" >
+         and EXPTITLE = #{params.exptitle,jdbcType=CLOB}
+      </if>
+      <if test="params.isactive != null" >
+         and ISACTIVE = #{params.isactive,jdbcType=VARCHAR}
+      </if>
+      <if test="params.busi != null" >
+         and BUSI = #{params.busi,jdbcType=VARCHAR}
+      </if>
+      <if test="params.sql != null" >
+        and SQL = #{params.sql,jdbcType=CLOB}
+      </if>
+      <if test="params.filed != null" >
+      and FILED = #{params.filed,jdbcType=CLOB}
+    </if>
+      <if test="params.fileddesc != null" >
+      and FILEDDESC = #{params.fileddesc,jdbcType=CLOB}
+    </if>
+      <if test="params.collectfiled != null" >
+      and COLLECTFILED = #{params.collectfiled,jdbcType=CLOB}
+    </if>
+    </trim>
+  </sql>
+  <select id="getIdValue" resultType="java.lang.Long">
+  	select S_TAB_CON_BASIC.nextval from dual
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from T_TAB_COF_BASIC
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectByUnitid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    SELECT TAB.CONFID, TAB.CONFNAME, TAB.TITLE, TAB.ISACTIVE, TAB.BUSI,TAB.SQL,TAB.FILED ,TAB.FILEDDESC, TAB.COLLECTFILED FROM T_TAB_COF_BASIC TAB LEFT JOIN T_UNIT_TAB_CONF UNITCONF ON TAB.CONFID = UNITCONF.CONFID
+    WHERE UNITCONF.UNITID = #{unitid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectCountByParams" resultType="int" >
+    select count(*) from T_TAB_COF_BASIC
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectListByParams" resultType="list" resultMap="BaseResultMap" >
+    <include refid="common.Pagination_Head" />
+    select
+    <include refid="Base_Column_List" />
+    from T_TAB_COF_BASIC
+    <include refid="Example_Where_Clause" />
+    <if test="orderParam != null" >
+      order by ${orderParam}
+    </if>
+    <include refid="common.Pagination_Foot" />
+  </select>
+  <sql id="Base_Column_List" >
+    CONFID, CONFNAME, TITLE,EXPTITLE, ISACTIVE, BUSI,SQL,FILED ,FILEDDESC, COLLECTFILED
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_TAB_COF_BASIC
+    where CONFID = #{confid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from T_TAB_COF_BASIC
+    where CONFID = #{confid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.core.models.TTabCofBasic" >
+    insert into T_TAB_COF_BASIC (CONFID, CONFNAME, TITLE,EXPTITLE,
+      ISACTIVE, BUSI, SQL, FILED, FILEDDESC, COLLECTFILED)
+    values (#{confid,jdbcType=DECIMAL}, #{confname,jdbcType=VARCHAR}, #{title,jdbcType=CLOB},#{exptitle,jdbcType=CLOB},
+      #{isactive,jdbcType=VARCHAR}, #{busi,jdbcType=VARCHAR}, #{sql,jdbcType=CLOB}, #{filed,jdbcType=CLOB}, #{fileddesc,jdbcType=CLOB}, #{collectfiled,jdbcType=CLOB})
+  </insert>
+  <insert id="insertSelective" parameterType="com.core.models.TTabCofBasic" >
+    insert into T_TAB_COF_BASIC
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="confid != null" >
+        CONFID,
+      </if>
+      <if test="confname != null" >
+        CONFNAME,
+      </if>
+      <if test="title != null" >
+        TITLE,
+      </if>
+      <if test="exptitle != null" >
+        EXPTITLE,
+      </if>
+      <if test="isactive != null" >
+        ISACTIVE,
+      </if>
+      <if test="busi != null" >
+        BUSI,
+      </if>
+      <if test="sql != null" >
+        SQL,
+      </if>
+      <if test="filed != null" >
+        filed,
+      </if>
+      <if test="fileddesc != null" >
+        fileddesc,
+      </if>
+      <if test="collectfiled != null" >
+        collectfiled,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="confid != null" >
+        #{confid,jdbcType=DECIMAL},
+      </if>
+      <if test="confname != null" >
+        #{confname,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=CLOB},
+      </if>
+      <if test="exptitle != null" >
+        #{exptitle,jdbcType=CLOB},
+      </if>
+      <if test="isactive != null" >
+        #{isactive,jdbcType=VARCHAR},
+      </if>
+      <if test="busi != null" >
+        #{busi,jdbcType=VARCHAR},
+      </if>
+      <if test="sql != null" >
+        #{sql,jdbcType=CLOB},
+      </if>
+      <if test="filed != null" >
+        #{filed,jdbcType=CLOB},
+      </if>
+      <if test="fileddesc != null" >
+        #{fileddesc,jdbcType=CLOB},
+      </if>
+      <if test="collectfiled != null" >
+        #{collectfiled,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.core.models.TTabCofBasic" >
+    update T_TAB_COF_BASIC
+    <set >
+      <if test="confname != null" >
+        CONFNAME = #{confname,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        TITLE = #{title,jdbcType=CLOB},
+      </if>
+      <if test="exptitle != null" >
+        EXPTITLE = #{exptitle,jdbcType=CLOB},
+      </if>
+      <if test="isactive != null" >
+        ISACTIVE = #{isactive,jdbcType=VARCHAR},
+      </if>
+      <if test="busi != null" >
+        BUSI = #{busi,jdbcType=VARCHAR},
+      </if>
+      <if test="sql != null" >
+        SQL = #{sql,jdbcType=CLOB},
+      </if>
+      <if test="filed != null" >
+        FILED = #{filed,jdbcType=CLOB},
+      </if>
+      <if test="fileddesc != null" >
+        FILEDDESC = #{fileddesc,jdbcType=CLOB},
+      </if>
+      <if test="collectfiled != null" >
+        COLLECTFILED = #{collectfiled,jdbcType=CLOB},
+      </if>
+    </set>
+    where CONFID = #{confid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.core.models.TTabCofBasic" >
+    update T_TAB_COF_BASIC
+    set CONFNAME = #{confname,jdbcType=VARCHAR},
+      TITLE = #{title,jdbcType=CLOB},
+      EXPTITLE = #{exptitle,jdbcType=CLOB},
+      ISACTIVE = #{isactive,jdbcType=VARCHAR},
+      BUSI = #{busi,jdbcType=VARCHAR},
+      SQL = #{sql,jdbcType=CLOB},
+      FILED = #{filed,jdbcType=CLOB},
+      FILEDDESC = #{fileddesc,jdbcType=CLOB},
+      COLLECTFILED = #{collectfiled,jdbcType=CLOB}
+    where CONFID = #{confid,jdbcType=DECIMAL}
+  </update>
+</mapper>

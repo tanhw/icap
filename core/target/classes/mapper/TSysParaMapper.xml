@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.core.controller.mapper.TSysParaMapper" >
+  <resultMap id="BaseResultMap" type="com.core.models.TSysPara" >
+    <result column="UNAME" property="uname" jdbcType="VARCHAR" />
+    <result column="PARA_NAME" property="paraName" jdbcType="VARCHAR" />
+    <result column="PARA_NO" property="paraNo" jdbcType="VARCHAR" />
+    <result column="PARA_VALUE" property="paraValue" jdbcType="VARCHAR" />
+    <result column="PARA_DESC" property="paraDesc" jdbcType="VARCHAR" />
+    <result column="RECORD_STAT" property="recordStat" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+  	UNAME,PARA_NAME,PARA_NO,PARA_VALUE,PARA_DESC,RECORD_STAT
+  </sql>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="params.uname != null" >
+         and UNAME = #{params.uname,jdbcType=VARCHAR}
+      </if>
+      <if test="params.paraName != null" >
+         and PARA_NAME = #{params.paraName,jdbcType=VARCHAR}
+      </if>
+      <if test="params.paraNo != null" >
+         and PARA_NO = #{params.paraNo,jdbcType=VARCHAR}
+      </if>
+      <if test="params.paraValue != null" >
+         and PARA_VALUE = #{params.paraValue,jdbcType=VARCHAR}
+      </if>
+      <if test="params.paraDesc != null" >
+         and PARA_DESC = #{params.paraDesc,jdbcType=VARCHAR}
+      </if>
+      <if test="params.recordStat != null" >
+         and RECORD_STAT = #{params.recordStat,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </sql>
+  <insert id="insert" parameterType="com.core.models.TSysPara" >
+    insert into T_SYS_PARA (UNAME, PARA_NAME, PARA_NO, 
+      PARA_VALUE, PARA_DESC, RECORD_STAT
+      )
+    values (#{uname,jdbcType=VARCHAR}, #{paraName,jdbcType=VARCHAR}, #{paraNo,jdbcType=VARCHAR}, 
+      #{paraValue,jdbcType=VARCHAR}, #{paraDesc,jdbcType=VARCHAR}, #{recordStat,jdbcType=VARCHAR}
+      )
+  </insert>
+  <select id="selectByParams" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from T_SYS_PARA
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectCountByParams" resultType="int" >
+    select count(*) from T_SYS_PARA
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectListByParams" resultType="list" resultMap="BaseResultMap" >
+    <include refid="common.Pagination_Head" />
+    select
+    <include refid="Base_Column_List" />
+    from T_SYS_PARA
+    <include refid="Example_Where_Clause" />
+    <if test="orderParam != null" >
+      order by ${orderParam}
+    </if>
+    <include refid="common.Pagination_Foot" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_SYS_PARA
+    where UNAME = #{uname,jdbcType=VARCHAR}
+    and PARA_NAME = #{paraName,jdbcType=VARCHAR}
+    and PARA_NO = #{paraNo,jdbcType=VARCHAR}
+  </select>
+  <select id="selectBlSysByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_SYS_PARA
+    where UNAME = #{uname,jdbcType=VARCHAR}
+    and PARA_NAME = #{paraName,jdbcType=VARCHAR}
+    and PARA_NO = #{paraNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_SYS_PARA
+    where UNAME = #{uname,jdbcType=VARCHAR}
+    and PARA_NAME = #{paraName,jdbcType=VARCHAR}
+    and PARA_NO = #{paraNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insertSelective" parameterType="com.core.models.TSysPara" >
+    insert into T_SYS_PARA
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uname != null" >
+        UNAME,
+      </if>
+      <if test="paraName != null" >
+        PARA_NAME,
+      </if>
+      <if test="paraNo != null" >
+        PARA_NO,
+      </if>
+      <if test="paraValue != null" >
+        PARA_VALUE,
+      </if>
+      <if test="paraDesc != null" >
+        PARA_DESC,
+      </if>
+      <if test="recordStat != null" >
+        RECORD_STAT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uname != null" >
+        #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="paraName != null" >
+        #{paraName,jdbcType=VARCHAR},
+      </if>
+      <if test="paraNo != null" >
+        #{paraNo,jdbcType=VARCHAR},
+      </if>
+      <if test="paraValue != null" >
+        #{paraValue,jdbcType=VARCHAR},
+      </if>
+      <if test="paraDesc != null" >
+        #{paraDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="recordStat != null" >
+        #{recordStat,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.core.models.TSysPara" >
+    update T_SYS_PARA
+    <set >
+      <if test="paraValue != null" >
+        PARA_VALUE = #{paraValue,jdbcType=VARCHAR},
+      </if>
+      <if test="paraDesc != null" >
+        PARA_DESC = #{paraDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="recordStat != null" >
+       	RECORD_STAT = #{recordStat,jdbcType=VARCHAR},
+      </if>
+    </set>
+	where UNAME = #{uname,jdbcType=VARCHAR}
+	and PARA_NAME = #{paraName,jdbcType=VARCHAR}
+	and PARA_NO = #{paraNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.core.models.TSysPara" >
+	update T_SYS_PARA
+	set PARA_VALUE= #{paraValue,jdbcType=VARCHAR},
+	PARA_DESC = #{paraDesc,jdbcType=VARCHAR},
+	RECORD_STAT = #{recordStat,jdbcType=VARCHAR}
+	where UNAME = #{uname,jdbcType=VARCHAR}
+	and PARA_NAME = #{paraName,jdbcType=VARCHAR}
+	and PARA_NO = #{paraNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

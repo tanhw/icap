@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.core.controller.mapper.TBlackInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.core.models.TBlackInfo" >
+    <id column="BLACKSEQ" property="blackseq" jdbcType="DECIMAL" />
+    <result column="CARDNO" property="cardno" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="MARK" property="mark" jdbcType="VARCHAR" />
+    <result column="VERSION" property="version" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UNITID" property="unitid" jdbcType="DECIMAL" />
+    <result column="COMPANYID" property="companyid" jdbcType="DECIMAL" />
+    <result column="MERSEQ" property="merseq" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    BLACKSEQ, CARDNO, NAME, MARK, VERSION, CREATE_TIME, UNITID,COMPANYID,MERSEQ
+  </sql>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="params.blackseq != null" >
+         and BLACKSEQ = #{params.blackseq,jdbcType=VARCHAR}
+      </if>
+      <if test="params.cardno != null" >
+         and CARDNO = #{params.cardno,jdbcType=VARCHAR}
+      </if>
+      <if test="params.name != null" >
+         and NAME like CONCAT(CONCAT('%',#{params.name,jdbcType=VARCHAR}),'%')
+      </if>
+      <if test="params.mark != null" >
+         and MARK = #{params.mark,jdbcType=VARCHAR}
+      </if>
+      <if test="params.version != null" >
+         and VERSION = #{params.version,jdbcType=VARCHAR}
+      </if>
+      <if test="params.createTime != null" >
+         and CREATE_TIME = #{params.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="params.unitid != null" >
+         and UNITID = #{params.unitid,jdbcType=DECIMAL}
+      </if>
+      <if test="params.companyid != null" >
+         and COMPANYID = #{params.companyid,jdbcType=DECIMAL}
+      </if>
+      <if test="params.merseq != null" >
+         and MERSEQ = #{params.merseq,jdbcType=DECIMAL}
+      </if>
+      <if test="params.start != null">
+        <![CDATA[
+	     	and CREATE_TIME >= TO_DATE(#{params.start,jdbcType=VARCHAR},'YYYY-MM-DD HH24-MI-SS')
+	    ]]>
+		</if>
+		<if test="params.end != null">
+        <![CDATA[
+        	 and CREATE_TIME <= TO_DATE(#{params.end,jdbcType=VARCHAR},'YYYY-MM-DD HH24-MI-SS')
+        ]]>
+		</if>
+    </trim>
+  </sql>
+   <select id="getIdValue" resultType="java.lang.Long">
+  	select S_BLACK_INFO.nextval from dual
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from T_BLACK_INFO
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectCountByParams" resultType="int" >
+    select count(*) from T_BLACK_INFO
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectListByParams" resultType="list" resultMap="BaseResultMap" >
+    <include refid="common.Pagination_Head" />
+    select
+    <include refid="Base_Column_List" />
+    from T_BLACK_INFO
+    <include refid="Example_Where_Clause" />
+    <if test="orderParam != null" >
+      order by ${orderParam}
+    </if>
+    <include refid="common.Pagination_Foot" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_BLACK_INFO
+    where BLACKSEQ = #{blackseq,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from T_BLACK_INFO
+    where BLACKSEQ = #{blackseq,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.core.models.TBlackInfo" >
+    insert into T_BLACK_INFO (BLACKSEQ, CARDNO, NAME, 
+      MARK, VERSION, CREATE_TIME, 
+      UNITID,COMPANYID,MERSEQ)
+    values (#{blackseq,jdbcType=DECIMAL}, #{cardno,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{mark,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{unitid,jdbcType=DECIMAL},#{companyid,jdbcType=DECIMAL},#{merseq,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.core.models.TBlackInfo" >
+    insert into T_BLACK_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="blackseq != null" >
+        BLACKSEQ,
+      </if>
+      <if test="cardno != null" >
+        CARDNO,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="mark != null" >
+        MARK,
+      </if>
+      <if test="version != null" >
+        VERSION,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="unitid != null" >
+        UNITID,
+      </if>
+      <if test="companyid != null" >
+        COMPANYID,
+      </if>
+      <if test="merseq != null" >
+        MERSEQ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="blackseq != null" >
+        #{blackseq,jdbcType=DECIMAL},
+      </if>
+      <if test="cardno != null" >
+        #{cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mark != null" >
+        #{mark,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unitid != null" >
+        #{unitid,jdbcType=DECIMAL},
+      </if>
+      <if test="companyid != null" >
+        #{companyid,jdbcType=DECIMAL},
+      </if>
+      <if test="merseq != null" >
+        #{merseq,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.core.models.TBlackInfo" >
+    update T_BLACK_INFO
+    <set >
+      <if test="cardno != null" >
+        CARDNO = #{cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mark != null" >
+        MARK = #{mark,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        VERSION = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unitid != null" >
+        UNITID = #{unitid,jdbcType=DECIMAL},
+      </if>
+      <if test="companyid != null" >
+        COMPANYID = #{companyid,jdbcType=DECIMAL},
+      </if>
+      <if test="merseq != null" >
+        MERSEQ = #{merseq,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where BLACKSEQ = #{blackseq,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.core.models.TBlackInfo" >
+    update T_BLACK_INFO
+    set CARDNO = #{cardno,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      MARK = #{mark,jdbcType=VARCHAR},
+      VERSION = #{version,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UNITID = #{unitid,jdbcType=DECIMAL}
+    where BLACKSEQ = #{blackseq,jdbcType=DECIMAL}
+  </update>
+</mapper>

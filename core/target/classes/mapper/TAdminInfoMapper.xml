@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.core.controller.mapper.TAdminInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.core.models.TAdminInfo" >
+    <id column="ADMINSEQ" property="adminseq" jdbcType="DECIMAL" />
+    <result column="LOGINNAME" property="loginname" jdbcType="VARCHAR" />
+    <result column="LOGINPWD" property="loginpwd" jdbcType="VARCHAR" />
+    <result column="CREATETIME" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="REALNAME" property="realname" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="MAIL" property="mail" jdbcType="VARCHAR" />
+    <result column="ROESEQ" property="roeseq" jdbcType="DECIMAL" />
+    <result column="ISACTIVE" property="isactive" jdbcType="VARCHAR" />
+    <result column="MODIFYTIME" property="modifytime" jdbcType="TIMESTAMP" />
+    <result column="LASTLOGTIME" property="lastlogtime" jdbcType="TIMESTAMP" />
+    <result column="LASTLOGIP" property="lastlogip" jdbcType="VARCHAR" />
+    <result column="ROLENAME" property="rolename" jdbcType="VARCHAR" />
+    <result column="ROLEDESC" property="roledesc" jdbcType="VARCHAR" />
+    <result column="ROLETYPE" property="roletype" jdbcType="VARCHAR" />
+    <result column="NOWLOGTIME" property="nowlogtime" jdbcType="TIMESTAMP" />
+    <result column="PWDERRNUM" property="pwderrnum" jdbcType="DECIMAL" />
+    <result column="LOCKLOGTIME" property="locklogtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ADMINSEQ, LOGINNAME, LOGINPWD, CREATETIME, REALNAME, PHONE, MAIL, ROESEQ, ISACTIVE, 
+    MODIFYTIME, LASTLOGTIME, LASTLOGIP, NOWLOGTIME, PWDERRNUM, LOCKLOGTIME
+  </sql>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="params.loginname != null" >
+      	 and LOGINNAME = #{params.loginname,jdbcType=VARCHAR}
+      </if>
+      <if test="params.loginpwd != null" >
+         and LOGINPWD = #{params.loginpwd,jdbcType=VARCHAR}
+      </if>
+      <if test="params.createtime != null" >
+         and CREATETIME = #{params.createtime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="params.realname != null" >
+         and REALNAME like CONCAT(CONCAT('%',#{params.realname,jdbcType=VARCHAR}),'%')
+      </if>
+      <if test="params.phone != null" >
+         and PHONE = #{params.phone,jdbcType=VARCHAR}
+      </if>
+      <if test="params.mail != null" >
+         and MAIL = #{params.mail,jdbcType=VARCHAR}
+      </if>
+      <if test="params.roeseq != null" >
+         and ROESEQ = #{params.roeseq,jdbcType=DECIMAL}
+      </if>
+      <if test="params.isactive != null" >
+         and ISACTIVE = #{params.isactive,jdbcType=VARCHAR}
+      </if>
+      <if test="params.modifytime != null" >
+         and MODIFYTIME = #{params.modifytime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="params.lastlogtime != null" >
+         and LASTLOGTIME = #{params.lastlogtime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="params.lastlogip != null" >
+         and LASTLOGIP = #{params.lastlogip,jdbcType=VARCHAR}
+      </if>
+      <if test="params.nowlogtime != null" >
+         and NOWLOGTIME = #{params.nowlogtime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="params.pwderrnum != null" >
+         and PWDERRNUM = #{params.pwderrnum,jdbcType=DECIMAL}
+      </if>
+      <if test="params.locklogtime != null" >
+         and LOCKLOGTIME = #{params.locklogtime,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+  </sql>
+  <select id="getIdValue" resultType="java.lang.Long">
+  	select COMMON.nextval from dual
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from T_ADMIN_INFO
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectCountByParams" resultType="int" >
+    select count(*) from T_ADMIN_INFO
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectListByParams" resultType="list" resultMap="BaseResultMap" >
+    <include refid="common.Pagination_Head" />
+    select
+    <include refid="Base_Column_List" />
+    from T_ADMIN_INFO
+    <include refid="Example_Where_Clause" />
+    <if test="orderParam != null" >
+      order by ${orderParam}
+    </if>
+    <include refid="common.Pagination_Foot" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    a.adminseq,a.loginname,a.loginpwd,a.createtime,a.realname,a.phone,a.mail,
+    a.roeseq,a.isactive,a.modifytime,a.lastlogtime,a.lastlogip,a.nowlogtime,a.pwderrnum,a.locklogtime,s.rolename,s.roledesc,s.roletype
+    
+    from T_ADMIN_INFO a left join  T_SYSROLE s on a.roeseq = s.roleseq
+    where a.ADMINSEQ = #{adminseq,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from T_ADMIN_INFO
+    where ADMINSEQ = #{adminseq,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.core.models.TAdminInfo" >
+    insert into T_ADMIN_INFO (ADMINSEQ, LOGINNAME, LOGINPWD, 
+      CREATETIME, REALNAME, PHONE, 
+      MAIL, ROESEQ, ISACTIVE, 
+      MODIFYTIME, LASTLOGTIME, LASTLOGIP,NOWLOGTIME,PWDERRNUM,LOCKLOGTIME
+      )
+    values (#{adminseq,jdbcType=DECIMAL}, #{loginname,jdbcType=VARCHAR}, #{loginpwd,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{realname,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{mail,jdbcType=VARCHAR}, #{roeseq,jdbcType=DECIMAL}, #{isactive,jdbcType=VARCHAR}, 
+      #{modifytime,jdbcType=TIMESTAMP}, #{lastlogtime,jdbcType=TIMESTAMP}, #{lastlogip,jdbcType=VARCHAR}, 
+      #{nowlogtime,jdbcType=TIMESTAMP}, #{pwderrnum,jdbcType=DECIMAL}, #{locklogtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.core.models.TAdminInfo" >
+    insert into T_ADMIN_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="adminseq != null" >
+        ADMINSEQ,
+      </if>
+      <if test="loginname != null" >
+        LOGINNAME,
+      </if>
+      <if test="loginpwd != null" >
+        LOGINPWD,
+      </if>
+      <if test="createtime != null" >
+        CREATETIME,
+      </if>
+      <if test="realname != null" >
+        REALNAME,
+      </if>
+      <if test="phone != null" >
+        PHONE,
+      </if>
+      <if test="mail != null" >
+        MAIL,
+      </if>
+      <if test="roeseq != null" >
+        ROESEQ,
+      </if>
+      <if test="isactive != null" >
+        ISACTIVE,
+      </if>
+      <if test="modifytime != null" >
+        MODIFYTIME,
+      </if>
+      <if test="lastlogtime != null" >
+        LASTLOGTIME,
+      </if>
+      <if test="lastlogip != null" >
+        LASTLOGIP,
+      </if>
+      <if test="nowlogtime != null" >
+        NOWLOGTIME,
+      </if>
+      <if test="pwderrnum != null" >
+        PWDERRNUM,
+      </if>
+      <if test="locklogtime != null" >
+        LOCKLOGTIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="adminseq != null" >
+        #{adminseq,jdbcType=DECIMAL},
+      </if>
+      <if test="loginname != null" >
+        #{loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="loginpwd != null" >
+        #{loginpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realname != null" >
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="mail != null" >
+        #{mail,jdbcType=VARCHAR},
+      </if>
+      <if test="roeseq != null" >
+        #{roeseq,jdbcType=DECIMAL},
+      </if>
+      <if test="isactive != null" >
+        #{isactive,jdbcType=VARCHAR},
+      </if>
+      <if test="modifytime != null" >
+        #{modifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastlogtime != null" >
+        #{lastlogtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastlogip != null" >
+        #{lastlogip,jdbcType=VARCHAR},
+      </if>
+      <if test="nowlogtime != null" >
+        #{nowlogtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pwderrnum != null" >
+        #{pwderrnum,jdbcType=DECIMAL},
+      </if>
+      <if test="locklogtime != null" >
+        #{locklogtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.core.models.TAdminInfo" >
+    update T_ADMIN_INFO
+    <set >
+      <if test="loginname != null" >
+        LOGINNAME = #{loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="loginpwd != null" >
+        LOGINPWD = #{loginpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realname != null" >
+        REALNAME = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="mail != null" >
+        MAIL = #{mail,jdbcType=VARCHAR},
+      </if>
+      <if test="roeseq != null" >
+        ROESEQ = #{roeseq,jdbcType=DECIMAL},
+      </if>
+      <if test="isactive != null" >
+        ISACTIVE = #{isactive,jdbcType=VARCHAR},
+      </if>
+      <if test="modifytime != null" >
+        MODIFYTIME = #{modifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastlogtime != null" >
+        LASTLOGTIME = #{lastlogtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastlogip != null" >
+        LASTLOGIP = #{lastlogip,jdbcType=VARCHAR},
+      </if>
+      <if test="nowlogtime != null" >
+        NOWLOGTIME = #{nowlogtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pwderrnum != null" >
+        PWDERRNUM = #{pwderrnum,jdbcType=DECIMAL},
+      </if>
+      <if test="locklogtime != null" >
+        LOCKLOGTIME = #{locklogtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ADMINSEQ = #{adminseq,jdbcType=DECIMAL}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.core.models.TAdminInfo" >
+    update T_ADMIN_INFO
+    set LOGINNAME = #{loginname,jdbcType=VARCHAR},
+      LOGINPWD = #{loginpwd,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      REALNAME = #{realname,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      MAIL = #{mail,jdbcType=VARCHAR},
+      ROESEQ = #{roeseq,jdbcType=DECIMAL},
+      ISACTIVE = #{isactive,jdbcType=VARCHAR},
+      MODIFYTIME = #{modifytime,jdbcType=TIMESTAMP},
+      LASTLOGTIME = #{lastlogtime,jdbcType=TIMESTAMP},
+      LASTLOGIP = #{lastlogip,jdbcType=VARCHAR},
+      NOWLOGTIME = #{nowlogtime,jdbcType=TIMESTAMP},
+      PWDERRNUM = #{pwderrnum,jdbcType=DECIMAL},
+      LOCKLOGTIME = #{locklogtime,jdbcType=TIMESTAMP}
+    where ADMINSEQ = #{adminseq,jdbcType=DECIMAL}
+  </update>
+</mapper>

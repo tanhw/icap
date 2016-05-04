@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="uiColumn.xsd">
+	<Column columnName="角色编号" field="roleseq" align="center" width="100"  isSort="false"/>
+	<Column columnName="角色名" field="rolename" align="center" width="100" isSort="false"/>
+	<Column columnName="描述" field="roledesc" align="center" width="150"  isSort="true"/>
+	<Column columnName="角色类型" field="roletype" align="center" width="150" formatter="roletypeDesc"  isSort="true"/>
+	<Column columnName="机构编号" field="unitid" align="center" width="180" isSort="true"/>
+</Root>

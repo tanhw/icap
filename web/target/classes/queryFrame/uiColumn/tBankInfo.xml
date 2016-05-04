@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="uiColumn.xsd">
+	<Column columnName="银行ID" field="bankid" align="center" width="100" isSort="true"/>
+	<Column columnName="机构ID" field="unitid" align="center" width="100" isSort="true"/>
+	<Column columnName="银行代码" field="bankcode" align="center" width="100" isSort="true"/>
+	<Column columnName="银行名称" field="bankname" align="center" width="150"  isSort="true" />
+	<Column columnName="银行地址" field="bankaddr" align="center" width="150" isSort="true"/>
+	<Column columnName="银行联系人" field="bankcontact" align="center" width="100" isSort="true"/>
+	<Column columnName="银行联系人电话" field="banktele" align="center" width="100" isSort="true"/>
+	<Column columnName="银行传真" field="bankfax" align="center" width="100" isSort="true"/>
+	<Column columnName="银行邮箱" field="bankmail" align="center" width="120"  isSort="true"/>
+	<Column columnName="创建时间" field="createtime" align="center" width="150" isSort="true" formatter="createtimeDesc"/>
+</Root>

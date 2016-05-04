@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by zg (EMBRACE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.000">
+	<xs:element name="Root">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Column" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>显示字段定义</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="columnName" use="required">
+							<xs:annotation>
+								<xs:documentation>显示字段名字</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="field" use="required">
+							<xs:annotation>
+								<xs:documentation>hibernate对于的字段名称</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="width">
+							<xs:annotation>
+								<xs:documentation>显示列宽度控制，不输入默认是100</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:integer">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="1000"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="isSort" type="xs:boolean">
+							<xs:annotation>
+								<xs:documentation>是否运行排序，不输入默认不支持排序</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="align">
+							<xs:annotation>
+								<xs:documentation>页面显示对齐方式</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="left"/>
+									<xs:enumeration value="center"/>
+									<xs:enumeration value="right"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="formatter">
+							<xs:annotation>
+								<xs:documentation>进行数据显示的转换</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="styler">
+							<xs:annotation>
+								<xs:documentation>单元格样式</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

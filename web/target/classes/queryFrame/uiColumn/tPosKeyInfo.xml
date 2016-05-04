@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="uiColumn.xsd">
+	<Column columnName="终端编号" field="posid" align="center" width="120"  isSort="true"/>
+	<Column columnName="机构ID" field="unitid" align="center" width="100"  isSort="true"/>
+	<Column columnName="商户ID" field="branchid" align="center" width="120"  isSort="true"/>
+	<Column columnName="商户序号" field="merseq" align="center" width="120"  isSort="true"/>
+	<Column columnName="终端主密钥" field="tmk" align="center" width="100"  isSort="true"/>
+	<Column columnName="终端主密钥校验值" field="tmkchkvalue" align="center" width="100"  isSort="true"/>
+	<Column columnName="终端传输密钥" field="kek" align="center" width="100"  isSort="true"/>
+	<Column columnName="终端MAC密钥" field="mak" align="center" width="100"  isSort="true"/>
+	<Column columnName="终端MAC密钥校验值" field="makchkvalue" align="center" width="120"  isSort="true"/>
+	<Column columnName="终端PIN密钥" field="pik" align="center" width="120"  isSort="true"/>
+	<Column columnName="终端PIN密钥校验值" field="pikchkvalue" align="center" width="120"  isSort="true"/>
+	<Column columnName="终端TRK密钥" field="trk" align="center" width="120"  isSort="true"/>
+	<Column columnName="终端TRK密钥校验值" field="trkchkvalue" align="center" width="120"  isSort="true"/>
+</Root>

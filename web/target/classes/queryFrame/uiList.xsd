@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by zg (EMBRACE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="Root">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ImportColumn" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="url" use="required">
+							<xs:annotation>
+								<xs:documentation>uiColumn地址</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="List">
+					<xs:complexType>
+						<xs:attribute name="url" use="required">
+							<xs:annotation>
+								<xs:documentation>列表地址</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="sortName">
+							<xs:annotation>
+								<xs:documentation>默认排序字段</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="sortOrder">
+							<xs:annotation>
+								<xs:documentation>默认排序类型</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="asc"/>
+									<xs:enumeration value="desc"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="checkbox" type="xs:boolean">
+							<xs:annotation>
+								<xs:documentation>是否存在checkbox，默认为不存在</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ImportJS" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="url" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.core.controller.mapper.TBatDayCutCtlMapper" >
+  <resultMap id="BaseResultMap" type="com.core.models.TBatDayCutCtl" >
+    <result column="PREVTXNDT" property="prevtxndt" jdbcType="VARCHAR" />
+    <result column="CURRTXNDT" property="currtxndt" jdbcType="VARCHAR" />
+    <result column="SYSSTAT" property="sysstat" jdbcType="VARCHAR" />
+    <result column="LASTUPDDT" property="lastupddt" jdbcType="VARCHAR" />
+    <result column="LASTUPDTM" property="lastupdtm" jdbcType="VARCHAR" />
+    <result column="RESERVED" property="reserved" jdbcType="VARCHAR" />
+    <result column="RECORDSTAT" property="recordstat" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+  	PREVTXNDT, CURRTXNDT, SYSSTAT,LASTUPDDT, LASTUPDTM, RESERVED
+  </sql>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="params.prevtxndt != null" >
+         and PREVTXNDT = #{params.prevtxndt,jdbcType=VARCHAR}
+      </if>
+      <if test="params.currtxndt != null" >
+         and CURRTXNDT = #{params.currtxndt,jdbcType=VARCHAR}
+      </if>
+      <if test="params.sysstat != null" >
+         and SYSSTAT = #{params.sysstat,jdbcType=VARCHAR}
+      </if>
+      <if test="params.lastupddt != null" >
+         and LASTUPDDT = #{params.lastupddt,jdbcType=VARCHAR}
+      </if>
+      <if test="params.lastupdtm != null" >
+         and LASTUPDTM = #{params.lastupdtm,jdbcType=VARCHAR}
+      </if>
+      <if test="params.reserved != null" >
+         and RESERVED = #{params.reserved,jdbcType=VARCHAR}
+      </if>
+      <if test="params.recordstat != null" >
+         and RECORDSTAT = #{params.recordstat,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" /> 
+    from T_BAT_DAY_CUT_CTL
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectCountByParams" resultType="int" >
+    select count(*) from T_BAT_DAY_CUT_CTL
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectListByParams" resultType="list" resultMap="BaseResultMap" >
+    <include refid="common.Pagination_Head" />
+    select
+   	<include refid="Base_Column_List" /> 
+    from T_BAT_DAY_CUT_CTL
+    <include refid="Example_Where_Clause" />
+    <if test="orderParam != null" >
+      order by ${orderParam}
+    </if>
+    <include refid="common.Pagination_Foot" />
+  </select>
+   <insert id="insert" parameterType="com.core.models.TBatDayCutCtl" >
+    insert into T_BAT_DAY_CUT_CTL (PREVTXNDT, CURRTXNDT, SYSSTAT, 
+      LASTUPDDT, LASTUPDTM, RESERVED, 
+      RECORDSTAT)
+    values (#{prevtxndt,jdbcType=VARCHAR}, #{currtxndt,jdbcType=VARCHAR}, #{sysstat,jdbcType=VARCHAR}, 
+      #{lastupddt,jdbcType=VARCHAR}, #{lastupdtm,jdbcType=VARCHAR}, #{reserved,jdbcType=VARCHAR}, 
+      #{recordstat,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.core.models.TBatDayCutCtl" >
+    insert into T_BAT_DAY_CUT_CTL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="prevtxndt != null" >
+        PREVTXNDT,
+      </if>
+      <if test="currtxndt != null" >
+        CURRTXNDT,
+      </if>
+      <if test="sysstat != null" >
+        SYSSTAT,
+      </if>
+      <if test="lastupddt != null" >
+        LASTUPDDT,
+      </if>
+      <if test="lastupdtm != null" >
+        LASTUPDTM,
+      </if>
+      <if test="reserved != null" >
+        RESERVED,
+      </if>
+      <if test="recordstat != null" >
+        RECORDSTAT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="prevtxndt != null" >
+        #{prevtxndt,jdbcType=VARCHAR},
+      </if>
+      <if test="currtxndt != null" >
+        #{currtxndt,jdbcType=VARCHAR},
+      </if>
+      <if test="sysstat != null" >
+        #{sysstat,jdbcType=VARCHAR},
+      </if>
+      <if test="lastupddt != null" >
+        #{lastupddt,jdbcType=VARCHAR},
+      </if>
+      <if test="lastupdtm != null" >
+        #{lastupdtm,jdbcType=VARCHAR},
+      </if>
+      <if test="reserved != null" >
+        #{reserved,jdbcType=VARCHAR},
+      </if>
+      <if test="recordstat != null" >
+        #{recordstat,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.core.models.TBatDayCutCtl" >
+    update T_BAT_DAY_CUT_CTL
+    <set >
+      <if test="prevtxndt != null" >
+        PREVTXNDT = #{prevtxndt,jdbcType=VARCHAR},
+      </if>
+      <if test="currtxndt != null" >
+        CURRTXNDT = #{currtxndt,jdbcType=VARCHAR},
+      </if>
+      <if test="sysstat != null" >
+        SYSSTAT = #{sysstat,jdbcType=VARCHAR},
+      </if>
+      <if test="lastupddt != null" >
+        LASTUPDDT = #{lastupddt,jdbcType=VARCHAR},
+      </if>
+      <if test="lastupdtm != null" >
+        LASTUPDTM = #{lastupdtm,jdbcType=VARCHAR},
+      </if>
+      <if test="reserved != null" >
+        RESERVED = #{reserved,jdbcType=VARCHAR},
+      </if>
+      <if test="recordstat != null" >
+        RECORDSTAT = #{recordstat,jdbcType=VARCHAR},
+      </if>
+    </set>
+  </update>
+</mapper>

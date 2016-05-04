@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="uiColumn.xsd">
+	<Column columnName="机构号" field="unitid" align="center" width="100"  isSort="true"/>
+	<Column columnName="机构名称" field="unitname" align="center" width="100" isSort="true"/>
+	<Column columnName="机构联系人" field="unitcontact" align="center" width="120"  isSort="true"/>
+	<Column columnName="机构联系电话" field="unittele" align="center" width="120" isSort="true" />
+	<Column columnName="机构邮箱" field="unitmail" align="center" width="120"  isSort="true"/>
+	<Column columnName="机构传真" field="unitfax" align="center" width="120" isSort="true"/>
+	<Column columnName="父级机构ID" field="parentid" align="center" width="100"  isSort="true"/>
+	<Column columnName="机构描述" field="unitdesc" align="center" width="150"  isSort="true"/>
+	<Column columnName="机构地址" field="unitaddr" align="center" width="180" isSort="true"/>
+	<Column columnName="机构种类" field="unitkind" align="center" width="120" isSort="true" formatter="unitkindDesc"/>
+</Root>

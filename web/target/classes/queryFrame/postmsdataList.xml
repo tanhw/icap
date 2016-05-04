@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="uiList.xsd">
+  <ImportColumn url="tPosTmxData.xml"/>
+  <List url="posTmsdata/list.html" checkbox="true" sortName="filename" sortOrder="desc" />
+   <ImportJS url="appJs/posTmsData.js"/>
+</Root>

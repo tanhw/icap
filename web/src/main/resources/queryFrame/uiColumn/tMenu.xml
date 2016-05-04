@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="uiColumn.xsd">
+	<Column columnName="菜单编号" field="id" align="center" width="100"  isSort="true"/>
+	<Column columnName="菜单名字" field="text" align="center" width="100" isSort="true"/>
+	<Column columnName="菜单描述" field="menudesc" align="center" width="150"  isSort="true"/>
+	<Column columnName="菜单url" field="url" align="center" width="180" isSort="true"/>
+	<Column columnName="上级菜单" field="upmenu" align="center" width="150"  isSort="true"/>
+	<Column columnName="菜单级别" field="menuLevel" align="center" width="150"  formatter="menuLevelDesc" isSort="true" />
+	<Column columnName="菜单位置" field="position" align="center" width="150" formatter="menuPositionDesc" isSort="true"/>
+	<Column columnName="菜单权限类型" field="menutype" align="center" width="150"  isSort="true"/>
+	<Column columnName="菜单类型" field="menukind" align="center" width="150" formatter="menukindDesc" isSort="true"/>
+</Root>

@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.core.controller.mapper.TMerchantInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.core.models.TMerchantInfo" >
+    <id column="MERSEQ" property="merseq" jdbcType="DECIMAL" />
+    <result column="BRANCHID" property="branchid" jdbcType="VARCHAR" />
+    <result column="UNITID" property="unitid" jdbcType="DECIMAL" />
+    <result column="BANKMERID" property="bankmerid" jdbcType="VARCHAR" />
+    <result column="BRANCHENG" property="brancheng" jdbcType="VARCHAR" />
+    <result column="BRANCHCHN" property="branchchn" jdbcType="VARCHAR" />
+    <result column="STFID" property="stfid" jdbcType="VARCHAR" />
+    <result column="BRANCHSTATE" property="branchstate" jdbcType="VARCHAR" />
+    <result column="BRANCHDESC" property="branchdesc" jdbcType="VARCHAR" />
+    <result column="BRANCHADRE" property="branchadre" jdbcType="VARCHAR" />
+    <result column="BRANCHPHONE" property="branchphone" jdbcType="VARCHAR" />
+    <result column="FEESEQ" property="feeseq" jdbcType="DECIMAL" />
+    <result column="BRANLOGO" property="branlogo" jdbcType="VARCHAR" />
+    <result column="BRANCITY" property="brancity" jdbcType="VARCHAR" />
+    <result column="FAX" property="fax" jdbcType="VARCHAR" />
+    <result column="SITE" property="site" jdbcType="VARCHAR" />
+    <result column="POSCOUNT" property="poscount" jdbcType="DECIMAL" />
+    <result column="SIGNTIME" property="signtime" jdbcType="TIMESTAMP" />
+    <result column="RSVD" property="rsvd" jdbcType="VARCHAR" />
+    <result column="ACOMPANYID" property="acompanyid" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    MERSEQ, BRANCHID, UNITID, BANKMERID, BRANCHENG, BRANCHCHN, STFID, BRANCHSTATE, BRANCHDESC, 
+    BRANCHADRE, BRANCHPHONE, FEESEQ, BRANLOGO, BRANCITY, FAX, SITE, POSCOUNT, SIGNTIME, 
+    RSVD,ACOMPANYID
+  </sql>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="params.merseq != null" >
+         and MERSEQ = #{params.merseq,jdbcType=VARCHAR}
+      </if>
+      <if test="params.branchid != null" >
+         and BRANCHID = #{params.branchid,jdbcType=VARCHAR}
+      </if>
+      <if test="params.unitid != null" >
+         and UNITID = #{params.unitid,jdbcType=DECIMAL}
+      </if>
+      <if test="params.bankmerid != null" >
+         and BANKMERID = #{params.bankmerid,jdbcType=VARCHAR}
+      </if>
+      <if test="params.brancheng != null" >
+         and BRANCHENG = #{params.brancheng,jdbcType=VARCHAR}
+      </if>
+      <if test="params.branchchn != null" >
+         and BRANCHCHN = #{params.branchchn,jdbcType=VARCHAR}
+      </if>
+      <if test="params.stfid != null" >
+         and STFID = #{params.stfid,jdbcType=VARCHAR}
+      </if>
+      <if test="params.branchstate != null" >
+         and BRANCHSTATE = #{params.branchstate,jdbcType=VARCHAR}
+      </if>
+      <if test="params.branchdesc != null" >
+         and BRANCHDESC = #{params.branchdesc,jdbcType=VARCHAR}
+      </if>
+      <if test="params.branchadre != null" >
+         and BRANCHADRE = #{params.branchadre,jdbcType=VARCHAR}
+      </if>
+      <if test="params.branchphone != null" >
+         and BRANCHPHONE = #{params.branchphone,jdbcType=VARCHAR}
+      </if>
+      <if test="params.feeseq != null" >
+         and FEESEQ = #{params.feeseq,jdbcType=DECIMAL}
+      </if>
+      <if test="params.branlogo != null" >
+         and BRANLOGO = #{params.branlogo,jdbcType=VARCHAR}
+      </if>
+      <if test="params.brancity != null" >
+         and BRANCITY = #{params.brancity,jdbcType=VARCHAR}
+      </if>
+      <if test="params.fax != null" >
+         and FAX = #{params.fax,jdbcType=VARCHAR}
+      </if>
+      <if test="params.site != null" >
+         and SITE = #{params.site,jdbcType=VARCHAR}
+      </if>
+      <if test="params.poscount != null" >
+         and POSCOUNT = #{params.poscount,jdbcType=DECIMAL}
+      </if>
+      <if test="params.signtime != null" >
+         and SIGNTIME = #{params.signtime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="params.rsvd != null" >
+         and RSVD = #{params.rsvd,jdbcType=VARCHAR}
+      </if>
+      <if test="params.acompanyid != null" >
+         and ACOMPANYID = #{params.acompanyid,jdbcType=DECIMAL}
+      </if>
+    </trim>
+  </sql>
+  <select id="getIdValue" resultType="java.lang.Long">
+  	select S_MERCHANT_INFO.nextval from dual
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from T_MERCHANT_INFO
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectCountByParams" resultType="int" >
+    select count(*) from T_MERCHANT_INFO
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectListByParams" resultType="list" resultMap="BaseResultMap" >
+    <include refid="common.Pagination_Head" />
+    select
+    <include refid="Base_Column_List" />
+    from T_MERCHANT_INFO
+    <include refid="Example_Where_Clause" />
+    <if test="orderParam != null" >
+      order by ${orderParam}
+    </if>
+    <include refid="common.Pagination_Foot" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_MERCHANT_INFO
+    where MERSEQ = #{merseq,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from T_MERCHANT_INFO
+    where MERSEQ = #{merseq,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.core.models.TMerchantInfo" >
+    insert into T_MERCHANT_INFO (MERSEQ, BRANCHID, UNITID, 
+      BANKMERID, BRANCHENG, BRANCHCHN, 
+      STFID, BRANCHSTATE, BRANCHDESC, 
+      BRANCHADRE, BRANCHPHONE, FEESEQ, 
+      BRANLOGO, BRANCITY, FAX, 
+      SITE, POSCOUNT, SIGNTIME, 
+      RSVD,ACOMPANYID)
+    values (#{merseq,jdbcType=DECIMAL}, #{branchid,jdbcType=VARCHAR}, #{unitid,jdbcType=DECIMAL}, 
+      #{bankmerid,jdbcType=VARCHAR}, #{brancheng,jdbcType=VARCHAR}, #{branchchn,jdbcType=VARCHAR}, 
+      #{stfid,jdbcType=VARCHAR}, #{branchstate,jdbcType=VARCHAR}, #{branchdesc,jdbcType=VARCHAR}, 
+      #{branchadre,jdbcType=VARCHAR}, #{branchphone,jdbcType=VARCHAR}, #{feeseq,jdbcType=DECIMAL}, 
+      #{branlogo,jdbcType=VARCHAR}, #{brancity,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}, 
+      #{site,jdbcType=VARCHAR}, #{poscount,jdbcType=DECIMAL}, #{signtime,jdbcType=TIMESTAMP}, 
+      #{rsvd,jdbcType=VARCHAR},#{acompanyid,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.core.models.TMerchantInfo" >
+    insert into T_MERCHANT_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="merseq != null" >
+        MERSEQ,
+      </if>
+      <if test="branchid != null" >
+        BRANCHID,
+      </if>
+      <if test="unitid != null" >
+        UNITID,
+      </if>
+      <if test="bankmerid != null" >
+        BANKMERID,
+      </if>
+      <if test="brancheng != null" >
+        BRANCHENG,
+      </if>
+      <if test="branchchn != null" >
+        BRANCHCHN,
+      </if>
+      <if test="stfid != null" >
+        STFID,
+      </if>
+      <if test="branchstate != null" >
+        BRANCHSTATE,
+      </if>
+      <if test="branchdesc != null" >
+        BRANCHDESC,
+      </if>
+      <if test="branchadre != null" >
+        BRANCHADRE,
+      </if>
+      <if test="branchphone != null" >
+        BRANCHPHONE,
+      </if>
+      <if test="feeseq != null" >
+        FEESEQ,
+      </if>
+      <if test="branlogo != null" >
+        BRANLOGO,
+      </if>
+      <if test="brancity != null" >
+        BRANCITY,
+      </if>
+      <if test="fax != null" >
+        FAX,
+      </if>
+      <if test="site != null" >
+        SITE,
+      </if>
+      <if test="poscount != null" >
+        POSCOUNT,
+      </if>
+      <if test="signtime != null" >
+        SIGNTIME,
+      </if>
+      <if test="rsvd != null" >
+        RSVD,
+      </if>
+      <if test="acompanyid != null" >
+        ACOMPANYID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="merseq != null" >
+        #{merseq,jdbcType=DECIMAL},
+      </if>
+      <if test="branchid != null" >
+        #{branchid,jdbcType=VARCHAR},
+      </if>
+      <if test="unitid != null" >
+        #{unitid,jdbcType=DECIMAL},
+      </if>
+      <if test="bankmerid != null" >
+        #{bankmerid,jdbcType=VARCHAR},
+      </if>
+      <if test="brancheng != null" >
+        #{brancheng,jdbcType=VARCHAR},
+      </if>
+      <if test="branchchn != null" >
+        #{branchchn,jdbcType=VARCHAR},
+      </if>
+      <if test="stfid != null" >
+        #{stfid,jdbcType=VARCHAR},
+      </if>
+      <if test="branchstate != null" >
+        #{branchstate,jdbcType=VARCHAR},
+      </if>
+      <if test="branchdesc != null" >
+        #{branchdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="branchadre != null" >
+        #{branchadre,jdbcType=VARCHAR},
+      </if>
+      <if test="branchphone != null" >
+        #{branchphone,jdbcType=VARCHAR},
+      </if>
+      <if test="feeseq != null" >
+        #{feeseq,jdbcType=DECIMAL},
+      </if>
+      <if test="branlogo != null" >
+        #{branlogo,jdbcType=VARCHAR},
+      </if>
+      <if test="brancity != null" >
+        #{brancity,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="site != null" >
+        #{site,jdbcType=VARCHAR},
+      </if>
+      <if test="poscount != null" >
+        #{poscount,jdbcType=DECIMAL},
+      </if>
+      <if test="signtime != null" >
+        #{signtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rsvd != null" >
+        #{rsvd,jdbcType=VARCHAR},
+      </if>
+      <if test="acompanyid != null" >
+        #{acompanyid,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.core.models.TMerchantInfo" >
+    update T_MERCHANT_INFO
+    <set >
+      <if test="branchid != null" >
+        BRANCHID = #{branchid,jdbcType=VARCHAR},
+      </if>
+      <if test="unitid != null" >
+        UNITID = #{unitid,jdbcType=DECIMAL},
+      </if>
+      <if test="bankmerid != null" >
+        BANKMERID = #{bankmerid,jdbcType=VARCHAR},
+      </if>
+      <if test="brancheng != null" >
+        BRANCHENG = #{brancheng,jdbcType=VARCHAR},
+      </if>
+      <if test="branchchn != null" >
+        BRANCHCHN = #{branchchn,jdbcType=VARCHAR},
+      </if>
+      <if test="stfid != null" >
+        STFID = #{stfid,jdbcType=VARCHAR},
+      </if>
+      <if test="branchstate != null" >
+        BRANCHSTATE = #{branchstate,jdbcType=VARCHAR},
+      </if>
+      <if test="branchdesc != null" >
+        BRANCHDESC = #{branchdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="branchadre != null" >
+        BRANCHADRE = #{branchadre,jdbcType=VARCHAR},
+      </if>
+      <if test="branchphone != null" >
+        BRANCHPHONE = #{branchphone,jdbcType=VARCHAR},
+      </if>
+      <if test="feeseq != null" >
+        FEESEQ = #{feeseq,jdbcType=DECIMAL},
+      </if>
+      <if test="branlogo != null" >
+        BRANLOGO = #{branlogo,jdbcType=VARCHAR},
+      </if>
+      <if test="brancity != null" >
+        BRANCITY = #{brancity,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        FAX = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="site != null" >
+        SITE = #{site,jdbcType=VARCHAR},
+      </if>
+      <if test="poscount != null" >
+        POSCOUNT = #{poscount,jdbcType=DECIMAL},
+      </if>
+      <if test="signtime != null" >
+        SIGNTIME = #{signtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rsvd != null" >
+        RSVD = #{rsvd,jdbcType=VARCHAR},
+      </if>
+      <if test="acompanyid != null" >
+        ACOMPANYID = #{acompanyid,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where MERSEQ = #{merseq,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.core.models.TMerchantInfo" >
+    update T_MERCHANT_INFO
+    set BRANCHID = #{branchid,jdbcType=VARCHAR},
+      UNITID = #{unitid,jdbcType=DECIMAL},
+      BANKMERID = #{bankmerid,jdbcType=VARCHAR},
+      BRANCHENG = #{brancheng,jdbcType=VARCHAR},
+      BRANCHCHN = #{branchchn,jdbcType=VARCHAR},
+      STFID = #{stfid,jdbcType=VARCHAR},
+      BRANCHSTATE = #{branchstate,jdbcType=VARCHAR},
+      BRANCHDESC = #{branchdesc,jdbcType=VARCHAR},
+      BRANCHADRE = #{branchadre,jdbcType=VARCHAR},
+      BRANCHPHONE = #{branchphone,jdbcType=VARCHAR},
+      FEESEQ = #{feeseq,jdbcType=DECIMAL},
+      BRANLOGO = #{branlogo,jdbcType=VARCHAR},
+      BRANCITY = #{brancity,jdbcType=VARCHAR},
+      FAX = #{fax,jdbcType=VARCHAR},
+      SITE = #{site,jdbcType=VARCHAR},
+      POSCOUNT = #{poscount,jdbcType=DECIMAL},
+      SIGNTIME = #{signtime,jdbcType=TIMESTAMP},
+      RSVD = #{rsvd,jdbcType=VARCHAR},
+      ACOMPANYID = #{acompanyid,jdbcType=DECIMAL}
+    where MERSEQ = #{merseq,jdbcType=DECIMAL}
+  </update>
+  <update id="updateTmsBranchidByParams" parameterType="com.core.models.TPosTmsBind">
+  	update T_POS_TMS_BIND
+  	set BRANCHID = #{branchid,jdbcType=VARCHAR}
+  	where MERSEQ = #{merseq,jdbcType=DECIMAL}
+  </update>
+  <update id="updateTmsDataBranchidByParams" parameterType="com.core.models.TPosTmsData">
+  	update T_POS_TMS_DATA
+  	set BRANCHID = #{branchid,jdbcType=VARCHAR}
+  	where MERSEQ = #{merseq,jdbcType=DECIMAL}
+  </update>
+  <update id="updateKeyBranchidByParams" parameterType="com.core.models.TPosKeyInfo">
+  	update T_POS_KEY_INFO
+  	set BRANCHID = #{branchid,jdbcType=VARCHAR}
+  	where MERSEQ = #{merseq,jdbcType=DECIMAL}
+  </update>
+  <update id="updatePosBranchidByParams" parameterType="com.core.models.TPosInfo">
+  	update T_POS_INFO
+  	set BRANCHID = #{branchid,jdbcType=VARCHAR}
+  	where MERSEQ = #{merseq,jdbcType=DECIMAL}
+  </update>
+</mapper>

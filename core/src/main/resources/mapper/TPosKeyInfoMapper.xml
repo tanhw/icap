@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.core.controller.mapper.TPosKeyInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.core.models.TPosKeyInfo" >
+    <id column="POSID" property="posid" jdbcType="VARCHAR" />
+    <result column="TMK" property="tmk" jdbcType="VARCHAR" />
+    <result column="TMKCHKVALUE" property="tmkchkvalue" jdbcType="VARCHAR" />
+    <result column="KEK" property="kek" jdbcType="VARCHAR" />
+    <result column="MAK" property="mak" jdbcType="VARCHAR" />
+    <result column="MAKCHKVALUE" property="makchkvalue" jdbcType="VARCHAR" />
+    <result column="PIK" property="pik" jdbcType="VARCHAR" />
+    <result column="PIKCHKVALUE" property="pikchkvalue" jdbcType="VARCHAR" />
+    <result column="TRK" property="trk" jdbcType="VARCHAR" />
+    <result column="TRKCHKVALUE" property="trkchkvalue" jdbcType="VARCHAR" />
+    <result column="UNITID" property="unitid" jdbcType="DECIMAL" />
+    <result column="BRANCHID" property="branchid" jdbcType="VARCHAR" />
+    <result column="MERSEQ" property="merseq" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    POSID, TMK, TMKCHKVALUE, KEK, MAK, MAKCHKVALUE, PIK, PIKCHKVALUE,TRK,TRKCHKVALUE,UNITID,BRANCHID,MERSEQ
+  </sql>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="params.posid != null" >
+         and RTRIM(POSID) = #{params.posid,jdbcType=VARCHAR}
+      </if>
+      <if test="params.tmk != null" >
+         and TMK = #{params.tmk,jdbcType=VARCHAR}
+      </if>
+      <if test="params.tmkchkvalue != null" >
+         and TMKCHKVALUE = #{params.tmkchkvalue,jdbcType=VARCHAR}
+      </if>
+      <if test="params.kek != null" >
+         and KEK = #{params.kek,jdbcType=VARCHAR}
+      </if>
+      <if test="params.mak != null" >
+         and MAK = #{params.mak,jdbcType=VARCHAR}
+      </if>
+      <if test="params.makchkvalue != null" >
+         and MAKCHKVALUE = #{params.makchkvalue,jdbcType=VARCHAR}
+      </if>
+      <if test="params.pik != null" >
+         and PIK = #{params.pik,jdbcType=VARCHAR}
+      </if>
+      <if test="params.pikchkvalue != null" >
+         and PIKCHKVALUE = #{params.pikchkvalue,jdbcType=VARCHAR}
+      </if>
+      <if test="params.trk != null" >
+         and TRK = #{params.trk,jdbcType=VARCHAR}
+      </if>
+      <if test="params.trkchkvalue != null" >
+         and TRKCHKVALUE = #{params.trkchkvalue,jdbcType=VARCHAR}
+      </if>
+      <if test="params.unitid != null" >
+         and UNITID = #{params.unitid,jdbcType=DECIMAL}
+      </if>
+      <if test="params.branchid != null" >
+         and BRANCHID = #{params.branchid,jdbcType=VARCHAR}
+      </if>
+      <if test="params.merseq != null" >
+         and MERSEQ = #{params.merseq,jdbcType=DECIMAL}
+      </if>
+    </trim>
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from T_POS_KEY_INFO
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectCountByParams" resultType="int" >
+    select count(*) from T_POS_KEY_INFO
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectListByParams" resultType="list" resultMap="BaseResultMap" >
+    <include refid="common.Pagination_Head" />
+    select
+    <include refid="Base_Column_List" />
+    from T_POS_KEY_INFO
+    <include refid="Example_Where_Clause" />
+    <if test="orderParam != null" >
+      order by ${orderParam}
+    </if>
+    <include refid="common.Pagination_Foot" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_POS_KEY_INFO
+    where POSID = #{posid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_POS_KEY_INFO
+    where POSID = #{posid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.core.models.TPosKeyInfo" >
+    insert into T_POS_KEY_INFO (POSID, TMK, TMKCHKVALUE, 
+      KEK, MAK, MAKCHKVALUE, PIK, 
+      PIKCHKVALUE,TRK,TRKCHKVALUE,UNITID,BRANCHID,MERSEQ)
+    values (#{posid,jdbcType=VARCHAR}, #{tmk,jdbcType=VARCHAR}, #{tmkchkvalue,jdbcType=VARCHAR}, 
+      #{kek,jdbcType=VARCHAR}, #{mak,jdbcType=VARCHAR}, #{makchkvalue,jdbcType=VARCHAR}, #{pik,jdbcType=VARCHAR}, 
+      #{pikchkvalue,jdbcType=VARCHAR},#{trk,jdbcType=VARCHAR},#{trkchkvalue,jdbcType=VARCHAR},#{unitid,jdbcType=DECIMAL},#{branchid,jdbcType=VARCHAR},
+      #{merseq,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.core.models.TPosKeyInfo" >
+    insert into T_POS_KEY_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="posid != null" >
+        POSID,
+      </if>
+      <if test="tmk != null" >
+        TMK,
+      </if>
+      <if test="tmkchkvalue != null" >
+        TMKCHKVALUE,
+      </if>
+      <if test="kek != null" >
+        KEK,
+      </if>
+      <if test="mak != null" >
+        MAK,
+      </if>
+      <if test="makchkvalue != null" >
+        MAKCHKVALUE,
+      </if>
+      <if test="pik != null" >
+        PIK,
+      </if>
+      <if test="pikchkvalue != null" >
+        PIKCHKVALUE,
+      </if>
+      <if test="trk != null" >
+        TRK,
+      </if>
+      <if test="trkchkvalue != null" >
+        TRKCHKVALUE,
+      </if>
+      <if test="unitid != null" >
+        UNITID,
+      </if>
+      <if test="branchid != null" >
+        BRANCHID,
+      </if>
+      <if test="merseq != null" >
+        MERSEQ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="posid != null" >
+        #{posid,jdbcType=VARCHAR},
+      </if>
+      <if test="tmk != null" >
+        #{tmk,jdbcType=VARCHAR},
+      </if>
+      <if test="tmkchkvalue != null" >
+        #{tmkchkvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="kek != null" >
+        #{kek,jdbcType=VARCHAR},
+      </if>
+      <if test="mak != null" >
+        #{mak,jdbcType=VARCHAR},
+      </if>
+      <if test="makchkvalue != null" >
+        #{makchkvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="pik != null" >
+        #{pik,jdbcType=VARCHAR},
+      </if>
+      <if test="pikchkvalue != null" >
+        #{pikchkvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="trk != null" >
+        #{trk,jdbcType=VARCHAR},
+      </if>
+      <if test="trkchkvalue != null" >
+        #{trkchkvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="unitid != null" >
+        #{unitid,jdbcType=DECIMAL},
+      </if>
+      <if test="branchid != null" >
+        #{branchid,jdbcType=VARCHAR},
+      </if>
+      <if test="merseq != null" >
+        #{merseq,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.core.models.TPosKeyInfo" >
+    update T_POS_KEY_INFO
+    <set >
+      <if test="tmk != null" >
+        TMK = #{tmk,jdbcType=VARCHAR},
+      </if>
+      <if test="tmkchkvalue != null" >
+        TMKCHKVALUE = #{tmkchkvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="kek != null" >
+        KEK = #{kek,jdbcType=VARCHAR},
+      </if>
+      <if test="mak != null" >
+        MAK = #{mak,jdbcType=VARCHAR},
+      </if>
+      <if test="makchkvalue != null" >
+        MAKCHKVALUE = #{makchkvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="pik != null" >
+        PIK = #{pik,jdbcType=VARCHAR},
+      </if>
+      <if test="pikchkvalue != null" >
+        PIKCHKVALUE = #{pikchkvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="trk != null" >
+        TRK = #{trk,jdbcType=VARCHAR},
+      </if>
+      <if test="trkchkvalue != null" >
+        TRKCHKVALUE = #{trkchkvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="unitid != null" >
+        UNITID = #{unitid,jdbcType=DECIMAL},
+      </if>
+      <if test="branchid != null" >
+        BRANCHID = #{branchid,jdbcType=VARCHAR},
+      </if>
+      <if test="merseq != null" >
+        MERSEQ = #{merseq,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where POSID = #{posid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.core.models.TPosKeyInfo" >
+    update T_POS_KEY_INFO
+    set TMK = #{tmk,jdbcType=VARCHAR},
+      TMKCHKVALUE = #{tmkchkvalue,jdbcType=VARCHAR},
+      KEK = #{kek,jdbcType=VARCHAR},
+      MAK = #{mak,jdbcType=VARCHAR},
+      MAKCHKVALUE = #{makchkvalue,jdbcType=VARCHAR},
+      PIK = #{pik,jdbcType=VARCHAR},
+      PIKCHKVALUE = #{pikchkvalue,jdbcType=VARCHAR},
+      TRK = #{trk,jdbcType=VARCHAR},
+      TRKCHKVALUE = #{trkchkvalue,jdbcType=VARCHAR},
+      UNITID = #{unitid,jdbcType=DECIMAL},
+      BRANCHID = #{branchid,jdbcType=VARCHAR},
+      MERSEQ = #{merseq,jdbcType=DECIMAL}
+    where POSID = #{posid,jdbcType=VARCHAR}
+  </update>
+</mapper>

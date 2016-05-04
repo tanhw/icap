@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.core.controller.mapper.TNoncontxnCollectMapper" >
+  <resultMap id="BaseResultMap" type="com.core.models.TNoncontxnCollect" >
+    <result column="TXNTYPE" property="txntype" jdbcType="VARCHAR" />
+    <result column="TXNDATE" property="txndate" jdbcType="VARCHAR" />
+    <result column="UNITID" property="unitid" jdbcType="DECIMAL" />
+    <result column="BRANCHID" property="branchid" jdbcType="VARCHAR" />
+    <result column="POSID" property="posid" jdbcType="VARCHAR" />
+    <result column="CRDKIND" property="crdkind" jdbcType="VARCHAR" />
+    <result column="CARDMODEL" property="cardmodel" jdbcType="VARCHAR" />
+    <result column="TXNCOUNT" property="txncount" jdbcType="DECIMAL" />
+    <result column="TXNSUM" property="txnsum" jdbcType="DECIMAL" />
+  </resultMap>
+  <insert id="insert" parameterType="com.core.models.TNoncontxnCollect" >
+    insert into T_NONCONTXN_COLLECT (TXNTYPE, TXNDATE, UNITID, 
+      BRANCHID, POSID, CRDKIND, 
+      CARDMODEL, TXNCOUNT, TXNSUM
+      )
+    values (#{txntype,jdbcType=VARCHAR}, #{txndate,jdbcType=VARCHAR}, #{unitid,jdbcType=DECIMAL}, 
+      #{branchid,jdbcType=VARCHAR}, #{posid,jdbcType=VARCHAR}, #{crdkind,jdbcType=VARCHAR}, 
+      #{cardmodel,jdbcType=VARCHAR}, #{txncount,jdbcType=DECIMAL}, #{txnsum,jdbcType=DECIMAL}
+      )
+  </insert>
+  <sql id="Base_Column_List" >
+    TXNTYPE, TXNDATE, UNITID,BRANCHID, POSID, CRDKIND,CARDMODEL, TXNCOUNT, TXNSUM
+  </sql>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="params.txntype != null" >
+         and TXNTYPE = #{params.txntype,jdbcType=VARCHAR}
+      </if>
+      <if test="params.txndate != null" >
+         and TXNDATE = #{params.txndate,jdbcType=VARCHAR}
+      </if>
+      <if test="params.unitid != null" >
+         and UNITID = #{params.unitid,jdbcType=DECIMAL}
+      </if>
+      <if test="params.branchid != null" >
+         and BRANCHID = #{params.branchid,jdbcType=VARCHAR}
+      </if>
+      <if test="params.posid != null" >
+         and POSID = #{params.posid,jdbcType=VARCHAR}
+      </if>
+      <if test="params.crdkind != null" >
+         and CRDKIND = #{params.crdkind,jdbcType=VARCHAR}
+      </if>
+      <if test="params.cardmodel != null" >
+         and CARDMODEL = #{params.cardmodel,jdbcType=VARCHAR}
+      </if>
+      <if test="params.txncount != null" >
+         and TXNCOUNT = #{params.txncount,jdbcType=DECIMAL}
+      </if>
+      <if test="params.txnsum != null" >
+         and TXNSUM = #{params.txnsum,jdbcType=DECIMAL}
+      </if>
+    </trim>
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from T_NONCONTXN_COLLECT
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectCountByParams" resultType="int" >
+    select count(*) from T_NONCONTXN_COLLECT
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectListByParams" resultType="list" resultMap="BaseResultMap" >
+    <include refid="common.Pagination_Head" />
+    select
+    <include refid="Base_Column_List" />
+    from T_NONCONTXN_COLLECT
+    <include refid="Example_Where_Clause" />
+    <if test="orderParam != null" >
+      order by ${orderParam}
+    </if>
+    <include refid="common.Pagination_Foot" />
+  </select>
+  <insert id="insertSelective" parameterType="com.core.models.TNoncontxnCollect" >
+    insert into T_NONCONTXN_COLLECT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="txntype != null" >
+        TXNTYPE,
+      </if>
+      <if test="txndate != null" >
+        TXNDATE,
+      </if>
+      <if test="unitid != null" >
+        UNITID,
+      </if>
+      <if test="branchid != null" >
+        BRANCHID,
+      </if>
+      <if test="posid != null" >
+        POSID,
+      </if>
+      <if test="crdkind != null" >
+        CRDKIND,
+      </if>
+      <if test="cardmodel != null" >
+        CARDMODEL,
+      </if>
+      <if test="txncount != null" >
+        TXNCOUNT,
+      </if>
+      <if test="txnsum != null" >
+        TXNSUM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="txntype != null" >
+        #{txntype,jdbcType=VARCHAR},
+      </if>
+      <if test="txndate != null" >
+        #{txndate,jdbcType=VARCHAR},
+      </if>
+      <if test="unitid != null" >
+        #{unitid,jdbcType=DECIMAL},
+      </if>
+      <if test="branchid != null" >
+        #{branchid,jdbcType=VARCHAR},
+      </if>
+      <if test="posid != null" >
+        #{posid,jdbcType=VARCHAR},
+      </if>
+      <if test="crdkind != null" >
+        #{crdkind,jdbcType=VARCHAR},
+      </if>
+      <if test="cardmodel != null" >
+        #{cardmodel,jdbcType=VARCHAR},
+      </if>
+      <if test="txncount != null" >
+        #{txncount,jdbcType=DECIMAL},
+      </if>
+      <if test="txnsum != null" >
+        #{txnsum,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

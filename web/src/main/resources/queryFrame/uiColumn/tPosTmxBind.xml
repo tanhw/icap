@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="uiColumn.xsd">
+	<Column columnName="终端编号" field="posid" align="center" width="100"  isSort="true"/>
+	<Column columnName="终端类型" field="postype" align="center" formatter="postypeDesc" width="100"  isSort="true"/>
+	<Column columnName="程序名称" field="filename" align="center" width="200"  isSort="true"/>
+	<Column columnName="机构ID" field="unitid" align="center" width="100"  isSort="true"/>
+	<Column columnName="商户序号" field="merseq" align="center" width="100"  isSort="true"/>
+	<Column columnName="商户编号" field="branchid" align="center" width="100"  isSort="true"/>
+</Root>

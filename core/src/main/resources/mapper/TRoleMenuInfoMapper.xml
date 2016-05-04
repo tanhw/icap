@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.core.controller.mapper.TRoleMenuInfoMapper">
+  <resultMap id="BaseResultMap" type="com.core.models.TRoleMenuInfo">
+    <id column="ROLEMENUSEQ" jdbcType="DECIMAL" property="roleMenuSeq" />
+    <result column="ROLESEQ" jdbcType="DECIMAL" property="roleSeq" />
+    <result column="MENUCODE" jdbcType="VARCHAR" property="menuCode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ROLEMENUSEQ, ROLESEQ, MENUCODE
+  </sql>
+  <sql id="Example_Where_Clause">
+    <trim prefix="where" prefixOverrides="and|or">
+      <if test="params.roleSeq != null">
+         and ROLESEQ = #{params.roleSeq,jdbcType=DECIMAL}
+      </if>
+      <if test="params.menuCode != null">
+         and MENUCODE = #{params.menuCode,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </sql>
+  <select id="getIdValue" resultType="java.lang.Long">
+  	select COMMON.nextval from dual
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from T_ROLE_MENU_INFO
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectCountByParams" resultType="int">
+    select count(*) from T_ROLE_MENU_INFO
+    <include refid="Example_Where_Clause" />
+  </select>
+   <delete id="deleteRoleMenuWhere" parameterType="com.core.controller.mapper.TRoleMenuInfoMapper" >
+   delete from T_ROLE_MENU_INFO where  ROLESEQ = #{roleSeq,jdbcType=VARCHAR} and MENUCODE = #{menuCode,jdbcType=VARCHAR}  and 0 = (select count(*) from T_ROLE_MENU_INFO LEFT JOIN T_SYSMENU on
+T_ROLE_MENU_INFO.MENUCODE = T_SYSMENU.MENUCODE where T_ROLE_MENU_INFO.ROLESEQ = #{roleSeq,jdbcType=VARCHAR} and T_SYSMENU.UPMENU = #{menuCode,jdbcType=VARCHAR})
+  </delete>
+  <delete id="deleteByPrimaryMenuCode" parameterType="java.lang.String">
+    delete from T_ROLE_MENU_INFO
+    where MENUCODE = #{menuCode,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByUnitid" parameterType="java.lang.Long">
+    delete from T_ROLE_MENU_INFO
+    where ROLESEQ in (select ROLESEQ from T_SYSROLE where UNITID = #{unitid,jdbcType=DECIMAL})
+  </delete>
+   <select id="selectCountByUpMenu" resultType="int">
+   select count(*) from T_ROLE_MENU_INFO LEFT JOIN T_SYSMENU on
+T_ROLE_MENU_INFO.MENUCODE = T_SYSMENU.MENUCODE where T_SYSMENU.UPMENU = #{menuCode,jdbcType=VARCHAR}
+  </select>
+  <select id="selectListByParams" resultMap="BaseResultMap" resultType="list">
+    <include refid="common.Pagination_Head" />
+    select
+    <include refid="Base_Column_List" />
+    from T_ROLE_MENU_INFO
+    <include refid="Example_Where_Clause" />
+    <if test="orderParam != null">
+      order by ${orderParam}
+    </if>
+    <include refid="common.Pagination_Foot" />
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_ROLE_MENU_INFO
+    where ROLEMENUSEQ = #{roleMenuSeq,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from T_ROLE_MENU_INFO
+    where ROLEMENUSEQ = #{roleMenuSeq,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByParamsRole" >
+  DELETE from T_ROLE_MENU_INFO where MENUCODE = #{menucode,jdbcType=DECIMAL} and roleseq in (select roleseq from T_SYSROLE WHERE ROLETYPE > #{roletype,jdbcType=DECIMAL})
+  </delete>
+  <insert id="insert" parameterType="com.core.models.TRoleMenuInfo">
+    insert into T_ROLE_MENU_INFO (ROLEMENUSEQ, ROLESEQ, MENUCODE)
+    values (#{roleMenuSeq,jdbcType=DECIMAL}, #{roleSeq,jdbcType=DECIMAL}, #{menuCode,jdbcType=VARCHAR} 
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.core.models.TRoleMenuInfo">
+    insert into T_ROLE_MENU_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleMenuSeq != null">
+        ROLEMENUSEQ,
+      </if>
+      <if test="roleSeq != null">
+        ROLESEQ,
+      </if>
+      <if test="menuCode != null">
+        MENUCODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleMenuSeq != null">
+        #{roleMenuSeq,jdbcType=DECIMAL},
+      </if>
+      <if test="roleSeq != null">
+        #{roleSeq,jdbcType=DECIMAL},
+      </if>
+      <if test="menuCode != null">
+        #{menuCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.core.models.TRoleMenuInfo">
+    update T_ROLE_MENU_INFO
+    <set>
+      <if test="roleSeq != null">
+        ROLESEQ = #{roleSeq,jdbcType=DECIMAL},
+      </if>
+      <if test="menuCode != null">
+        MENUCODE = #{menuCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ROLEMENUSEQ = #{roleMenuSeq,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.core.models.TRoleMenuInfo">
+    update T_ROLE_MENU_INFO
+    set ROLESEQ = #{roleSeq,jdbcType=DECIMAL},
+      MENUCODE = #{menuCode,jdbcType=VARCHAR}
+    where ROLEMENUSEQ = #{roleMenuSeq,jdbcType=DECIMAL}
+  </update>
+</mapper>

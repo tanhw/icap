@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="uiList.xsd">
+  <ImportColumn url="tBlackInfo.xml"/>
+  <List url="blackInfo/list.html" checkbox="true" sortName="blackseq" sortOrder="desc" />
+   <ImportJS url="appJs/blackInfoBasic.js"/>
+</Root>

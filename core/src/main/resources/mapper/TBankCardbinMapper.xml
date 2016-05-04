@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.core.controller.mapper.TBankCardbinMapper" >
+  <resultMap id="BaseResultMap" type="com.core.models.TBankCardbin" >
+    <id column="BINSEQ" property="binseq" jdbcType="DECIMAL" />
+    <result column="CARDBIN" property="cardbin" jdbcType="VARCHAR" />
+    <result column="BANKID" property="bankid" jdbcType="DECIMAL" />
+    <result column="BINNAME" property="binname" jdbcType="VARCHAR" />
+    <result column="CREATETIME" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="UNITID" property="unitid" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    BINSEQ, CARDBIN, BANKID, BINNAME, CREATETIME, UNITID
+  </sql>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="params.cardbin != null" >
+         and CARDBIN = #{params.cardbin,jdbcType=VARCHAR}
+      </if>
+      <if test="params.bankid != null" >
+         and BANKID = #{params.bankid,jdbcType=DECIMAL}
+      </if>
+      <if test="params.binname != null" >
+         and BINNAME like CONCAT(CONCAT('%',#{params.binname,jdbcType=VARCHAR}),'%')
+      </if>
+      <if test="params.createtime != null" >
+         and CREATETIME = #{params.createtime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="params.unitid != null" >
+         and UNITID = #{params.unitid,jdbcType=DECIMAL}
+      </if>
+    </trim>
+  </sql>
+  <select id="getIdValue" resultType="java.lang.Long">
+  	select S_BANK_CARDBIN.nextval from dual
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from T_BANK_CARDBIN
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectCountByParams" resultType="int" >
+    select count(*) from T_BANK_CARDBIN
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectListByParams" resultType="list" resultMap="BaseResultMap" >
+    <include refid="common.Pagination_Head" />
+    select
+    <include refid="Base_Column_List" />
+    from T_BANK_CARDBIN
+    <include refid="Example_Where_Clause" />
+    <if test="orderParam != null" >
+      order by ${orderParam}
+    </if>
+    <include refid="common.Pagination_Foot" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_BANK_CARDBIN
+    where BINSEQ = #{binseq,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from T_BANK_CARDBIN
+    where BINSEQ = #{binseq,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.core.models.TBankCardbin" >
+    insert into T_BANK_CARDBIN (BINSEQ, CARDBIN, BANKID, 
+      BINNAME, CREATETIME, UNITID
+      )
+    values (#{binseq,jdbcType=DECIMAL}, #{cardbin,jdbcType=VARCHAR}, #{bankid,jdbcType=DECIMAL}, 
+      #{binname,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{unitid,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.core.models.TBankCardbin" >
+    insert into T_BANK_CARDBIN
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="binseq != null" >
+        BINSEQ,
+      </if>
+      <if test="cardbin != null" >
+        CARDBIN,
+      </if>
+      <if test="bankid != null" >
+        BANKID,
+      </if>
+      <if test="binname != null" >
+        BINNAME,
+      </if>
+      <if test="createtime != null" >
+        CREATETIME,
+      </if>
+      <if test="unitid != null" >
+        UNITID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="binseq != null" >
+        #{binseq,jdbcType=DECIMAL},
+      </if>
+      <if test="cardbin != null" >
+        #{cardbin,jdbcType=VARCHAR},
+      </if>
+      <if test="bankid != null" >
+        #{bankid,jdbcType=DECIMAL},
+      </if>
+      <if test="binname != null" >
+        #{binname,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unitid != null" >
+        #{unitid,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.core.models.TBankCardbin" >
+    update T_BANK_CARDBIN
+    <set >
+      <if test="cardbin != null" >
+        CARDBIN = #{cardbin,jdbcType=VARCHAR},
+      </if>
+      <if test="bankid != null" >
+        BANKID = #{bankid,jdbcType=DECIMAL},
+      </if>
+      <if test="binname != null" >
+        BINNAME = #{binname,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unitid != null" >
+        UNITID = #{unitid,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where BINSEQ = #{binseq,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.core.models.TBankCardbin" >
+    update T_BANK_CARDBIN
+    set CARDBIN = #{cardbin,jdbcType=VARCHAR},
+      BANKID = #{bankid,jdbcType=DECIMAL},
+      BINNAME = #{binname,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      UNITID = #{unitid,jdbcType=DECIMAL}
+    where BINSEQ = #{binseq,jdbcType=DECIMAL}
+  </update>
+</mapper>

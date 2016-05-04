@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.core.controller.mapper.TDictMapper" >
+  <resultMap id="BaseResultMap" type="com.core.models.TDict" >
+    <id column="CCODE" property="ccode" jdbcType="VARCHAR" />
+    <result column="CVALUE" property="cvalue" jdbcType="VARCHAR" />
+    <result column="CDESC" property="cdesc" jdbcType="VARCHAR" />
+    <result column="CTYPE" property="ctype" jdbcType="VARCHAR" />
+    <result column="ISACTIVE" property="isactive" jdbcType="VARCHAR" />
+    <result column="CUPCODE" property="cupcode" jdbcType="VARCHAR" />
+    <result column="CORDER" property="corder" jdbcType="VARCHAR" />
+    <result column="UNITID" property="unitid" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CCODE, CVALUE, CTYPE, ISACTIVE, CUPCODE, CDESC, CORDER, UNITID
+  </sql>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="params.ccode != null" >
+         and CCODE = #{params.ccode,jdbcType=VARCHAR}
+      </if>
+      <if test="params.cvalue != null" >
+         and CVALUE = #{params.cvalue,jdbcType=VARCHAR}
+      </if>
+      <if test="params.ctype != null" >
+         and CTYPE = #{params.ctype,jdbcType=VARCHAR}
+      </if>
+      <if test="params.isactive != null" >
+         and ISACTIVE = #{params.isactive,jdbcType=VARCHAR}
+      </if>
+      <if test="params.cupcode != null" >
+         and CUPCODE = #{params.cupcode,jdbcType=VARCHAR}
+      </if>
+      <if test="params.cdesc != null" >
+         and CDESC like CONCAT(CONCAT('%',#{params.cdesc,jdbcType=VARCHAR}),'%')
+      </if>
+      <if test="params.corder != null" >
+         and CORDER = #{params.corder,jdbcType=VARCHAR}
+      </if>
+      <if test="params.unitid != null" >
+         and (UNITID = #{params.unitid,jdbcType=DECIMAL}
+         or UNITID is null) 
+      </if>
+    </trim>
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from T_DICT
+    <include refid="Example_Where_Clause" />
+  </select>
+  
+  <select id="selectParentByUpcode" resultMap="BaseResultMap" resultType="list" >
+ 	select 
+	<include refid="Base_Column_List" />
+	from T_DICT where CVALUE is null and CUPCODE is null
+  </select>
+  
+  <select id="selectChildByUpcode" resultMap="BaseResultMap" resultType="list" parameterType="java.lang.String" >
+ 	select 
+ 	<include refid="Base_Column_List" />
+ 	from T_DICT where CUPCODE = #{cupcode,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectCountByParams" resultType="int" >
+    select count(*) from T_DICT
+    <include refid="Example_Where_Clause" />
+  </select>
+  
+  <select id="selectListByParams" resultType="list" resultMap="BaseResultMap" >
+    <include refid="common.Pagination_Head" />
+    select
+    <include refid="Base_Column_List" />
+    from T_DICT
+    <include refid="Example_Where_Clause" />
+    <if test="orderParam != null" >
+      order by ${orderParam}
+    </if>
+    <include refid="common.Pagination_Foot" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_DICT
+    where CCODE = #{ccode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_DICT
+    where CCODE = #{ccode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.core.models.TDict" >
+    insert into T_DICT (CCODE, CVALUE, CDESC, CORDER,CTYPE , 
+      ISACTIVE, CUPCODE,UNITID)
+    values (#{ccode,jdbcType=VARCHAR}, #{cvalue,jdbcType=VARCHAR}, #{cdesc,jdbcType=VARCHAR}, #{corder,jdbcType=VARCHAR}, #{ctype,jdbcType=VARCHAR}, 
+      #{isactive,jdbcType=VARCHAR}, #{cupcode,jdbcType=VARCHAR},#{unitid,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.core.models.TDict" >
+    insert into T_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ccode != null" >
+        CCODE,
+      </if>
+      <if test="cvalue != null" >
+        CVALUE,
+      </if>
+      <if test="cdesc != null" >
+        CDESC,
+      </if>
+      <if test="ctype != null" >
+        CTYPE,
+      </if>
+      <if test="isactive != null" >
+        ISACTIVE,
+      </if>
+      <if test="cupcode != null" >
+        CUPCODE,
+      </if>
+      <if test="corder != null" >
+        CORDER,
+      </if>
+      <if test="unitid != null" >
+        UNITID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ccode != null" >
+        #{ccode,jdbcType=VARCHAR},
+      </if>
+      <if test="cvalue != null" >
+        #{cvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="cdesc != null" >
+        #{cdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="ctype != null" >
+        #{ctype,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null" >
+        #{isactive,jdbcType=VARCHAR},
+      </if>
+      <if test="cupcode != null" >
+        #{cupcode,jdbcType=VARCHAR},
+      </if>
+      <if test="corder != null" >
+        #{corder,jdbcType=VARCHAR},
+      </if>
+      <if test="unitid != null" >
+        #{unitid,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.core.models.TDict" >
+    update T_DICT
+    <set >
+      <if test="cvalue != null" >
+        CVALUE = #{cvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="cdesc != null" >
+        CDESC = #{cdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="ctype != null" >
+        CTYPE = #{ctype,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null" >
+        ISACTIVE = #{isactive,jdbcType=VARCHAR},
+      </if>
+      <if test="cupcode != null" >
+        CUPCODE = #{cupcode,jdbcType=VARCHAR},
+      </if>
+      <if test="corder != null" >
+        CORDER = #{corder,jdbcType=VARCHAR},
+      </if>
+      <if test="unitid != null" >
+        UNITID = #{unitid,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where CCODE = #{ccode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.core.models.TDict" >
+    update T_DICT
+    set CVALUE = #{cvalue,jdbcType=VARCHAR},
+      CDESC = #{cdesc,jdbcType=VARCHAR},
+      CTYPE = #{ctype,jdbcType=VARCHAR},
+      ISACTIVE = #{isactive,jdbcType=VARCHAR},
+      CORDER = #{corder,jdbcType=VARCHAR},
+      CUPCODE = #{cupcode,jdbcType=VARCHAR},
+      UNITID = #{unitid,jdbcType=DECIMAL}
+    where CCODE = #{ccode,jdbcType=VARCHAR}
+  </update>
+</mapper>

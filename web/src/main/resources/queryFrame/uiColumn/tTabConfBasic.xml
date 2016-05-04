@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="uiColumn.xsd">
+	<Column columnName="配置ID" field="confid" align="center" width="100" isSort="true"/>
+	<Column columnName="配置名称" field="confname" align="center" width="120" isSort="true"/>
+	<Column columnName="是否有效" field="isactive" align="center" width="100" isSort="true" formatter="isactiveDesc"/>
+	<Column columnName="业务类型" field="busi" align="center" width="100"  isSort="true"/>
+</Root>

@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.core.controller.mapper.TUnitInfoMapper">
+  <resultMap id="BaseResultMap" type="com.core.models.TUnitInfo">
+    <id column="UNITID" jdbcType="DECIMAL" property="unitid" />
+    <result column="UNITNAME" jdbcType="VARCHAR" property="unitname" />
+    <result column="UNITDESC" jdbcType="VARCHAR" property="unitdesc" />
+    <result column="UNITADDR" jdbcType="VARCHAR" property="unitaddr" />
+    <result column="UNITCONTACT" jdbcType="VARCHAR" property="unitcontact" />
+    <result column="UNITTELE" jdbcType="VARCHAR" property="unittele" />
+    <result column="UNITMAIL" jdbcType="VARCHAR" property="unitmail" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="UNITFAX" jdbcType="VARCHAR" property="unitfax" />
+    <result column="PARENTID" jdbcType="VARCHAR" property="parentid" />
+    <result column="UNITKIND" jdbcType="VARCHAR" property="unitkind" />
+    <result column="UNITENAME" jdbcType="VARCHAR" property="unitename" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="RSVD" jdbcType="VARCHAR" property="rsvd" />
+    <result column="BANKID" jdbcType="VARCHAR" property="bankid" />
+    <result column="BANKORGID" jdbcType="VARCHAR" property="bankorgid" />
+    <result column="BANKPOSOFFSEQ" jdbcType="VARCHAR" property="bankposoffseq" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    UNITID, UNITNAME, UNITDESC, UNITADDR, UNITCONTACT, UNITTELE, UNITMAIL, CREATETIME, 
+    UNITFAX,PARENTID,UNITKIND,BANKID,BANKORGID,BANKPOSOFFSEQ
+  </sql>
+  <sql id="Example_Where_Clause">
+    <trim prefix="where" prefixOverrides="and|or">
+      <if test="params.unitid != null">
+         and UNITID = #{params.unitid,jdbcType=VARCHAR}
+      </if>
+      <if test="params.unitname != null">
+         and UNITNAME like CONCAT(CONCAT('%',#{params.unitname,jdbcType=VARCHAR}),'%')
+      </if>
+      <if test="params.unitdesc != null">
+         and UNITDESC = #{params.unitdesc,jdbcType=VARCHAR}
+      </if>
+      <if test="params.unitaddr != null">
+         and UNITADDR = #{params.unitaddr,jdbcType=VARCHAR}
+      </if>
+      <if test="params.unitcontact != null">
+         and UNITCONTACT like CONCAT(CONCAT('%',#{params.unitcontact,jdbcType=VARCHAR}),'%')
+      </if>
+      <if test="params.unittele != null">
+         and UNITTELE = #{params.unittele,jdbcType=VARCHAR}
+      </if>
+      <if test="params.unitmail != null">
+         and UNITMAIL = #{params.unitmail,jdbcType=VARCHAR}
+      </if>
+      <if test="params.createtime != null">
+         and CREATETIME = #{params.createtime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="params.unitfax != null">
+         and UNITFAX = #{params.unitfax,jdbcType=VARCHAR}
+      </if>
+      <if test="params.parentid != null">
+         and PARENTID = #{params.parentid,jdbcType=VARCHAR}
+      </if>
+      <if test="params.unitkind != null">
+         and UNITKIND = #{params.unitkind,jdbcType=VARCHAR}
+      </if>
+      <if test="params.bankid != null">
+         and BANKID = #{params.bankid,jdbcType=VARCHAR}
+      </if>
+      <if test="params.bankorgid != null">
+         and BANKORGID = #{params.bankorgid,jdbcType=VARCHAR}
+      </if>
+      <if test="params.bankposoffseq != null">
+         and BANKPOSOFFSEQ = #{params.bankposoffseq,jdbcType=VARCHAR}
+      </if>
+      <if test="params.unitkind != null">
+        and UNITKIND = #{params.unitkind,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </sql>
+  <select id="getIdValue" resultType="java.lang.Long">
+  	select S_UNIT_INFO.nextval from dual
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from T_UNIT_INFO
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectCountByParams" resultType="int">
+    select count(*) from T_UNIT_INFO
+    <trim prefix="where" prefixOverrides="and|or">
+      <if test="params.unitid != null">
+         and UNITID = #{params.unitid,jdbcType=VARCHAR}
+      </if>
+      <if test="params.unitname != null">
+         and UNITNAME like CONCAT(CONCAT('%',#{params.unitname,jdbcType=VARCHAR}),'%')
+      </if>
+      <if test="params.unitdesc != null">
+         and UNITDESC = #{params.unitdesc,jdbcType=VARCHAR}
+      </if>
+      <if test="params.unitaddr != null">
+         and UNITADDR = #{params.unitaddr,jdbcType=VARCHAR}
+      </if>
+      <if test="params.unitcontact != null">
+         and UNITCONTACT like CONCAT(CONCAT('%',#{params.unitcontact,jdbcType=VARCHAR}),'%')
+      </if>
+      <if test="params.unittele != null">
+         and UNITTELE = #{params.unittele,jdbcType=VARCHAR}
+      </if>
+      <if test="params.unitmail != null">
+         and UNITMAIL = #{params.unitmail,jdbcType=VARCHAR}
+      </if>
+      <if test="params.createtime != null">
+         and CREATETIME = #{params.createtime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="params.unitfax != null">
+         and UNITFAX = #{params.unitfax,jdbcType=VARCHAR}
+      </if>
+      <if test="params.parentid != null">
+         and PARENTID  LIKE CONCAT('%',#{params.parentid,jdbcType=VARCHAR})
+      </if>
+      <if test="params.bankid != null">
+        and BANKID = #{params.bankid,jdbcType=VARCHAR}
+      </if>
+      <if test="params.bankorgid != null">
+        and BANKORGID = #{params.bankorgid,jdbcType=VARCHAR}
+      </if>
+      <if test="params.bankposoffseq != null">
+        and BANKPOSOFFSEQ = #{params.bankposoffseq,jdbcType=VARCHAR}
+      </if>
+      <if test="params.unitkind != null">
+        and UNITKIND = #{params.unitkind,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  
+  </select>
+  <select id="selectListByParams" resultMap="BaseResultMap" resultType="list">
+    
+    <include refid="common.Pagination_Head" />
+    
+    select
+    <include refid="Base_Column_List" />
+    from T_UNIT_INFO
+     <trim prefix="where" prefixOverrides="and|or">
+      <if test="params.unitid != null">
+         and UNITID = #{params.unitid,jdbcType=VARCHAR}
+      </if>
+      <if test="params.unitname != null">
+         and UNITNAME like CONCAT(CONCAT('%',#{params.unitname,jdbcType=VARCHAR}),'%')
+      </if>
+      <if test="params.unitdesc != null">
+         and UNITDESC = #{params.unitdesc,jdbcType=VARCHAR}
+      </if>
+      <if test="params.unitaddr != null">
+         and UNITADDR = #{params.unitaddr,jdbcType=VARCHAR}
+      </if>
+      <if test="params.unitcontact != null">
+         and UNITCONTACT like CONCAT(CONCAT('%',#{params.unitcontact,jdbcType=VARCHAR}),'%')
+      </if>
+      <if test="params.unittele != null">
+         and UNITTELE = #{params.unittele,jdbcType=VARCHAR}
+      </if>
+      <if test="params.unitmail != null">
+         and UNITMAIL = #{params.unitmail,jdbcType=VARCHAR}
+      </if>
+      <if test="params.createtime != null">
+         and CREATETIME = #{params.createtime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="params.unitfax != null">
+         and UNITFAX = #{params.unitfax,jdbcType=VARCHAR}
+      </if>
+      <if test="params.parentid != null">
+         and PARENTID LIKE CONCAT('%',#{params.parentid,jdbcType=VARCHAR})
+      </if>
+       <if test="params.bankid != null">
+         and BANKID = #{params.bankid,jdbcType=VARCHAR}
+       </if>
+       <if test="params.bankorgid != null">
+         and BANKORGID = #{params.bankorgid,jdbcType=VARCHAR}
+       </if>
+       <if test="params.bankposoffseq != null">
+         and BANKPOSOFFSEQ = #{params.bankposoffseq,jdbcType=VARCHAR}
+       </if>
+       <if test="params.unitkind != null">
+         and UNITKIND = #{params.unitkind,jdbcType=VARCHAR}
+       </if>
+    </trim>
+    <if test="orderParam != null">
+      order by ${orderParam}
+    </if>
+    <include refid="common.Pagination_Foot" />
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_UNIT_INFO
+    where UNITID = #{unitid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from T_UNIT_INFO
+    where UNITID = #{unitid,jdbcType=DECIMAL}
+  </delete>
+
+  <insert id="insert" parameterType="com.core.models.TUnitInfo">
+    insert into T_UNIT_INFO (UNITID, UNITNAME, UNITDESC, 
+      UNITADDR, UNITCONTACT, UNITTELE, 
+      UNITMAIL, CREATETIME, UNITFAX,PARENTID,
+      UNITKIND,BANKID,BANKORGID,BANKPOSOFFSEQ)
+    values (#{unitid,jdbcType=DECIMAL}, #{unitname,jdbcType=VARCHAR}, #{unitdesc,jdbcType=VARCHAR}, 
+      #{unitaddr,jdbcType=VARCHAR}, #{unitcontact,jdbcType=VARCHAR}, #{unittele,jdbcType=VARCHAR}, 
+      #{unitmail,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{unitfax,jdbcType=VARCHAR},
+	  #{parentid,jdbcType=VARCHAR}, #{unitkind,jdbcType=VARCHAR}, #{bankid,jdbcType=VARCHAR}, #{bankorgid,jdbcType=VARCHAR},
+      #{bankposoffseq,jdbcType=VARCHAR})
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.core.models.TUnitInfo">
+    insert into T_UNIT_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="unitid != null">
+        UNITID,
+      </if>
+      <if test="unitname != null">
+        UNITNAME,
+      </if>
+      <if test="unitdesc != null">
+        UNITDESC,
+      </if>
+      <if test="unitaddr != null">
+        UNITADDR,
+      </if>
+      <if test="unitcontact != null">
+        UNITCONTACT,
+      </if>
+      <if test="unittele != null">
+        UNITTELE,
+      </if>
+      <if test="unitmail != null">
+        UNITMAIL,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="unitfax != null">
+        UNITFAX,
+      </if>
+      <if test="parentid != null">
+        PARENTID,
+      </if>
+      <if test="unitkind != null">
+        UNITKIND,
+      </if>
+      <if test="bankid != null">
+        BANKID,
+      </if>
+      <if test="bankorgid != null">
+        BANKORGID,
+      </if>
+      <if test="bankposoffseq != null">
+        BANKPOSOFFSEQ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="unitid != null">
+        #{unitid,jdbcType=DECIMAL},
+      </if>
+      <if test="unitname != null">
+        #{unitname,jdbcType=VARCHAR},
+      </if>
+      <if test="unitdesc != null">
+        #{unitdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="unitaddr != null">
+        #{unitaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="unitcontact != null">
+        #{unitcontact,jdbcType=VARCHAR},
+      </if>
+      <if test="unittele != null">
+        #{unittele,jdbcType=VARCHAR},
+      </if>
+      <if test="unitmail != null">
+        #{unitmail,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unitfax != null">
+        #{unitfax,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=VARCHAR},
+      </if>
+      <if test="unitkind != null">
+        #{unitkind,jdbcType=VARCHAR},
+      </if>
+      <if test="bankid != null">
+        #{bankid,jdbcType=VARCHAR},
+      </if>
+      <if test="bankorgid != null">
+        #{bankorgid,jdbcType=VARCHAR},
+      </if>
+      <if test="bankposoffseq != null">
+        #{bankposoffseq,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.core.models.TUnitInfo">
+    update T_UNIT_INFO
+    <set>
+      <if test="unitname != null">
+        UNITNAME = #{unitname,jdbcType=VARCHAR},
+      </if>
+      <if test="unitdesc != null">
+        UNITDESC = #{unitdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="unitaddr != null">
+        UNITADDR = #{unitaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="unitcontact != null">
+        UNITCONTACT = #{unitcontact,jdbcType=VARCHAR},
+      </if>
+      <if test="unittele != null">
+        UNITTELE = #{unittele,jdbcType=VARCHAR},
+      </if>
+      <if test="unitmail != null">
+        UNITMAIL = #{unitmail,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unitfax != null">
+        UNITFAX = #{unitfax,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        PARENTID = #{parentid,jdbcType=VARCHAR},
+      </if>
+      <if test="unitkind != null">
+        UNITKIND = #{unitkind,jdbcType=VARCHAR},
+      </if>
+      <if test="bankid != null">
+        BANKID = #{bankid,jdbcType=VARCHAR},
+      </if>
+      <if test="bankorgid != null">
+        BANKORGID = #{bankorgid,jdbcType=VARCHAR},
+      </if>
+      <if test="bankposoffseq != null">
+        BANKPOSOFFSEQ = #{bankposoffseq,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UNITID = #{unitid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.core.models.TUnitInfo">
+    update T_UNIT_INFO
+    set UNITNAME = #{unitname,jdbcType=VARCHAR},
+      UNITDESC = #{unitdesc,jdbcType=VARCHAR},
+      UNITADDR = #{unitaddr,jdbcType=VARCHAR},
+      UNITCONTACT = #{unitcontact,jdbcType=VARCHAR},
+      UNITTELE = #{unittele,jdbcType=VARCHAR},
+      UNITMAIL = #{unitmail,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      UNITFAX = #{unitfax,jdbcType=VARCHAR},
+      PARENTID = #{parentid,jdbcType=VARCHAR},
+      UNITKIND = #{unitkind,jdbcType=VARCHAR}
+      BANKID = #{bankid,jdbcType=VARCHAR},
+      BANKORGID = #{bankorgid,jdbcType=VARCHAR},
+      BANKPOSOFFSEQ = #{bankposoffseq,jdbcType=VARCHAR}
+    where UNITID = #{unitid,jdbcType=DECIMAL}
+  </update>
+</mapper>

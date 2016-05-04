@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.core.controller.mapper.TCheckInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.core.models.TCheckInfo" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <id column="CODE" property="code" jdbcType="VARCHAR" />
+    <id column="CREATETIME" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CODE, CREATETIME
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="com.core.models.TCheckInfo" >
+    delete from T_CHECK_INFO
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByPrimaryDate" parameterType="java.util.Date" >
+    delete from T_CHECK_INFO
+    where <![CDATA[ createtime < #{createtime,jdbcType=VARCHAR}]]>
+  </delete>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or">
+      <if test="params.id != null">
+        and ID = #{params.id,jdbcType=VARCHAR}
+      </if>
+      <if test="params.code != null">
+        and CODE = #{params.code,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </sql>
+
+  <select id="getIdValue" resultType="java.lang.Long">
+    select COMMON.nextval from dual
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from T_CHECK_INFO
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectCountByParams" resultType="int" >
+    select count(*) from T_CHECK_INFO
+    <include refid="Example_Where_Clause" />
+  </select>
+  <select id="selectListByParams" resultType="list" resultMap="BaseResultMap" >
+    <include refid="common.Pagination_Head" />
+    select
+    <include refid="Base_Column_List" />
+    from T_CHECK_INFO
+    <include refid="Example_Where_Clause" />
+    <if test="orderParam != null" >
+      order by ${orderParam}
+    </if>
+    <include refid="common.Pagination_Foot" />
+  </select>
+  <insert id="insert" parameterType="com.core.models.TCheckInfo" >
+    insert into T_CHECK_INFO (ID, CODE, CREATETIME
+      )
+    values (#{id,jdbcType=DECIMAL}, #{code,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.core.models.TCheckInfo" >
+    insert into T_CHECK_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="code != null" >
+        CODE,
+      </if>
+      <if test="createtime != null" >
+        CREATETIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

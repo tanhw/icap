@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="uiColumn.xsd">
+	<Column columnName="商户序号" field="merseq" align="center" width="100" isSort="true"/>
+	<Column columnName="商户编号" field="branchid" align="center" width="100" isSort="true"/>
+	<Column columnName="机构ID" field="unitid" align="center" width="100" isSort="true"/>
+	<Column columnName="银行收单商户号" field="bankmerid" align="center" width="100" isSort="true"/>
+	<Column columnName="区域公司ID" field="acompanyid" align="center" width="100" isSort="true" />
+	<Column columnName="商户英文名" field="brancheng" align="center" width="100"  isSort="true" />
+	<Column columnName="商户中文名" field="branchchn" align="center" width="100" isSort="true"/>
+	<Column columnName="商户负责人" field="stfid" align="center" width="100" isSort="true"/>
+	<Column columnName="商户状态" field="branchstate" align="center" width="100" isSort="true" formatter="branchstateDesc"/>
+	<Column columnName="商户描述" field="branchdesc" align="center" width="100" isSort="true"/>
+	<Column columnName="商户地址" field="branchadre" align="center" width="150"  isSort="true"/>
+	<Column columnName="商户电话" field="branchphone" align="center" width="120" isSort="true" />
+	<Column columnName="手续费序号" field="feeseq" align="center" width="100" isSort="true"/>
+	<Column columnName="商户logo" field="branlogo" align="center" width="150" isSort="true"/>
+	<Column columnName="所在城市" field="brancity" align="center" width="100" isSort="true" />
+	<Column columnName="传真" field="fax" align="center" width="100" isSort="true" />
+	<Column columnName="商户网站" field="site" align="center" width="150" isSort="true" />
+	<Column columnName="POS终端数量" field="poscount" align="center" width="100" isSort="true" />
+	<Column columnName="签约时间" field="signtime" align="center" width="150" isSort="true" />
+</Root>

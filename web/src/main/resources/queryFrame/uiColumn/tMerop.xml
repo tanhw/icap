@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="uiColumn.xsd">
+	<Column columnName="序号" field="meropseq" align="center" width="100" isSort="true"/>
+	<Column columnName="商户编号" field="merseq" align="center" width="100" isSort="true"/>
+	<Column columnName="登录名" field="loginname" align="center" width="100" isSort="true"/>
+	<Column columnName="创建时间" field="createtime" align="center" width="150"  isSort="true" formatter="createtimeDesc"/>
+	<Column columnName="真实姓名" field="realname" align="center" width="100" isSort="true"/>
+	<Column columnName="电话" field="phone" align="center" width="100" isSort="true"/>
+	<Column columnName="邮箱" field="mail" align="center" width="100" isSort="true"/>
+	<Column columnName="角色序号" field="roeseq" align="center" width="100" isSort="true"/>
+	<Column columnName="是否有效" field="isactive" align="center" width="100"  isSort="true" formatter="isactiveDesc"/>
+	<Column columnName="修改时间" field="modifytime" align="center" width="150" isSort="true" formatter="modifytimeDesc"/>
+	<Column columnName="上次登录时间" field="lastlogtime" align="center" width="150" isSort="true" formatter="lastlogtimeDesc"/>
+	<Column columnName="上次登录IP" field="lastlogip" align="center" width="150" isSort="true"/>
+	<Column columnName="机构ID" field="unitid" align="center" width="100" isSort="true" />
+	<Column columnName="门店序号" field="storeseq" align="center" width="100" isSort="true" />
+</Root>
