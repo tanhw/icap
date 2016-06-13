@@ -27,7 +27,7 @@ public class LoginAction {
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
-	private LoginBusiness bussiness;
+	private LoginBusiness business;
 	
 	@Autowired
 	private CommParamsBusiness commParamsBusiness;
@@ -71,7 +71,7 @@ public class LoginAction {
 			
 			/** 验证用户 确认登录类别 **/
 			passWord = RSAUtils.decrypt(passWord, 1).trim();
-			res = bussiness.doLoginAndLeftMenu(request, loginName, passWord, operatorType,unitId);
+			res = business.doLoginAndLeftMenu(request, loginName, passWord, operatorType,unitId);
 
 		} catch (Exception e) {
 			logger.info(LogUtil.getTrace(e));

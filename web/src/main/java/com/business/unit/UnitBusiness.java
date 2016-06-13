@@ -403,7 +403,7 @@ public class UnitBusiness {
      * @author tanhw
      * @date 2015年8月14日 下午5:23:12
      */
-    public void bindConfByunitSave(HttpServletRequest request, String unitid,String confids) throws Exception {
+    public void bindConfByunitSave(HttpServletRequest request, String unitid,String confides) throws Exception {
 
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("unitid", unitid);
@@ -414,7 +414,7 @@ public class UnitBusiness {
             tempid += (temp.getConfid().toString() + ",");
         }
 
-        String[] confs = confids.split(","); //前台权限
+        String[] confs = confides.split(","); //前台权限
         String[] tempids = tempid.split(","); //后台原本权限
 
         List<String> set = new ArrayList<>(); //勾选
@@ -430,7 +430,7 @@ public class UnitBusiness {
 
         //比较去选的
         for (String temp : tempids) {
-            boolean result = confids.indexOf(temp) == -1;
+            boolean result = confides.indexOf(temp) == -1;
             if (result) {
                 out.add(temp);
             }
