@@ -60,7 +60,7 @@ public class MyTest {
     }
 
     @After
-    public void destory() {
+    public void destroy() {
     }
 
     @Test

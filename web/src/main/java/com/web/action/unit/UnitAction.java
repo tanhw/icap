@@ -346,13 +346,13 @@ public class UnitAction extends BaseAction{
 	 */
 	@ResponseBody
 	@RequestMapping("/bindConfByunitSave.html")
-	public JsonDataWrapper<TUnitInfo> bindConfByunitSave(HttpServletRequest request,@RequestParam(value="unitid")String unitid,@RequestParam(value="ids")String confids) {
+	public JsonDataWrapper<TUnitInfo> bindConfByunitSave(HttpServletRequest request,@RequestParam(value="unitid")String unitid,@RequestParam(value="ids")String confides) {
 
 		JsonDataWrapper<TUnitInfo> res = new JsonDataWrapper<TUnitInfo>(true,RespCodeConstant.Success.toString());
 
 		try {
 
-			unitBussiness.bindConfByunitSave(request, unitid, confids);
+			unitBussiness.bindConfByunitSave(request, unitid, confides);
 
 		} catch (Exception e) {
 			logger.info(LogUtil.getTrace(e));

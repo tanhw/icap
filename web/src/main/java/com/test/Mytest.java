@@ -29,7 +29,7 @@ public class Mytest extends TestCase {
     }  
 	
     @After(value = "")
-    public void destory(){  
+    public void destroy(){  
     }
     
     @Test  
